@@ -48,7 +48,7 @@
                 <a href="#pricing" class="hover:text-indigo-600 transition">Pricing (₹99)</a>
                 <a href="#doubts" class="hover:text-indigo-600 transition">Ask Doubts</a>
                 <!-- Share WhatsApp Button -->
-                <button onclick="shareViaWhatsApp()" class="bg-emerald-600 hover:bg-emerald-700 text-white px-3.5 py-2 rounded-xl transition flex items-center gap-1.5 font-semibold shadow-sm">
+                <button onclick="shareViaWhatsApp()" class="bg-emerald-600 hover:bg-emerald-700 text-white px-3.5 py-2 rounded-xl transition flex items-center gap-1.5 font-semibold shadow-sm cursor-pointer">
                     <i class="fa-brands fa-whatsapp text-lg"></i> Share on WhatsApp
                 </button>
             </div>
@@ -58,7 +58,7 @@
                 <button onclick="shareViaWhatsApp()" class="bg-emerald-600 text-white px-3 py-2 rounded-xl shadow-sm text-xs font-semibold flex items-center gap-1">
                     <i class="fa-brands fa-whatsapp text-base"></i> Share
                 </button>
-                <button id="menu-btn" onclick="toggleMobileMenu()" class="text-slate-700 focus:outline-none p-2 rounded-xl bg-slate-100 hover:bg-slate-200 transition">
+                <button id="menu-btn" onclick="toggleMobileMenu()" class="text-slate-700 focus:outline-none p-2 rounded-xl bg-slate-100 hover:bg-slate-200 transition cursor-pointer">
                     <i class="fa-solid fa-bars text-xl"></i>
                 </button>
             </div>
@@ -92,7 +92,7 @@
                 <a href="#notes" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-8 py-3.5 rounded-2xl shadow-lg shadow-indigo-500/30 transition transform hover:-translate-y-0.5 flex items-center gap-2">
                     <i class="fa-solid fa-book-open"></i> Browse Notes
                 </a>
-                <button onclick="shareViaWhatsApp()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-8 py-3.5 rounded-2xl transition shadow-sm flex items-center gap-2">
+                <button onclick="shareViaWhatsApp()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-8 py-3.5 rounded-2xl transition shadow-sm flex items-center gap-2 cursor-pointer">
                     <i class="fa-brands fa-whatsapp text-xl"></i> Share Website on WhatsApp
                 </button>
             </div>
@@ -159,26 +159,19 @@
                 <p class="mt-4 text-slate-600">Use the Upload Hub below to add your chapter notes. They will instantly appear here for students in both English and Hindi medium!</p>
                 
                 <div class="flex flex-wrap justify-center gap-2 mt-8">
-                    <button onclick="filterNotes('all')" class="note-filter-btn px-4 py-2.5 rounded-xl text-sm font-semibold bg-indigo-600 text-white shadow-md transition">All Classes</button>
-                    <button onclick="filterNotes('6')" class="note-filter-btn px-4 py-2.5 rounded-xl text-sm font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition">Class 6</button>
-                    <button onclick="filterNotes('7')" class="note-filter-btn px-4 py-2.5 rounded-xl text-sm font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition">Class 7</button>
-                    <button onclick="filterNotes('8')" class="note-filter-btn px-4 py-2.5 rounded-xl text-sm font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition">Class 8</button>
-                    <button onclick="filterNotes('9')" class="note-filter-btn px-4 py-2.5 rounded-xl text-sm font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition">Class 9</button>
-                    <button onclick="filterNotes('10')" class="note-filter-btn px-4 py-2.5 rounded-xl text-sm font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition">Class 10</button>
-                    <button onclick="filterNotes('11')" class="note-filter-btn px-4 py-2.5 rounded-xl text-sm font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition">Class 11</button>
-                    <button onclick="filterNotes('12')" class="note-filter-btn px-4 py-2.5 rounded-xl text-sm font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition">Class 12</button>
+                    <button onclick="filterNotes('all', event)" class="note-filter-btn px-4 py-2.5 rounded-xl text-sm font-semibold bg-indigo-600 text-white shadow-md transition cursor-pointer">All Classes</button>
+                    <button onclick="filterNotes('6', event)" class="note-filter-btn px-4 py-2.5 rounded-xl text-sm font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition cursor-pointer">Class 6</button>
+                    <button onclick="filterNotes('7', event)" class="note-filter-btn px-4 py-2.5 rounded-xl text-sm font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition cursor-pointer">Class 7</button>
+                    <button onclick="filterNotes('8', event)" class="note-filter-btn px-4 py-2.5 rounded-xl text-sm font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition cursor-pointer">Class 8</button>
+                    <button onclick="filterNotes('9', event)" class="note-filter-btn px-4 py-2.5 rounded-xl text-sm font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition cursor-pointer">Class 9</button>
+                    <button onclick="filterNotes('10', event)" class="note-filter-btn px-4 py-2.5 rounded-xl text-sm font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition cursor-pointer">Class 10</button>
+                    <button onclick="filterNotes('11', event)" class="note-filter-btn px-4 py-2.5 rounded-xl text-sm font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition cursor-pointer">Class 11</button>
+                    <button onclick="filterNotes('12', event)" class="note-filter-btn px-4 py-2.5 rounded-xl text-sm font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition cursor-pointer">Class 12</button>
                 </div>
             </div>
 
             <div id="notes-container" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div id="empty-notes-state" class="col-span-full bg-slate-50 border-2 border-dashed border-slate-200 rounded-3xl p-12 text-center space-y-4">
-                    <div class="w-16 h-16 bg-indigo-50 text-indigo-600 rounded-2xl flex items-center justify-center text-3xl mx-auto">
-                        <i class="fa-solid fa-file-pdf"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-slate-900">No Study Notes Uploaded Yet</h3>
-                    <p class="text-sm text-slate-500 max-w-md mx-auto">Use the Upload Hub below to add PDF study notes for Classes 6 to 12. They will instantly appear here with bilingual support!</p>
-                    <a href="#upload-section" class="inline-block bg-indigo-600 text-white font-semibold px-6 py-3 rounded-xl text-sm shadow hover:bg-indigo-700 transition">Go to Upload Hub</a>
-                </div>
+                <!-- Dynamic Notes Grid -->
             </div>
         </div>
     </section>
@@ -193,14 +186,7 @@
             </div>
 
             <div id="video-container" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div id="empty-video-state" class="col-span-full bg-white border-2 border-dashed border-slate-200 rounded-3xl p-12 text-center space-y-4">
-                    <div class="w-16 h-16 bg-indigo-50 text-indigo-600 rounded-2xl flex items-center justify-center text-3xl mx-auto">
-                        <i class="fa-solid fa-video"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-slate-900">No Videos in Gallery Yet</h3>
-                    <p class="text-sm text-slate-500 max-w-md mx-auto">Use the Upload Hub below to add your DIY science experiment videos. They will instantly appear here for everyone!</p>
-                    <a href="#upload-section" class="inline-block bg-indigo-600 text-white font-semibold px-6 py-3 rounded-xl text-sm shadow hover:bg-indigo-700 transition">Go to Upload Hub</a>
-                </div>
+                <!-- Dynamic Videos Grid -->
             </div>
         </div>
     </section>
@@ -224,7 +210,7 @@
                         <h3 class="font-bold text-xl text-slate-900 mb-2">CBSE Annual Board Exam Date Sheet 2026-27</h3>
                         <p class="text-sm text-slate-600 mb-4">Check tentative dates for Class 10th and 12th board exams and practical schedule guidelines.</p>
                     </div>
-                    <button onclick="showNoticeModal('CBSE Board Date Sheet', 'The Central Board of Secondary Education has released guidelines for upcoming board examinations.')" class="text-indigo-600 font-semibold text-sm hover:underline flex items-center gap-1">
+                    <button onclick="showNoticeModal('CBSE Board Date Sheet', 'The Central Board of Secondary Education has released guidelines for upcoming board examinations.')" class="text-indigo-600 font-semibold text-sm hover:underline flex items-center gap-1 cursor-pointer">
                         Read Circular &rarr;
                     </button>
                 </div>
@@ -238,7 +224,7 @@
                         <h3 class="font-bold text-xl text-slate-900 mb-2">Revised Rationalised Syllabus for Class 6-12</h3>
                         <p class="text-sm text-slate-600 mb-4">Updated chapter weightage for Science, Mathematics, SST, and Commerce streams as per new guidelines.</p>
                     </div>
-                    <button onclick="showNoticeModal('Rationalised Syllabus', 'CBSE has streamlined the curriculum emphasizing competency-based questions.')" class="text-indigo-600 font-semibold text-sm hover:underline flex items-center gap-1">
+                    <button onclick="showNoticeModal('Rationalised Syllabus', 'CBSE has streamlined the curriculum emphasizing competency-based questions.')" class="text-indigo-600 font-semibold text-sm hover:underline flex items-center gap-1 cursor-pointer">
                         Read Circular &rarr;
                     </button>
                 </div>
@@ -250,4 +236,27 @@
                             <span class="text-xs text-slate-400 font-medium"><i class="fa-regular fa-calendar mr-1"></i> 2026</span>
                         </div>
                         <h3 class="font-bold text-xl text-slate-900 mb-2">Practical Assessment Guidelines & Projects</h3>
-                        <p class="text-sm text-slate-600 mb-4">Internal assessment guidelines and viva voce instructions for science and commerce pract
+                        <p class="text-sm text-slate-600 mb-4">Internal assessment guidelines and viva voce instructions for science and commerce practicals.</p>
+                    </div>
+                    <button onclick="showNoticeModal('Practical Guidelines', 'Internal assessment guidelines and viva voce instructions have been updated for all high school and intermediate classes.')" class="text-indigo-600 font-semibold text-sm hover:underline flex items-center gap-1 cursor-pointer">
+                        Read Circular &rarr;
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Upload Hub Section -->
+    <section id="upload-section" class="py-20 bg-slate-50 border-t">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white border border-slate-200 rounded-3xl p-8 sm:p-12 shadow-xl space-y-8">
+                <div class="text-center space-y-2">
+                    <span class="bg-indigo-100 text-indigo-700 text-xs font-bold px-3 py-1 rounded-full">Contribution Hub</span>
+                    <h2 class="text-3xl font-extrabold text-slate-900">Upload Study Notes or DIY Videos</h2>
+                    <p class="text-sm text-slate-600">Contribute your notes (PDF) or science experiment videos to help classmates across classes 6 to 12.</p>
+                </div>
+
+                <form id="upload-form" onsubmit="handleUpload(event)" class="space-y-6">
+                    <div class="grid sm:grid-cols-2 gap-6">
+                        <div>
+                      
