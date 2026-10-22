@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
@@ -59,7 +58,7 @@
                 <button onclick="shareViaWhatsApp()" class="bg-emerald-600 text-white px-3 py-2 rounded-xl shadow-sm text-xs font-semibold flex items-center gap-1">
                     <i class="fa-brands fa-whatsapp text-base"></i> Share
                 </button>
-                <button id="menu-btn" class="text-slate-700 focus:outline-none p-2 rounded-xl bg-slate-100 hover:bg-slate-200 transition">
+                <button id="menu-btn" onclick="toggleMobileMenu()" class="text-slate-700 focus:outline-none p-2 rounded-xl bg-slate-100 hover:bg-slate-200 transition">
                     <i class="fa-solid fa-bars text-xl"></i>
                 </button>
             </div>
@@ -67,13 +66,13 @@
 
         <!-- Mobile Nav Dropdown -->
         <div id="mobile-menu" class="hidden lg:hidden bg-white border-b px-4 pt-3 pb-5 space-y-3 shadow-xl">
-            <a href="#home" class="block py-2 px-3 rounded-lg hover:bg-indigo-50 font-medium">Home</a>
-            <a href="#notes" class="block py-2 px-3 rounded-lg hover:bg-indigo-50 font-medium">Study Notes (PDF)</a>
-            <a href="#experiments" class="block py-2 px-3 rounded-lg hover:bg-indigo-50 font-medium">DIY Science Lab</a>
-            <a href="#cbse" class="block py-2 px-3 rounded-lg hover:bg-indigo-50 font-medium">CBSE News & Updates</a>
-            <a href="#upload-section" class="block py-2 px-3 rounded-lg bg-indigo-50 text-indigo-700 font-semibold">Upload Hub</a>
-            <a href="#pricing" class="block py-2 px-3 rounded-lg hover:bg-indigo-50 font-medium">Pricing (₹99/year)</a>
-            <a href="#doubts" class="block py-2 px-3 rounded-lg hover:bg-indigo-50 font-medium">Ask Doubts</a>
+            <a href="#home" onclick="toggleMobileMenu()" class="block py-2 px-3 rounded-lg hover:bg-indigo-50 font-medium">Home</a>
+            <a href="#notes" onclick="toggleMobileMenu()" class="block py-2 px-3 rounded-lg hover:bg-indigo-50 font-medium">Study Notes (PDF)</a>
+            <a href="#experiments" onclick="toggleMobileMenu()" class="block py-2 px-3 rounded-lg hover:bg-indigo-50 font-medium">DIY Science Lab</a>
+            <a href="#cbse" onclick="toggleMobileMenu()" class="block py-2 px-3 rounded-lg hover:bg-indigo-50 font-medium">CBSE News & Updates</a>
+            <a href="#upload-section" onclick="toggleMobileMenu()" class="block py-2 px-3 rounded-lg bg-indigo-50 text-indigo-700 font-semibold">Upload Hub</a>
+            <a href="#pricing" onclick="toggleMobileMenu()" class="block py-2 px-3 rounded-lg hover:bg-indigo-50 font-medium">Pricing (₹99/year)</a>
+            <a href="#doubts" onclick="toggleMobileMenu()" class="block py-2 px-3 rounded-lg hover:bg-indigo-50 font-medium">Ask Doubts</a>
         </div>
     </nav>
 
@@ -97,7 +96,6 @@
                     <i class="fa-brands fa-whatsapp text-xl"></i> Share Website on WhatsApp
                 </button>
             </div>
-            <!-- Quick Features Bar -->
             <div class="grid grid-cols-3 gap-4 pt-6 border-t border-slate-200">
                 <div>
                     <span class="block text-2xl font-black text-slate-900">Class 6–12</span>
@@ -160,7 +158,6 @@
                 <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 mt-2">Class 6 to 12 Study Notes (Bilingual)</h2>
                 <p class="mt-4 text-slate-600">Use the Upload Hub below to add your chapter notes. They will instantly appear here for students in both English and Hindi medium!</p>
                 
-                <!-- Filter Tabs -->
                 <div class="flex flex-wrap justify-center gap-2 mt-8">
                     <button onclick="filterNotes('all')" class="note-filter-btn px-4 py-2.5 rounded-xl text-sm font-semibold bg-indigo-600 text-white shadow-md transition">All Classes</button>
                     <button onclick="filterNotes('6')" class="note-filter-btn px-4 py-2.5 rounded-xl text-sm font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition">Class 6</button>
@@ -173,7 +170,6 @@
                 </div>
             </div>
 
-            <!-- Notes Grid -->
             <div id="notes-container" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div id="empty-notes-state" class="col-span-full bg-slate-50 border-2 border-dashed border-slate-200 rounded-3xl p-12 text-center space-y-4">
                     <div class="w-16 h-16 bg-indigo-50 text-indigo-600 rounded-2xl flex items-center justify-center text-3xl mx-auto">
@@ -254,6 +250,4 @@
                             <span class="text-xs text-slate-400 font-medium"><i class="fa-regular fa-calendar mr-1"></i> 2026</span>
                         </div>
                         <h3 class="font-bold text-xl text-slate-900 mb-2">Practical Assessment Guidelines & Projects</h3>
-                        <p class="text-sm text-slate-600 mb-4">Internal assessment guidelines and viva voce instructions for science and commerce practicals.</p>
-                    </div>
-                    <button onclick="showNoticeModal('Practical Guidelines', 
+                        <p class="text-sm text-slate-600 mb-4">Internal assessment guidelines and viva voce instructions for science and commerce pract
