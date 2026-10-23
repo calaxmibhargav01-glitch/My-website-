@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
-    <meta name="google-site-verification" content="bOZT5XYQ9GuGtBfcyU5Gal1l_OBy-9xiCXP8AN9mWQQ" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Scan to Study | Smart Educational Hub (Class 6-12)</title>
     <!-- Tailwind CSS -->
-    <script src="https://tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cloudflare.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script>
         tailwind.config = {
             theme: {
@@ -27,61 +26,305 @@
         }
     </script>
 </head>
-<body class="bg-gray-50 text-gray-800 antialiased font-sans">
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-brand-500 selection:text-white">
 
-    <!-- Header Section -->
-    <header class="bg-gradient-to-r from-brand-600 to-brand-700 text-white shadow-lg sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+    <!-- Top Announcement Banner -->
+    <div class="bg-gradient-to-r from-emerald-600 to-teal-700 text-white text-xs sm:text-sm py-2 px-4 text-center font-medium shadow-inner">
+        🚀 <strong>Scan to Study</strong> | CM Shri School Amalwas Jwalapuri &bull; Currently <strong>100% Free</strong> &bull; Future Subscription: <strong>₹99/Year</strong>
+    </div>
+
+    <!-- Navigation Header -->
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-slate-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <div class="flex items-center space-x-3">
-                <div class="bg-white p-2 rounded-lg text-brand-600 shadow-md">
-                    <i class="fa-solid fa-graduation-cap text-2xl animate-bounce"></i>
+                <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-brand-600 to-emerald-400 flex items-center justify-center text-white shadow-lg shadow-brand-500/30">
+                    <i class="fa-solid fa-qrcode text-2xl"></i>
                 </div>
                 <div>
-                    <h1 class="text-xl font-bold tracking-tight">Scan to Study</h1>
-                    <p class="text-xs text-brand-100 font-medium">Smart Educational Hub (Class 6-12)</p>
+                    <h1 class="text-xl sm:text-2xl font-black bg-gradient-to-r from-brand-700 to-teal-600 bg-clip-text text-transparent">Scan to Study</h1>
+                    <p class="text-xs text-slate-500 font-medium">CM Shri School Amalwas Jwalapuri</p>
                 </div>
             </div>
+            
+            <nav class="hidden md:flex items-center space-x-6 text-sm font-semibold text-slate-600">
+                <a href="#about" class="hover:text-brand-600 transition">About</a>
+                <a href="#keychain" class="hover:text-brand-600 transition">QR Keychain Kit</a>
+                <a href="#vault" class="hover:text-brand-600 transition">PDF Vault</a>
+                <a href="#lab" class="hover:text-brand-600 transition">DIY Science Lab</a>
+                <a href="#cbse" class="hover:text-brand-600 transition">CBSE Hub</a>
+                <a href="#upload" class="hover:text-brand-600 transition">Upload Hub</a>
+                <a href="#doubts" class="hover:text-brand-600 transition">Ask Doubts</a>
+            </nav>
+
+            <div class="flex items-center space-x-3">
+                <a href="#upload" class="hidden sm:inline-flex items-center justify-center px-4 py-2 text-sm font-bold text-white bg-brand-600 rounded-xl hover:bg-brand-700 shadow-md shadow-brand-600/20 transition">
+                    <i class="fa-solid fa-cloud-arrow-up mr-2"></i> Upload
+                </a>
+                <button id="mobileMenuBtn" class="md:hidden text-slate-700 p-2 focus:outline-none">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Dropdown Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-4 space-y-2">
+            <a href="#about" class="block py-2 text-slate-700 font-medium">About</a>
+            <a href="#keychain" class="block py-2 text-slate-700 font-medium">QR Keychain Kit</a>
+            <a href="#vault" class="block py-2 text-slate-700 font-medium">PDF Vault</a>
+            <a href="#lab" class="block py-2 text-slate-700 font-medium">DIY Science Lab</a>
+            <a href="#cbse" class="block py-2 text-slate-700 font-medium">CBSE Hub</a>
+            <a href="#upload" class="block py-2 text-slate-700 font-medium">Upload Hub</a>
+            <a href="#doubts" class="block py-2 text-slate-700 font-medium">Ask Doubts</a>
         </div>
     </header>
 
-    <!-- Main Content Panel -->
-    <main class="max-w-4xl mx-auto px-4 py-10">
-        <div class="bg-white p-8 rounded-2xl shadow-xl border border-gray-100 text-center space-y-6 transform hover:scale-[1.01] transition-all duration-300">
-            <div class="w-20 h-20 bg-brand-50 rounded-full flex items-center justify-center mx-auto text-brand-600 mb-2">
-                <i class="fa-solid fa-qrcode text-4xl"></i>
-            </div>
-            <h2 class="text-2xl font-extrabold text-gray-900 tracking-tight sm:text-3xl">Welcome to Your Smart Portal</h2>
-            <p class="text-gray-600 max-w-xl mx-auto leading-relaxed">
-                Simply scan the keychain using any smartphone camera to instantly launch this complete digital study portal! Durable keychain attached with scannable QR code ...
-            </p>
-            
-            <!-- Features Overview -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-6 text-left">
-                <div class="flex items-start space-x-3 p-4 bg-gray-50 rounded-xl border border-gray-100">
-                    <div class="text-brand-600 mt-1"><i class="fa-solid fa-file-pdf text-lg"></i></div>
+    <main>
+        <!-- Hero Section -->
+        <section id="about" class="relative py-16 sm:py-24 bg-gradient-to-b from-brand-50/60 via-white to-white overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+                <span class="inline-flex items-center px-3.5 py-1.5 rounded-full text-xs font-bold bg-brand-100 text-brand-800 mb-6 border border-brand-200">
+                    <i class="fa-solid fa-graduation-cap mr-2"></i> Class 6 to 12 Bilingual Educational Hub
+                </span>
+                <h2 class="text-3xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-tight max-w-4xl mx-auto">
+                    Transforming Geometry Box QR Codes into a <span class="bg-gradient-to-r from-brand-600 to-teal-600 bg-clip-text text-transparent">Powerful Learning Tool</span>
+                </h2>
+                <p class="mt-6 text-base sm:text-xl text-slate-600 max-w-2xl mx-auto font-normal">
+                    Scan the QR code from your school keychain or stationery to access complete chapter notes, DIY science lab experiments, and CBSE updates instantly.
+                </p>
+
+                <!-- Creators & School Highlighting Box -->
+                <div class="mt-10 max-w-3xl mx-auto bg-white rounded-2xl shadow-xl shadow-slate-100 border border-slate-200 p-6 sm:p-8 text-left">
+                    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 border-b border-slate-100 pb-4 mb-4">
+                        <div>
+                            <span class="text-xs font-bold text-brand-600 uppercase tracking-widest">Presented By</span>
+                            <h3 class="text-lg font-bold text-slate-900">Class 12 Commerce Students</h3>
+                        </div>
+                        <div class="bg-slate-100 px-4 py-2 rounded-xl text-center sm:text-right">
+                            <span class="text-xs text-slate-500 block">Institution</span>
+                            <strong class="text-sm text-slate-800">CM Shri School Amalwas Jwalapuri</strong>
+                        </div>
+                    </div>
                     <div>
-                        <h4 class="font-bold text-gray-900">PDF Notes Module</h4>
-                        <p class="text-sm text-gray-500">Access curated subject notes smoothly.</p>
+                        <span class="text-xs font-bold text-slate-400 block mb-2 uppercase">Project Team Members</span>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 rounded-lg bg-brand-50 text-brand-700 font-bold text-sm border border-brand-100">Lakshmi</span>
+                            <span class="px-3 py-1 rounded-lg bg-brand-50 text-brand-700 font-bold text-sm border border-brand-100">Aafia</span>
+                            <span class="px-3 py-1 rounded-lg bg-brand-50 text-brand-700 font-bold text-sm border border-brand-100">Simran</span>
+                            <span class="px-3 py-1 rounded-lg bg-brand-50 text-brand-700 font-bold text-sm border border-brand-100">Ekta</span>
+                            <span class="px-3 py-1 rounded-lg bg-brand-50 text-brand-700 font-bold text-sm border border-brand-100">Shreya</span>
+                        </div>
                     </div>
                 </div>
-                <div class="flex items-start space-x-3 p-4 bg-gray-50 rounded-xl border border-gray-100">
-                    <div class="text-brand-600 mt-1"><i class="fa-solid fa-video text-lg"></i></div>
+
+                <div class="mt-10 flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="#vault" class="inline-flex items-center justify-center px-8 py-4 text-base font-bold text-white bg-brand-600 rounded-2xl hover:bg-brand-700 shadow-xl shadow-brand-600/25 transition">
+                        <i class="fa-solid fa-book-open mr-2"></i> Explore PDF Vault
+                    </a>
+                    <a href="#keychain" class="inline-flex items-center justify-center px-8 py-4 text-base font-bold text-slate-700 bg-white border border-slate-300 rounded-2xl hover:bg-slate-50 shadow-sm transition">
+                        <i class="fa-solid fa-key mr-2 text-brand-600"></i> QR Keychain Kit
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- QR Keychain Distribution Section -->
+        <section id="keychain" class="py-16 bg-white border-y border-slate-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                     <div>
-                        <h4 class="font-bold text-gray-900">Video Gallery Hub</h4>
-                        <p class="text-sm text-gray-500">Stream visual chapters instantly from storage.</p>
+                        <span class="text-brand-600 font-bold text-sm tracking-wider uppercase bg-brand-50 px-3 py-1 rounded-full">Innovative Distribution</span>
+                        <h2 class="text-3xl font-black text-slate-900 mt-4 mb-6">Geometry Box & QR Keychain Kits</h2>
+                        <p class="text-slate-600 text-base leading-relaxed mb-6">
+                            Instead of empty branding codes found in standard geometry boxes, we distribute specially curated <strong>QR Keychains</strong> to students. Simply scan the keychain using any smartphone camera to instantly launch this complete digital study portal!
+                        </p>
+                        <ul class="space-y-3 text-slate-700 font-medium">
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-brand-600 mr-3"></i> Durable keychain attached with scannable QR code</li>
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-brand-600 mr-3"></i> Instant redirection to Class 6-12 bilingual notes</li>
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-brand-600 mr-3"></i> Pocket-friendly learning companion for every student</li>
+                        </ul>
+                    </div>
+                    <div class="bg-gradient-to-tr from-brand-50 to-teal-50 p-8 rounded-3xl border border-brand-100 text-center relative shadow-inner">
+                        <div class="w-48 h-48 mx-auto bg-white rounded-2xl shadow-xl p-6 flex flex-col items-center justify-center border border-slate-200">
+                            <i class="fa-solid fa-qrcode text-7xl text-brand-600 mb-2"></i>
+                            <span class="text-xs font-bold text-slate-500 uppercase tracking-widest">Scan Me</span>
+                        </div>
+                        <p class="mt-6 text-sm text-slate-600 font-medium">Scan with your camera to open <span class="text-brand-700 font-bold">Scan to Study</span></p>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
+
+        <!-- PDF Vault Section (Clean & Empty) -->
+        <section id="vault" class="py-16 bg-slate-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <span class="text-brand-600 font-bold text-sm uppercase tracking-wider bg-brand-100 px-3 py-1 rounded-full">Bilingual Notes</span>
+                    <h2 class="text-3xl font-black text-slate-900 mt-4">Chapter-Wise PDF Vault</h2>
+                    <p class="text-slate-600 mt-2">Access comprehensive notes for Class 6 to 12 in both English and Hindi mediums.</p>
+                </div>
+
+                <div class="flex flex-wrap justify-center gap-4 mb-8">
+                    <select class="px-4 py-2.5 rounded-xl border border-slate-300 bg-white font-medium text-slate-700 focus:outline-none focus:border-brand-600">
+                        <option value="">Select Class (Class 6 - 12)</option>
+                        <option value="6">Class 6</option>
+                        <option value="7">Class 7</option>
+                        <option value="8">Class 8</option>
+                        <option value="9">Class 9</option>
+                        <option value="10">Class 10</option>
+                        <option value="11">Class 11</option>
+                        <option value="12">Class 12</option>
+                    </select>
+                    <select class="px-4 py-2.5 rounded-xl border border-slate-300 bg-white font-medium text-slate-700 focus:outline-none focus:border-brand-600">
+                        <option value="">Select Subject (All Subjects)</option>
+                        <option value="math">Mathematics</option>
+                        <option value="science">Science</option>
+                        <option value="social">Social Science</option>
+                        <option value="english">English</option>
+                        <option value="hindi">Hindi</option>
+                    </select>
+                </div>
+
+                <div id="pdfVaultContainer" class="bg-white rounded-3xl border border-slate-200 p-12 text-center shadow-sm">
+                    <div class="w-16 h-16 bg-brand-50 text-brand-600 rounded-2xl flex items-center justify-center mx-auto mb-4 text-2xl">
+                        <i class="fa-solid fa-folder-open"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-800">No PDF Notes Uploaded Yet</h3>
+                    <p class="text-slate-500 text-sm mt-1 max-w-md mx-auto">Notes uploaded via the Upload Hub below will appear here automatically.</p>
+                </div>
+            </div>
+    </section>
+            <!-- DIY Science Lab Section (Clean & Empty) -->
+        <section id="lab" class="py-16 bg-white border-t border-slate-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <span class="text-teal-600 font-bold text-sm uppercase tracking-wider bg-teal-50 px-3 py-1 rounded-full">Practical Learning</span>
+                    <h2 class="text-3xl font-black text-slate-900 mt-4">DIY Science Lab Video Gallery</h2>
+                    <p class="text-slate-600 mt-2">Safe home science experiments for classes 6 to 12 with full procedure and video demonstrations.</p>
+                </div>
+
+                <div id="scienceLabContainer" class="bg-slate-50 rounded-3xl border border-slate-200 p-12 text-center shadow-inner">
+                    <div class="w-16 h-16 bg-teal-50 text-teal-600 rounded-2xl flex items-center justify-center mx-auto mb-4 text-2xl">
+                        <i class="fa-solid fa-flask-vial"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-800">No Science Experiment Videos Added Yet</h3>
+                    <p class="text-slate-500 text-sm mt-1 max-w-md mx-auto">Videos uploaded directly from device galleries will show up here.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CBSE Updates Section (Clean & Empty) -->
+        <section id="cbse" class="py-16 bg-slate-50 border-t border-slate-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <span class="text-brand-600 font-bold text-sm uppercase tracking-wider bg-brand-100 px-3 py-1 rounded-full">Official Board Hub</span>
+                    <h2 class="text-3xl font-black text-slate-900 mt-4">CBSE Guidelines, Date Sheets & Syllabus</h2>
+                    <p class="text-slate-600 mt-2">Latest updates, exam schedules, and practical guidelines uploaded in PDF format.</p>
+                </div>
+
+                <div id="cbseContainer" class="bg-white rounded-3xl border border-slate-200 p-12 text-center shadow-sm">
+                    <div class="w-16 h-16 bg-brand-50 text-brand-600 rounded-2xl flex items-center justify-center mx-auto mb-4 text-2xl">
+                        <i class="fa-solid fa-bullhorn"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-800">No CBSE Updates or Date Sheets Posted Yet</h3>
+                    <p class="text-slate-500 text-sm mt-1 max-w-md mx-auto">Latest CBSE notices and schedules will appear here when posted.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Upload Hub Section (Device Gallery Video & PDF Uploads) -->
+        <section id="upload" class="py-16 bg-white border-t border-slate-100">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="bg-gradient-to-br from-brand-600 to-teal-700 rounded-3xl shadow-xl p-8 sm:p-12 text-white">
+                    <div class="text-center max-w-xl mx-auto mb-8">
+                        <span class="bg-white/25 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest">Contribute & Earn</span>
+                        <h2 class="text-2xl sm:text-3xl font-black mt-3">Upload Hub</h2>
+                        <p class="text-brand-100 text-sm mt-2">
+                            Upload your notes or pick experiment videos straight from your phone/device gallery. Choose free sharing or paid submission!
+                        </p>
+                    </div>
+
+                    <form id="uploadForm" class="space-y-6 bg-white text-slate-800 p-6 sm:p-8 rounded-2xl shadow-lg">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-bold text-slate-700 mb-2">Your Full Name</label>
+                                <input type="text" id="uploaderName" required placeholder="Enter your name" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:border-brand-600">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold text-slate-700 mb-2">Upload Section</label>
+                                <select id="uploadType" required class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:border-brand-600">
+                                    <option value="notes">PDF Notes (Class 6-12 Notes Vault)</option>
+                                    <option value="video">DIY Science Lab Video (From Gallery)</option>
+                                    <option value="cbse">CBSE Date Sheet / Syllabus PDF</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-bold text-slate-700 mb-2">Title / Description</label>
+                                <input type="text" id="uploadTitle" required placeholder="e.g., Physics Chapter 1 Notes / Experiment 3" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:border-brand-600">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold text-slate-700 mb-2">Payment Preference</label>
+                                <select id="uploadPreference" required class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:border-brand-600">
+                                    <option value="free">Free Contribution</option>
+                                    <option value="paid">Paid Contribution (Request Payment)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-2">Select File or Video from Device Gallery</label>
+                            <input type="file" id="deviceFile" required class="w-full text-sm text-slate-500 file:mr-4 file:py-3 file:px-6 file:rounded-xl file:border-0 file:text-sm file:font-bold file:bg-brand-50 file:text-brand-700 hover:file:bg-brand-100 cursor-pointer">
+                            <p class="text-xs text-slate-400 mt-1">Select your PDF notes or pick video files straight from your phone or PC gallery.</p>
+                        </div>
+
+                        <button type="submit" class="w-full py-4 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-xl shadow-lg shadow-brand-600/30 transition">
+                            <i class="fa-solid fa-cloud-arrow-up mr-2"></i> Submit & Upload to Website
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ask Doubts Section (Clean & Empty) -->
+        <section id="doubts" class="py-16 bg-slate-50 border-t border-slate-200">
+            <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-10">
+                    <span class="text-brand-600 font-bold text-sm uppercase tracking-wider bg-brand-100 px-3 py-1 rounded-full">Interactive Support</span>
+                    <h2 class="text-3xl font-black text-slate-900 mt-4">Ask Doubts Section</h2>
+                    <p class="text-slate-600 mt-2">Have a question regarding any subject or experiment? Post your doubt here!</p>
+                </div>
+
+                <div class="bg-white rounded-3xl shadow-sm border border-slate-200 p-6 sm:p-8">
+                    <form id="doubtForm" class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-1">Your Name & Class</label>
+                            <input type="text" id="doubtUser" required placeholder="e.g., Rohit, Class 10" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:border-brand-600">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-1">Your Question / Doubt</label>
+                            <textarea id="doubtText" required rows="3" placeholder="Type your doubt here..." class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:border-brand-600"></textarea>
+                        </div>
+                        <button type="submit" class="w-full py-3 bg-slate-900 hover:bg-slate-800 text-white font-bold rounded-xl transition">
+                            <i class="fa-solid fa-paper-plane mr-2"></i> Post Doubt
+                        </button>
+                    </form>
+
+                    <div id="doubtsList" class="mt-8 space-y-4 border-t border-slate-100 pt-6">
+                        <p class="text-center text-slate-400 text-sm italic">No doubts posted yet. Be the first to ask!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <!-- Footer Section -->
-    <footer class="bg-gray-900 text-gray-400 py-8 mt-20 border-t border-gray-800">
-        <div class="max-w-7xl mx-auto px-4 text-center space-y-2">
-            <p class="text-sm font-medium">&copy; 2026 Scan to Study. All rights reserved.</p>
-            <p class="text-xs text-gray-600">Designed with passion for smarter education.</p>
-        </div>
-    </footer>
-
-</body>
-</html>
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+            <div>
+                <h3 class="text-white text-lg font-black">Scan to Study</h3>
+                <p class="text-xs text-slate-500 mt-1">CM Shri School Amalwas Jwalapuri &bull; Developed by Lakshmi, Aafia, Simran, Ekta & Shreya</p>
+            </div>
+            <p class="text-xs text-slate-500">&copy; 202
+                
