@@ -157,17 +157,27 @@
 
     <script>
         // आपका लाइव प्रोजेक्ट सेटिंग
-        const firebaseConfig = {
-            apiKey: "AIzaSySampleKey_ScanToStudy2026_Placeholder",
-            authDomain: "://firebaseapp.com",
-            projectId: "scan-to-study-project-id",
-            storageBucket: "://appspot.com",
-            messagingSenderId: "123456789012",
-            appId: "1:123456789012:web:sampleappid12345"
-        };
+        // Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
-        // Firebase शुरू करें
-        firebase.initializeApp(firebaseConfig);
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyDsaXmxpJbplCmsWxecjo0z_CSWQuvzyEE",
+  authDomain: "scan-to-study.firebaseapp.com",
+  projectId: "scan-to-study",
+  storageBucket: "scan-to-study.firebasestorage.app",
+  messagingSenderId: "199736211975",
+  appId: "1:199736211975:web:6fc1a2ce04da027e1188a2",
+  measurementId: "G-WETEZCP8QV"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
         const db = firebase.firestore();
 
         // लिंक को Firestore में सेव करने का फंक्शन
