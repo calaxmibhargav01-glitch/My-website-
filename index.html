@@ -1053,5 +1053,318 @@
             renderFormulas();
         };
      </script>
-    </body>
+    <script>
+    // LocalStorage Data Initialization with Persistence
+    let resources = JSON.parse(localStorage.getItem('scanToStudy_resources')) || [];
+    let formulasList = JSON.parse(localStorage.getItem('scanToStudy_formulas')) || [
+        { cls: "12", sub: "Physics", title: "Ohm's Law", desc: "Voltage V equals Current I multiplied by Resistance R. V = I × R" }
+    ];
+    let quizData = JSON.parse(localStorage.getItem('scanToStudy_quiz')) || [
+        { cls: "Class 12", meta: "Commerce", q: "Who is known as the Father of Scientific Management?", options: ["A. F.W. Taylor", "B. Henri Fayol", "C. Peter Drucker", "D. Max Weber"], correct: 0 }
+    ];
+    let doubtsList = JSON.parse(localStorage.getItem('scanToStudy_doubts')) || [
+        { name: "Aman Sharma (Class 12)", sub: "Physics", text: "Why should voltmeter be connected in parallel?", replies: [{ user: "Teacher", text: "Due to high resistance." }] }
+    ];
+    
+    let userSession = JSON.parse(localStorage.getItem('scanToStudy_session')) || null;
+    let otpStore = "";
+    let score = 0, currentQuizIndex = 0, timerInterval = null, timeLeft = 1500;
+
+    function openModal(id) { document.getElementById(id)?.classList.remove('hidden'); }
+    function closeModal(id) { document.getElementById(id)?.classList.add('hidden'); }
+    function toggleMobileMenu() { document.getElementById('mobileMenu')?.classList.toggle('hidden'); }
+    function toggleDarkMode() { document.documentElement.classList.toggle('dark'); }
+
+    // Advanced OTP Login Flow
+    function requestOTP(e) {
+        e.preventDefault();
+        const name = document.getElementById('loginNameInput').value.trim();
+        const contact = document.getElementById('loginContactInput').value.trim();
+        if(!name || !contact) return;
+        
+        otpStore = Math.floor(1000 + Math.random() * 9000).toString();
+        alert(`🔒 Simulation: Your OTP is [ ${otpStore} ] sent to ${contact}`);
+        
+        document.getElementById('loginStep1').classList.add('hidden');
+        document.getElementById('loginStep2').classList.remove('hidden');
+    }
+
+    function verifyOTP(e) {
+        e.preventDefault();
+        const enteredOtp = document.getElementById('otpInput').value.trim();
+        if(enteredOtp === otpStore) {
+            const name = document.getElementById('loginNameInput').value.trim();
+            const contact = document.getElementById('loginContactInput').value.trim();
+            userSession = { 
+                name, 
+                contact, 
+                pdfsDownloaded: resources.filter(r => r.type === 'pdf').length, 
+                vidsWatched: resources.filter(r => r.type === 'video').length, 
+                questionsAsked: doubtsList.length, 
+                favoriteSubject: "Accountancy & Physics",
+                topStudyTime: "10:00 PM - 12:00 AM"
+            };
+            localStorage.setItem('scanToStudy_session', JSON.stringify(userSession));
+            closeModal('loginModal');
+            document.getElementById('loginStep2').classList.add('hidden');
+            document.getElementById('loginStep1').classList.remove('hidden');
+            updateDashboardUI();
+            alert(`🎉 Login Successful! Welcome to Premium Student Portal, ${name}.`);
+        } else {
+            alert('❌ Incorrect OTP! Please try again (Check alert box for code).');
+        }
+    }
+
+    function handleLogout() {
+        localStorage.removeItem('scanToStudy_session');
+        userSession = null;
+        updateDashboardUI();
+        alert('Logged out successfully.');
+    }
+
+    function updateDashboardUI() {
+        const navArea = document.getElementById('authNavArea');
+        const dashCard = document.getElementById('userDashboardCard');
+        if(userSession) {
+            if(navArea) navArea.innerHTML = `<div class="flex items-center gap-2"><span class="text-xs font-bold text-blue-600 bg-blue-50 px-3 py-2 rounded-xl">⭐ Premium: ${userSession.name}</span><button onclick="handleLogout()" class="text-xs text-red-500 font-semibold underline">Logout</button></div>`;
+            if(dashCard) {
+                dashCard.classList.remove('hidden');
+                document.getElementById('dashUserName').innerText = `✨ Welcome back, ${userSession.name}! (Premium Student)`;
+                document.getElementById('dashUserEmail').innerText = `Contact: ${userSession.contact} • Top Study Slot: ${userSession.topStudyTime}`;
+                document.getElementById('dashPdfCount').innerText = resources.filter(r => r.type === 'pdf').length;
+                document.getElementById('dashVidCount').innerText = resources.filter(r => r.type === 'video').length;
+                document.getElementById('dashQuizScore').innerText = `${score} / ${quizData.length}`;
+                document.getElementById('dashFavSub').innerText = userSession.favoriteSubject;
+            }
+        } else {
+            if(navArea) navArea.innerHTML = `<button onclick="openModal('loginModal')" class="bg-blue-600 text-white px-3 py-2 rounded-xl text-sm font-medium shadow"><i class="fa-solid fa-user"></i> Login / OTP</button>`;
+            if(dashCard) dashCard.classList.add('hidden');
+        }
+    }
+
+    function solveHomework() {
+        const input = document.getElementById('solverInput').value.trim();
+        const output = document.getElementById('solverOutput');
+        if(!input || !output) return;
+        output.innerHTML = `<div class="text-left text-sm">💡 **AI Answer:** Based on curriculum for "${input}", follow standard chapter rules and formulas.</div>`;
+    }
+
+    function startTimer() {
+        if(timerInterval) return;
+        timerInterval = setInterval(() => {
+            if(timeLeft <= 0) { clearInterval(timerInterval); alert('Done!'); return; }
+            timeLeft--;
+            let m = Math.floor(timeLeft / 60), s = timeLeft % 60;
+            const disp = document.getElementById('timerDisplay');
+            if(disp) disp.innerText = `${m < 10 ? '0':''}${m}:${s < 10 ? '0':''}${s}`;
+        }, 1000);
+    }
+    function resetTimer() { 
+        clearInterval(timerInterval); 
+        timeLeft = 1500; 
+        const disp = document.getElementById('timerDisplay');
+        if(disp) disp.innerText = '25:00'; 
+    }
+
+    function calcAppend(v) { 
+        let s = document.getElementById('calcScreen'); 
+        if(s) s.value = s.value === '0' ? v : s.value + v; 
+    }
+    function calcClear() { 
+        const s = document.getElementById('calcScreen');
+        if(s) s.value = '0'; 
+    }
+    function calcCompute() { 
+        try { 
+            let s = document.getElementById('calcScreen');
+            if(s) s.value = eval(s.value); 
+        } catch(e) { 
+            let s = document.getElementById('calcScreen');
+            if(s) s.value = 'Error'; 
+        } 
+    }
+
+    function checkAttendance() {
+        let t = parseFloat(document.getElementById('totalClasses').value), a = parseFloat(document.getElementById('attendedClasses').value);
+        if(isNaN(t) || isNaN(a)) return;
+        let p = (a/t)*100;
+        const att = document.getElementById('dashAttendance');
+        if(att) att.innerText = `${p.toFixed(1)}%`;
+        alert(`Attendance: ${p.toFixed(1)}%`);
+    }
+
+    function addNewPlan(e) {
+        e.preventDefault();
+        let text = document.getElementById('newPlanText').value;
+        let c = document.getElementById('plannerContainer');
+        if(c) {
+            c.innerHTML += `<label class="flex items-center gap-3 p-3 bg-slate-50 dark:bg-slate-950 rounded-xl cursor-pointer"><input type="checkbox" class="w-5 h-5 text-rose-600 rounded"><span class="text-sm font-medium">${text}</span></label>`;
+        }
+        closeModal('planModal');
+    }
+
+    function addNewFormula(e) {
+        e.preventDefault();
+        formulasList.push({ cls: document.getElementById('formClass').value, sub: document.getElementById('formSub').value, title: document.getElementById('formTitle').value, desc: document.getElementById('formDesc').value });
+        localStorage.setItem('scanToStudy_formulas', JSON.stringify(formulasList));
+        closeModal('formulaModal');
+        renderFormulas();
+    }
+
+    function renderFormulas() {
+        let sel = document.getElementById('formulaClassFilter');
+        let container = document.getElementById('formulaContainer');
+        if(!sel || !container) return;
+        let f = sel.value;
+        let list = f === 'all' ? formulasList : formulasList.filter(x => x.cls === f);
+        container.innerHTML = list.map(x => `<div class="bg-white dark:bg-slate-950 p-5 rounded-2xl border"><span class="text-xs text-indigo-600 font-bold">${x.sub}</span><h4 class="font-bold">${x.title}</h4><p class="text-xs text-slate-500">${x.desc}</p></div>`).join('');
+    }
+                    </script>
+    <script>
+    // Dual Upload Option (YouTube or Local Device Gallery File)
+    function handleUpload(e) {
+        e.preventDefault();
+        const type = document.getElementById('upType').value;
+        const cls = document.getElementById('upClass').value;
+        const subject = document.getElementById('upSubject').value.trim();
+        const medium = document.getElementById('upMedium').value;
+        const title = document.getElementById('upTitle').value.trim();
+        
+        let linkInput = document.getElementById('upLink');
+        let link = linkInput.value.trim();
+        
+        if(linkInput.files && linkInput.files[0]) {
+            link = URL.createObjectURL(linkInput.files[0]);
+        }
+
+        resources.push({ type, cls, subject, medium, title, link });
+        localStorage.setItem('scanToStudy_resources', JSON.stringify(resources));
+        renderResources();
+        alert('✅ Resource published successfully and saved permanently!');
+        e.target.reset();
+        if(userSession) {
+            userSession.pdfsDownloaded++;
+            localStorage.setItem('scanToStudy_session', JSON.stringify(userSession));
+            updateDashboardUI();
+        }
+    }
+
+    function renderResources() {
+        ['vid', 'pdf', 'cbse'].forEach(type => {
+            let containerId = type === 'vid' ? 'vidContainer' : type === 'pdf' ? 'pdfContainer' : 'cbseContainer';
+            let container = document.getElementById(containerId);
+            if(!container) return;
+            let items = resources.filter(r => r.type === type);
+            if(items.length > 0) {
+                container.innerHTML = items.map(x => `
+                    <div class="p-4 bg-white dark:bg-slate-950 border rounded-2xl shadow-sm space-y-2 text-left">
+                        <span class="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full font-bold">Class ${x.cls} • ${x.medium}</span>
+                        <h4 class="font-bold text-base">${x.title}</h4>
+                        <p class="text-xs text-slate-500">Subject: ${x.subject}</p>
+                        <a href="${x.link}" target="_blank" class="inline-block text-xs bg-blue-600 text-white px-3 py-1.5 rounded-lg shadow">Access File / Video</a>
+                    </div>
+                `).join('');
+            }
+        });
+    }
+
+    // Instant Auto-Search
+    function performGlobalSearch(query) {
+        let res = document.getElementById('searchResults');
+        if(!res) return;
+        query = query.toLowerCase().trim();
+        if(!query) { res.innerHTML = "Type above to instantly search notes and videos."; return; }
+        
+        let matches = resources.filter(r => r.title.toLowerCase().includes(query) || r.subject.toLowerCase().includes(query) || r.cls.includes(query));
+        res.innerHTML = matches.length ? matches.map(m => `
+            <div class="p-3 bg-slate-50 dark:bg-slate-950 border rounded-xl flex justify-between items-center">
+                <div><strong>${m.title}</strong> <span class="text-xs text-blue-600">(${m.subject})</span></div>
+                <a href="${m.link}" target="_blank" class="text-xs bg-blue-600 text-white px-3 py-1 rounded">Open</a>
+            </div>
+        `).join('') : '<p class="text-slate-400">No matching resources found.</p>';
+    }
+
+    // Public Doubts with Community & Teacher Replies + AI Auto-Reply
+    function submitDoubt() {
+        let name = document.getElementById('doubtName').value.trim();
+        let sub = document.getElementById('doubtSubject').value.trim();
+        let text = document.getElementById('doubtText').value.trim();
+        if(!name || !text) { alert('Please fill in your name and doubt.'); return; }
+        
+        let newDoubt = {
+            name,
+            sub: sub || "General",
+            text,
+            ai: `🤖 AI Assistant: Regarding "${text}", review your fundamental chapter notes and standard formulas.`,
+            replies: []
+        };
+        doubtsList.unshift(newDoubt);
+        localStorage.setItem('scanToStudy_doubts', JSON.stringify(doubtsList));
+        renderDoubts();
+        document.getElementById('doubtText').value = '';
+        alert('✨ Doubt posted successfully! AI has provided instant guidance.');
+    }
+
+    function renderDoubts() {
+        let list = document.getElementById('doubtsList');
+        if(!list) return;
+        if(doubtsList.length === 0) { list.innerHTML = `<p class="text-slate-400 text-center">No doubts posted yet.</p>`; return; }
+        
+        list.innerHTML = doubtsList.map((d, i) => `
+            <div class="p-4 bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-2xl space-y-3 text-left shadow-sm">
+                <div class="flex justify-between text-xs font-semibold text-purple-600">
+                    <span>👤 ${d.name}</span>
+                    <span>📚 ${d.sub}</span>
+                </div>
+                <p class="text-sm font-medium text-slate-800 dark:text-slate-100">${d.text}</p>
+                <div class="p-3 bg-purple-50 dark:bg-purple-950/40 rounded-xl text-xs space-y-1 border border-purple-100 dark:border-purple-900">
+                    <p class="text-slate-600 dark:text-slate-300">${d.ai}</p>
+                </div>
+                <div class="space-y-1 pl-2 border-l-2 border-green-500">
+                    <div class="text-xs font-bold text-green-600">Public & Teacher Replies:</div>
+                    ${d.replies && d.replies.length > 0 ? d.replies.map(r => `<div class="text-xs text-slate-600 dark:text-slate-400">💬 <strong>${r.user}:</strong> ${r.text}</div>`).join('') : '<div class="text-xs text-slate-400 italic">No public replies yet. Be the first to answer!</div>'}
+                </div>
+                <div class="flex gap-2 pt-2">
+                    <input type="text" id="publicRep_${i}" placeholder="Write a public reply or answer..." class="flex-1 bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg px-3 py-1.5 text-xs">
+                    <button onclick="sendPublicReply(${i})" class="bg-green-600 hover:bg-green-700 text-white px-3 py-1.5 rounded-lg text-xs font-medium shadow">Post Reply</button>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function sendPublicReply(i) {
+        let inputVal = document.getElementById(`publicRep_${i}`).value.trim();
+        if(!inputVal) { alert('Please type a reply first!'); return; }
+        let replierName = userSession ? userSession.name : "Classmate / Student";
+        
+        if(!doubtsList[i].replies) doubtsList[i].replies = [];
+        doubtsList[i].replies.push({ user: replierName, text: inputVal });
+        
+        localStorage.setItem('scanToStudy_doubts', JSON.stringify(doubtsList));
+        renderDoubts();
+        alert('💬 Reply posted successfully for everyone to see!');
+    }
+
+    function loadQuiz() {
+        if(quizData.length === 0) return;
+        let q = quizData[currentQuizIndex];
+        if(document.getElementById('quizProgress')) document.getElementById('quizProgress').innerText = `Q ${currentQuizIndex + 1}/${quizData.length}`;
+        if(document.getElementById('quizQuestion')) document.getElementById('quizQuestion').innerText = q.q;
+        if(document.getElementById('quizOptions')) document.getElementById('quizOptions').innerHTML = q.options.map((opt, idx) => `<button onclick="selectQuiz(${idx}, ${q.correct})" class="quiz-btn p-3 text-left bg-white dark:bg-slate-900 border rounded-xl text-sm shadow-sm">${opt}</button>`).join('');
+    }
+    function selectQuiz(sel, cor) {
+        if(sel === cor) { score++; alert('Correct Answer! 🎉'); } else { alert('Incorrect Answer.'); }
+        if(document.getElementById('quizScore')) document.getElementById('quizScore').innerText = `Score: ${score}/${quizData.length}`;
+    }
+    function nextQuizQuestion() { currentQuizIndex = (currentQuizIndex + 1) % quizData.length; loadQuiz(); }
+    
+    window.onload = function() { 
+        loadQuiz(); 
+        if(typeof renderFormulas === 'function') renderFormulas(); 
+        renderResources(); 
+        renderDoubts(); 
+        updateDashboardUI(); 
+    };
+    </script>
+     </body>
 </html>
