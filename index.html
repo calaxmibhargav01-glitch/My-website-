@@ -69,9 +69,8 @@
                 <a href="#explore" class="hover:text-indigo-600 transition-colors">Study Portal</a>
                 <a href="#cbse" class="hover:text-indigo-600 transition-colors">CBSE</a>
                 <a href="#experiments" class="hover:text-indigo-600 transition-colors">Science Labs</a>
-                <a href="#quizSection" class="hover:text-indigo-600 transition-colors">Quiz & Leaderboard</a>
+                <a href="#quizSection" class="hover:text-indigo-600 transition-colors">Quiz</a>
                 <a href="#aiChatSection" class="hover:text-indigo-600 transition-colors">AI Tutor</a>
-                <a href="#feedbackSection" class="hover:text-indigo-600 transition-colors">Reviews</a>
             </nav>
 
             <!-- Header Action Buttons -->
@@ -88,10 +87,16 @@
                     <span id="notifBadge" class="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white rounded-full text-xs flex items-center justify-center font-bold shadow">0</span>
                 </button>
 
-                <!-- Public Upload Button (No Password) -->
-                <button onclick="openUploadModal()" class="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-sm transition-all shadow-md">
-                    <i class="fa-solid fa-cloud-arrow-up text-xs"></i>
-                    <span>Upload Content</span>
+                <!-- Student Login / Register Button -->
+                <button onclick="openAuthModal()" class="flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs transition-all shadow-md">
+                    <i class="fa-solid fa-user-lock"></i>
+                    <span id="authButtonText">Login / Register</span>
+                </button>
+
+                <!-- Public Upload Button -->
+                <button onclick="openUploadModal()" class="flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-xs transition-all shadow-md">
+                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                    <span>Upload</span>
                 </button>
             </div>
         </div>
@@ -101,22 +106,22 @@
         <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
             <div class="space-y-6">
                 <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md text-indigo-200 text-xs font-semibold uppercase tracking-wider border border-white/20">
-                    <i class="fa-solid fa-star text-amber-400"></i> Ultimate Learning Platform
+                    <i class="fa-solid fa-star text-amber-400"></i> Ultimate Learning Platform • ₹99/Year Subscription
                 </span>
                 <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
                     Scan, Learn & Excel from <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 to-yellow-400">Class 6 to 12</span>
                 </h1>
                 <p class="text-gray-200 text-base sm:text-lg max-w-xl font-light">
-                    Access bilingual PDF notes (with formula sheets), safe home science experiments, AI doubt solving, chapter quizzes, and latest CBSE updates instantly!
+                    Access bilingual PDF notes with formula sheets, safe home science experiments, AI doubt solving, chapter quizzes, and latest CBSE updates instantly!
                 </p>
                 <div class="flex flex-wrap gap-4 pt-4">
                     <a href="#explore" class="px-8 py-4 rounded-xl bg-gradient-to-r from-amber-400 to-yellow-500 text-gray-900 font-bold shadow-lg hover:shadow-amber-500/25 hover:scale-105 transition-all flex items-center gap-2">
                         <span>Explore Portal</span>
                         <i class="fa-solid fa-arrow-right"></i>
                     </a>
-                    <a href="#aiChatSection" class="px-8 py-4 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold backdrop-blur-md border border-white/20 transition-all flex items-center gap-2">
-                        <i class="fa-solid fa-robot text-amber-300"></i> Ask AI Tutor
-                    </a>
+                    <button onclick="openAuthModal()" class="px-8 py-4 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold backdrop-blur-md border border-white/20 transition-all">
+                        Student Registration (€99 Plan)
+                    </button>
                 </div>
             </div>
 
@@ -430,7 +435,30 @@
         </div>
     </footer>
 
-    <!-- Public Upload Modal (No Password Required) -->
+    <!-- Student Registration / Login Modal (For ₹99/Year Subscription) -->
+    <div id="authModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white dark:bg-gray-800 rounded-3xl max-w-md w-full p-8 shadow-2xl relative space-y-6">
+            <button onclick="closeAuthModal()" class="absolute top-6 right-6 text-gray-400 hover:text-gray-600"><i class="fa-solid fa-xmark text-xl"></i></button>
+            <div class="text-center space-y-2">
+                <div class="w-14 h-14 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center mx-auto text-2xl"><i class="fa-solid fa-user-graduate"></i></div>
+                <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Student Account</h3>
+                <p class="text-xs text-gray-500">Register or Login for ₹99/Year Subscription Plan</p>
+            </div>
+            <form onsubmit="handleAuthSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold uppercase mb-1">Student Name</label>
+                    <input type="text" id="authName" placeholder="Enter your full name..." class="w-full bg-gray-50 dark:bg-gray-900 border rounded-xl px-4 py-3 text-sm" required>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold uppercase mb-1">Email / Mobile Number</label>
+                    <input type="text" id="authEmail" placeholder="Enter email or phone..." class="w-full bg-gray-50 dark:bg-gray-900 border rounded-xl px-4 py-3 text-sm" required>
+                </div>
+                <button type="submit" class="w-full py-3.5 bg-emerald-600 text-white font-bold rounded-xl shadow-md">Register / Login Now</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Public Upload Modal -->
     <div id="uploadModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4 overflow-y-auto">
         <div class="bg-white dark:bg-gray-800 rounded-3xl max-w-3xl w-full p-6 sm:p-8 shadow-2xl relative my-8 space-y-6">
             <div class="flex items-center justify-between border-b dark:border-gray-700 pb-4">
@@ -563,18 +591,7 @@
     <!-- Notifications Modal -->
     <div id="notifModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4">
         <div class="bg-white dark:bg-gray-800 rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative space-y-6">
-            <button onclick="closeNotifications()" class="absolute top-6 right-6 text-gray-400 hover:text-gray-600"><i class="fa-solid fa-xmark text-xl"></i></button>
-            <div class="flex items-center gap-3 border-b dark:border-gray-700 pb-4">
-                <div class="w-10 h-10 bg-indigo-100 text-indigo-600 rounded-xl flex items-center justify-center"><i class="fa-solid fa-bell"></i></div>
-                <div>
-                    <h3 class="text-xl font-bold text-gray-900 dark:text-white">Student Notifications</h3>
-                    <p class="text-xs text-gray-500">Instant updates for new uploads</p>
-                </div>
-            </div>
-            <div id="notifList" class="space-y-3 max-h-96 overflow-y-auto pr-2"></div>
-        </div>
-    </div>
-        <!-- JavaScript Application Logic -->
+            <button onclick="closeNotifications()" class    <!-- JavaScript Application Logic -->
     <script>
         if (!localStorage.getItem('sts_notes')) localStorage.setItem('sts_notes', JSON.stringify([]));
         if (!localStorage.getItem('sts_videos')) localStorage.setItem('sts_videos', JSON.stringify([]));
@@ -588,9 +605,29 @@
             renderExperiments();
             renderNotifications();
             renderFeedbacks();
+            checkUserAuth();
         });
 
         function toggleDarkMode() { document.documentElement.classList.toggle('dark'); }
+
+        function openAuthModal() { document.getElementById('authModal').classList.replace('hidden', 'flex'); }
+        function closeAuthModal() { document.getElementById('authModal').classList.replace('flex', 'hidden'); }
+
+        function handleAuthSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('authName').value;
+            localStorage.setItem('sts_user', name);
+            alert(`Welcome ${name}! Account registered successfully for ₹99/Year Plan.`);
+            closeAuthModal();
+            checkUserAuth();
+        }
+
+        function checkUserAuth() {
+            const user = localStorage.getItem('sts_user');
+            if (user) {
+                document.getElementById('authButtonText').innerText = user.split(' ')[0];
+            }
+        }
 
         function filterContent() {
             const fClass = document.getElementById('filterClass').value;
@@ -618,7 +655,7 @@
                     <div class="col-span-full py-16 text-center space-y-3 bg-white dark:bg-gray-800 rounded-3xl shadow-sm border border-gray-100 dark:border-gray-700">
                         <div class="w-16 h-16 bg-indigo-50 text-indigo-500 rounded-2xl flex items-center justify-center mx-auto text-2xl"><i class="fa-solid fa-folder-open"></i></div>
                         <h3 class="text-lg font-bold text-gray-800 dark:text-gray-200">No Study Materials Found</h3>
-                        <p class="text-xs text-gray-500">Click 'Upload Content' to add notes or videos publicly!</p>
+                        <p class="text-xs text-gray-500">Click 'Upload' to add notes or videos publicly!</p>
                     </div>
                 `;
                 return;
@@ -726,7 +763,7 @@
             input.value = '';
             setTimeout(() => {
                 let ans = "That's a great question! Check your chapter notes for detailed derivations.";
-                if (q.toLowerCase().includes('ohm')) ans = "Ohm's Law states $V = IR$.";
+                if (q.toLowerCase().includes('ohm')) ans = "Ohm's Law states V = IR.";
                 chatBox.innerHTML += `<div class="p-3 rounded-2xl bg-indigo-600/60 text-white max-w-md"><p class="font-bold text-xs text-amber-300 mb-1">AI Tutor</p>${ans}</div>`;
                 chatBox.scrollTop = chatBox.scrollHeight;
             }, 600);
@@ -854,4 +891,5 @@
         }
     </script>
 </body>
-</html>
+    </html>
+                
