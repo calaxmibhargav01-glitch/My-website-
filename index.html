@@ -26,7 +26,7 @@
         body { font-family: 'Poppins', sans-serif; }
     </style>
 </head>
-<body class="bg-slate-100 dark:bg-slate-950 text-slate-800 dark:text-slate-100 transition-colors duration-300">
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-100 transition-colors duration-300">
 
     <!-- Top Announcement Bar -->
     <div class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-xs sm:text-sm py-2 px-4 text-center font-medium">
@@ -34,7 +34,7 @@
     </div>
 
     <!-- Header & Navigation -->
-    <header class="sticky top-0 z-40 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md shadow-sm border-b border-slate-200 dark:border-slate-800">
+    <header class="sticky top-0 z-40 bg-white/90 dark:bg-gray-800/90 backdrop-blur-md shadow-sm border-b border-gray-200 dark:border-gray-700">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <!-- Logo -->
@@ -44,7 +44,7 @@
                     </div>
                     <div>
                         <h1 class="font-bold text-lg sm:text-xl leading-tight">Scan to Study</h1>
-                        <p class="text-xs text-slate-500 dark:text-slate-400">CM Shri School Amalwas Jwalapuri</p>
+                        <p class="text-xs text-gray-500 dark:text-gray-400">CM Shri School Amalwas Jwalapuri</p>
                     </div>
                 </a>
 
@@ -61,28 +61,26 @@
                     <a href="#upload" class="hover:text-blue-600 transition text-blue-600 font-semibold"><i class="fa-solid fa-cloud-arrow-up"></i> Upload</a>
                 </nav>
 
-                <!-- Right Actions: Search, Settings, Login, Mobile Menu -->
+                <!-- Right Actions: Search, Settings, Login, Mobile Menu Toggle -->
                 <div class="flex items-center space-x-2 sm:space-x-3">
-                    <button onclick="openModal('searchModal')" class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 transition" title="Search Hub">
+                    <button onclick="openModal('searchModal')" class="p-2 rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition" title="Search Hub">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </button>
-                    <button onclick="openModal('settingsModal')" class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 transition" title="Settings">
+                    <button onclick="openModal('settingsModal')" class="p-2 rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition" title="Settings">
                         <i class="fa-solid fa-gear"></i>
                     </button>
-                    <div id="authNavArea">
-                        <button onclick="openModal('loginModal')" class="bg-blue-600 hover:bg-blue-700 text-white px-3 sm:px-4 py-2 rounded-xl text-sm font-medium shadow transition flex items-center space-x-2">
-                            <i class="fa-solid fa-user"></i>
-                            <span class="hidden sm:inline">Login</span>
-                        </button>
-                    </div>
-                    <button onclick="toggleMobileMenu()" class="lg:hidden p-2 rounded-lg bg-slate-100 dark:bg-slate-800">
+                    <button onclick="openModal('loginModal')" class="bg-blue-600 hover:bg-blue-700 text-white px-3 sm:px-4 py-2 rounded-xl text-sm font-medium shadow transition flex items-center space-x-2">
+                        <i class="fa-solid fa-user"></i>
+                        <span class="hidden sm:inline">Login</span>
+                    </button>
+                    <button onclick="toggleMobileMenu()" class="lg:hidden p-2 rounded-lg bg-gray-100 dark:bg-gray-700">
                         <i class="fa-solid fa-bars"></i>
                     </button>
                 </div>
             </div>
         </div>
         <!-- Mobile Dropdown Menu -->
-        <div id="mobileMenu" class="hidden lg:hidden bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 px-4 py-3 space-y-2 text-sm font-medium">
+        <div id="mobileMenu" class="hidden lg:hidden bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-4 py-3 space-y-2 text-sm font-medium">
             <a href="#homework-solver" onclick="toggleMobileMenu()" class="block py-1 hover:text-blue-600">Homework Solver</a>
             <a href="#lab-videos" onclick="toggleMobileMenu()" class="block py-1 hover:text-blue-600">Science Lab Videos</a>
             <a href="#timers-calculators" onclick="toggleMobileMenu()" class="block py-1 hover:text-blue-600">Timers & Calculators</a>
@@ -94,7 +92,8 @@
             <a href="#upload" onclick="toggleMobileMenu()" class="block py-1 text-blue-600 font-semibold">Upload Hub</a>
         </div>
     </header>
-        <!-- Hero Section -->
+
+    <!-- Hero Section -->
     <section class="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-center">
         <div class="inline-block bg-blue-50 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 text-xs font-semibold px-3 py-1 rounded-full mb-4 uppercase tracking-wider">
             Complete Digital Learning Platform (Classes 6 to 12)
@@ -102,52 +101,21 @@
         <h2 class="text-3xl sm:text-5xl font-bold tracking-tight mb-6">
             Scan, Learn & Excel with <span class="text-blue-600">Smart Study Tools</span>
         </h2>
-        <p class="max-w-2xl mx-auto text-slate-600 dark:text-slate-300 text-base sm:text-lg mb-8">
-            Access chapter notes across all streams, practical videos, interactive quizzes, and student activity logs.
+        <p class="max-w-2xl mx-auto text-gray-600 dark:text-gray-300 text-base sm:text-lg mb-8">
+            Access chapter notes across all streams (Science, Commerce, Arts), practical videos, interactive quizzes, and study planners.
         </p>
 
-        <!-- User Profile Dashboard Widget (Visible after login) -->
-        <div id="userDashboardCard" class="hidden max-w-3xl mx-auto bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-3xl p-6 shadow-xl mb-8 text-left">
-            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-4 pb-4 border-b border-white/20">
-                <div>
-                    <h3 id="dashUserName" class="text-xl font-bold">Welcome, Student!</h3>
-                    <p id="dashUserEmail" class="text-xs text-blue-100">Active Session • CM Shri School Jwalapuri</p>
-                </div>
-                <button onclick="handleLogout()" class="bg-white/20 hover:bg-white/30 text-white px-4 py-2 rounded-xl text-xs font-semibold transition">
-                    <i class="fa-solid fa-right-from-bracket mr-1"></i> Logout
-                </button>
-            </div>
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
-                <div class="bg-white/10 rounded-2xl p-3">
-                    <div id="dashPdfCount" class="text-2xl font-bold">0</div>
-                    <div class="text-xs text-blue-200">PDFs Downloaded</div>
-                </div>
-                <div class="bg-white/10 rounded-2xl p-3">
-                    <div id="dashVidCount" class="text-2xl font-bold">0</div>
-                    <div class="text-xs text-blue-200">Videos Watched</div>
-                </div>
-                <div class="bg-white/10 rounded-2xl p-3">
-                    <div id="dashQuizScore" class="text-2xl font-bold">0 / 0</div>
-                    <div class="text-xs text-blue-200">Quiz Score</div>
-                </div>
-                <div class="bg-white/10 rounded-2xl p-3">
-                    <div id="dashAttendance" class="text-2xl font-bold">--%</div>
-                    <div class="text-xs text-blue-200">Attendance</div>
-                </div>
-            </div>
-        </div>
-
         <!-- Presented By Creators Box -->
-        <div class="max-w-xl mx-auto bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 shadow-sm">
-            <div class="text-xs uppercase font-semibold text-slate-400 tracking-wider mb-2">Designed & Maintained By</div>
+        <div class="max-w-xl mx-auto bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6 shadow-sm">
+            <div class="text-xs uppercase font-semibold text-gray-400 tracking-wider mb-2">Designed & Maintained By</div>
             <div class="text-lg font-bold text-blue-600 dark:text-blue-400 mb-1">Class 12 Commerce Students</div>
-            <div class="text-sm font-medium text-slate-700 dark:text-slate-300 mb-3">CM Shri School Amalwas Jwalapuri</div>
+            <div class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">CM Shri School Amalwas Jwalapuri</div>
             <div class="flex flex-wrap justify-center gap-2">
-                <span class="bg-slate-100 dark:bg-slate-800 text-blue-700 dark:text-blue-300 px-3 py-1 rounded-full text-xs font-medium">✨ Lakshmi</span>
-                <span class="bg-slate-100 dark:bg-slate-800 text-blue-700 dark:text-blue-300 px-3 py-1 rounded-full text-xs font-medium">✨ Aafiya</span>
-                <span class="bg-slate-100 dark:bg-slate-800 text-blue-700 dark:text-blue-300 px-3 py-1 rounded-full text-xs font-medium">✨ Simran</span>
-                <span class="bg-slate-100 dark:bg-slate-800 text-blue-700 dark:text-blue-300 px-3 py-1 rounded-full text-xs font-medium">✨ Ekta</span>
-                <span class="bg-slate-100 dark:bg-slate-800 text-blue-700 dark:text-blue-300 px-3 py-1 rounded-full text-xs font-medium">✨ Shreya</span>
+                <span class="bg-blue-50 dark:bg-gray-700 text-blue-700 dark:text-blue-300 px-3 py-1 rounded-full text-xs font-medium">✨ Lakshmi</span>
+                <span class="bg-blue-50 dark:bg-gray-700 text-blue-700 dark:text-blue-300 px-3 py-1 rounded-full text-xs font-medium">✨ Aafiya</span>
+                <span class="bg-blue-50 dark:bg-gray-700 text-blue-700 dark:text-blue-300 px-3 py-1 rounded-full text-xs font-medium">✨ Simran</span>
+                <span class="bg-blue-50 dark:bg-gray-700 text-blue-700 dark:text-blue-300 px-3 py-1 rounded-full text-xs font-medium">✨ Ekta</span>
+                <span class="bg-blue-50 dark:bg-gray-700 text-blue-700 dark:text-blue-300 px-3 py-1 rounded-full text-xs font-medium">✨ Shreya</span>
             </div>
         </div>
     </section>
@@ -155,37 +123,37 @@
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16 pb-20">
 
         <!-- 1. Homework Solver -->
-        <section id="homework-solver" class="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 shadow-md border border-slate-200/80 dark:border-slate-800">
+        <section id="homework-solver" class="bg-white dark:bg-gray-800 rounded-3xl p-6 sm:p-8 shadow-sm border border-gray-100 dark:border-gray-700">
             <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
                 <div>
                     <h3 class="text-2xl font-bold flex items-center gap-2">
                         <i class="fa-solid fa-robot text-blue-600"></i> Homework Solver
                     </h3>
-                    <p class="text-slate-500 dark:text-slate-400 text-sm">Ask any subject question, formula derivation, or concept explanation</p>
+                    <p class="text-gray-500 dark:text-gray-400 text-sm">Ask any subject question, formula derivation, or concept explanation</p>
                 </div>
                 <span class="bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 text-xs font-semibold px-3 py-1 rounded-full">24/7 Active AI</span>
             </div>
-            <div id="solverOutput" class="bg-slate-50 dark:bg-slate-950 rounded-2xl p-4 sm:p-6 mb-4 min-h-[120px] flex items-center justify-center text-center text-slate-500">
+            <div id="solverOutput" class="bg-gray-50 dark:bg-gray-900 rounded-2xl p-4 sm:p-6 mb-4 min-h-[120px] flex items-center justify-center text-center text-gray-500">
                 <p>👋 Welcome! Type any question or query below to get instant step-by-step guidance!</p>
             </div>
             <div class="flex gap-2">
-                <input type="text" id="solverInput" placeholder="Ask your question here (e.g., Explain Partnership Accounts or Ohm's Law)..." class="flex-1 bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-blue-500">
-                <button onclick="solveHomework()" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl font-medium transition flex items-center gap-2 shadow">
+                <input type="text" id="solverInput" placeholder="Ask your question here (e.g., Explain Partnership Accounts or Ohm's Law)..." class="flex-1 bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-blue-500">
+                <button onclick="solveHomework()" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl font-medium transition flex items-center gap-2">
                     <i class="fa-solid fa-paper-plane"></i> Ask
                 </button>
             </div>
         </section>
                 <!-- 2. Science Lab Videos -->
-        <section id="lab-videos" class="bg-gradient-to-br from-white to-blue-50/50 dark:from-slate-900 dark:to-slate-900/80 rounded-3xl p-6 sm:p-8 shadow-md border border-slate-200/80 dark:border-slate-800">
+        <section id="lab-videos" class="bg-white dark:bg-gray-800 rounded-3xl p-6 sm:p-8 shadow-sm border border-gray-100 dark:border-gray-700">
             <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-8 gap-4">
                 <div>
                     <span class="text-blue-600 dark:text-blue-400 text-xs font-semibold uppercase tracking-wider">Practical & Learning Videos</span>
                     <h3 class="text-2xl font-bold mt-1">Video Gallery (Classes 6-12 All Subjects)</h3>
-                    <p class="text-slate-500 dark:text-slate-400 text-sm">Watch real educational experiment and concept videos</p>
+                    <p class="text-gray-500 dark:text-gray-400 text-sm">Watch real YouTube educational experiment and concept videos</p>
                 </div>
                 <!-- Filters -->
                 <div class="flex flex-wrap gap-2">
-                    <select id="vidClass" onchange="renderResources()" class="bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2 text-sm shadow-sm">
+                    <select id="vidClass" onchange="renderResources()" class="bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-xl px-3 py-2 text-sm">
                         <option value="all">All Classes (6-12)</option>
                         <option value="12">Class 12</option>
                         <option value="11">Class 11</option>
@@ -195,7 +163,7 @@
                         <option value="7">Class 7</option>
                         <option value="6">Class 6</option>
                     </select>
-                    <select id="vidSubject" onchange="renderResources()" class="bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2 text-sm shadow-sm">
+                    <select id="vidSubject" onchange="renderResources()" class="bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-xl px-3 py-2 text-sm">
                         <option value="all">All Subjects</option>
                         <optgroup label="Commerce">
                             <option value="accounts">Accountancy</option>
@@ -207,96 +175,98 @@
                             <option value="chemistry">Chemistry</option>
                             <option value="biology">Biology</option>
                             <option value="mathematics">Mathematics</option>
+                            <option value="science">Science</option>
                         </optgroup>
                         <optgroup label="Arts & Humanities">
                             <option value="history">History</option>
                             <option value="political science">Political Science</option>
                             <option value="geography">Geography</option>
                             <option value="sociology">Sociology</option>
+                            <option value="psychology">Psychology</option>
                         </optgroup>
-                        <optgroup label="Middle School">
-                            <option value="science">Science</option>
+                        <optgroup label="Middle School & Languages">
                             <option value="social science">Social Science</option>
                             <option value="english">English</option>
                             <option value="hindi">Hindi</option>
+                            <option value="sanskrit">Sanskrit</option>
                         </optgroup>
                     </select>
-                    <select id="vidMedium" onchange="renderResources()" class="bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2 text-sm shadow-sm">
+                    <select id="vidMedium" onchange="renderResources()" class="bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-xl px-3 py-2 text-sm">
                         <option value="all">Both Medium</option>
                         <option value="hindi">Hindi Medium</option>
                         <option value="english">English Medium</option>
                     </select>
                 </div>
             </div>
-            <div id="vidContainer" class="text-center py-12 text-slate-400 border-2 border-dashed border-slate-300 dark:border-slate-800 rounded-2xl bg-white/50 dark:bg-slate-950/50">
+            <div id="vidContainer" class="text-center py-12 text-gray-400 border-2 border-dashed border-gray-200 dark:border-gray-700 rounded-2xl">
                 <i class="fa-solid fa-video-slash text-4xl mb-3"></i>
-                <p>No videos uploaded yet. Use the Upload Hub below to add video resources!</p>
+                <p>No videos uploaded yet. Use the Upload Hub below to add YouTube resources!</p>
             </div>
         </section>
 
         <!-- 3. Timers & Calculators Suite -->
         <section id="timers-calculators" class="grid grid-cols-1 md:grid-cols-3 gap-6">
             <!-- Focus Timer -->
-            <div class="bg-white dark:bg-slate-900 rounded-3xl p-6 shadow-md border border-slate-200/80 dark:border-slate-800 flex flex-col justify-between">
+            <div class="bg-white dark:bg-gray-800 rounded-3xl p-6 shadow-sm border border-gray-100 dark:border-gray-700 flex flex-col justify-between">
                 <div>
                     <span class="text-blue-600 text-xs font-semibold uppercase tracking-wider">Focus Timer</span>
                     <h4 class="text-xl font-bold mt-1">Pomodoro Study Session</h4>
-                    <p class="text-slate-500 text-xs mt-1">Study in 25-minute intervals to maximize memory retention.</p>
+                    <p class="text-gray-500 text-xs mt-1">Study in 25-minute intervals to maximize memory retention.</p>
                 </div>
                 <div class="my-6 text-center">
                     <div id="timerDisplay" class="text-4xl font-extrabold text-blue-600 mb-1">25:00</div>
-                    <div id="timerStatus" class="text-xs text-slate-400">Ready to Start Session</div>
+                    <div id="timerStatus" class="text-xs text-gray-400">Ready to Start Session</div>
                 </div>
                 <div class="flex gap-2">
-                    <button onclick="startTimer()" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-2.5 rounded-xl text-sm font-medium transition shadow">Start</button>
-                    <button onclick="resetTimer()" class="bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 px-4 py-2.5 rounded-xl text-sm font-medium transition">Reset</button>
+                    <button onclick="startTimer()" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-2.5 rounded-xl text-sm font-medium transition">Start</button>
+                    <button onclick="resetTimer()" class="bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 px-4 py-2.5 rounded-xl text-sm font-medium transition">Reset</button>
                 </div>
             </div>
 
-            <!-- Scientific Calculator Trigger -->
-            <div class="bg-white dark:bg-slate-900 rounded-3xl p-6 shadow-md border border-slate-200/80 dark:border-slate-800 flex flex-col justify-between">
+            <!-- Scientific Calculator Modal Trigger -->
+            <div class="bg-white dark:bg-gray-800 rounded-3xl p-6 shadow-sm border border-gray-100 dark:border-gray-700 flex flex-col justify-between">
                 <div>
                     <span class="text-blue-600 text-xs font-semibold uppercase tracking-wider">Math Tool</span>
                     <h4 class="text-xl font-bold mt-1">Scientific Calculator</h4>
-                    <p class="text-slate-500 text-xs mt-1">Quick calculations for math and physics equations.</p>
+                    <p class="text-gray-500 text-xs mt-1">Quick calculations for math and physics equations.</p>
                 </div>
-                <div class="my-6 bg-slate-50 dark:bg-slate-950 p-4 rounded-xl text-right font-mono text-xl text-blue-600 font-bold">Interactive Tool</div>
+                <div class="my-6 bg-gray-50 dark:bg-gray-900 p-4 rounded-xl text-right font-mono text-xl text-blue-600 font-bold">Interactive Tool</div>
                 <button onclick="openModal('calcModal')" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 rounded-xl text-sm font-medium transition shadow">Open Calculator</button>
             </div>
 
             <!-- CBSE Attendance & Grade Checker -->
-            <div class="bg-white dark:bg-slate-900 rounded-3xl p-6 shadow-md border border-slate-200/80 dark:border-slate-800 flex flex-col justify-between">
+            <div class="bg-white dark:bg-gray-800 rounded-3xl p-6 shadow-sm border border-gray-100 dark:border-gray-700 flex flex-col justify-between">
                 <div>
                     <span class="text-blue-600 text-xs font-semibold uppercase tracking-wider">CBSE Tool</span>
                     <h4 class="text-xl font-bold mt-1">75% Attendance & Grade Checker</h4>
-                    <p class="text-slate-500 text-xs mt-1">Calculate your eligibility and target grades.</p>
+                    <p class="text-gray-500 text-xs mt-1">Calculate your eligibility and target grades.</p>
                 </div>
                 <div class="my-4 space-y-2">
-                    <input type="number" id="totalClasses" placeholder="Total Classes Held" class="w-full bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 rounded-xl px-3 py-2 text-xs focus:outline-none">
-                    <input type="number" id="attendedClasses" placeholder="Classes Attended" class="w-full bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 rounded-xl px-3 py-2 text-xs focus:outline-none">
+                    <input type="number" id="totalClasses" placeholder="Total Classes Held" class="w-full bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-xl px-3 py-2 text-xs focus:outline-none">
+                    <input type="number" id="attendedClasses" placeholder="Classes Attended" class="w-full bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-xl px-3 py-2 text-xs focus:outline-none">
                 </div>
-                <button onclick="checkAttendance()" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 rounded-xl text-sm font-medium transition shadow">Check Eligibility</button>
+                <button onclick="checkAttendance()" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 rounded-xl text-sm font-medium transition">Check Eligibility</button>
             </div>
-        </section>
-                <!-- 4. Smart Study Planner Checklist -->
-        <section id="planner" class="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 shadow-md border border-slate-200/80 dark:border-slate-800">
+    </section>
+                                <!-- 4. Smart Study Planner Checklist -->
+        <section id="planner" class="bg-white dark:bg-gray-800 rounded-3xl p-6 sm:p-8 shadow-sm border border-gray-100 dark:border-gray-700">
             <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
                 <div>
                     <span class="text-blue-600 text-xs font-semibold uppercase tracking-wider">Organize Your Day</span>
                     <h3 class="text-2xl font-bold mt-1">Smart Study Planner Checklist</h3>
                 </div>
-                <button onclick="openModal('planModal')" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-xl text-sm font-medium transition flex items-center gap-2 shadow">
+                <button onclick="openModal('planModal')" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-xl text-sm font-medium transition flex items-center gap-2">
                     <i class="fa-solid fa-plus"></i> Add New Plan
                 </button>
             </div>
             <div id="plannerContainer" class="space-y-3">
-                <label class="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-950 rounded-xl cursor-pointer border border-slate-200/50 dark:border-slate-800">
+                <label class="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-900 rounded-xl cursor-pointer">
                     <div class="flex items-center gap-3">
                         <input type="checkbox" onchange="checkPlannerCompletion()" class="planner-checkbox w-5 h-5 text-blue-600 rounded">
                         <span class="text-sm font-medium">📖 Complete Physics Practical Chapter Notes & Formulas</span>
                     </div>
                 </label>
-                <label class="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-950 rounded-xl cursor-pointer border border-slate-200/50 dark:border-slate-800">
+                <label class="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-900 rounded-xl cursor-pointer">
                     <div class="flex items-center gap-3">
                         <input type="checkbox" onchange="checkPlannerCompletion()" class="planner-checkbox w-5 h-5 text-blue-600 rounded">
                         <span class="text-sm font-medium">✏️ Revise Accountancy Partnership Fundamental Questions</span>
@@ -305,46 +275,45 @@
             </div>
         </section>
 
-        <!-- 5. Formula & Key Concepts Deck -->
-        <section id="formulas" class="bg-gradient-to-br from-white to-indigo-50/50 dark:from-slate-900 dark:to-slate-900/80 rounded-3xl p-6 sm:p-8 shadow-md border border-slate-200/80 dark:border-slate-800">
+        <!-- 5. Formula & Key Concepts Deck (With Add/Remove & Filters) -->
+        <section id="formulas" class="bg-white dark:bg-gray-800 rounded-3xl p-6 sm:p-8 shadow-sm border border-gray-100 dark:border-gray-700">
             <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-6 gap-4">
                 <div>
                     <span class="text-blue-600 text-xs font-semibold uppercase tracking-wider">Quick Revision</span>
                     <h3 class="text-2xl font-bold mt-1">Formula & Key Concepts Deck</h3>
                 </div>
                 <div class="flex flex-wrap gap-2 items-center">
-                    <select id="formulaClassFilter" onchange="renderFormulas()" class="bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2 text-sm shadow-sm">
+                    <select id="formulaClassFilter" onchange="renderFormulas()" class="bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-xl px-3 py-2 text-sm">
                         <option value="all">All Classes</option>
                         <option value="12">Class 12</option>
                         <option value="11">Class 11</option>
                         <option value="10">Class 10</option>
                     </select>
-                    <button onclick="openModal('formulaModal')" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-xl text-sm font-medium transition flex items-center gap-2 shadow">
+                    <button onclick="openModal('formulaModal')" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-xl text-sm font-medium transition flex items-center gap-2">
                         <i class="fa-solid fa-plus"></i> Add Formula
                     </button>
                 </div>
             </div>
             <div id="formulaContainer" class="grid grid-cols-1 sm:grid-cols-3 gap-6">
-                <div class="bg-white dark:bg-slate-950 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                <div class="bg-gray-50 dark:bg-gray-900 p-5 rounded-2xl border border-gray-100 dark:border-gray-700">
                     <span class="text-xs font-semibold text-blue-600">Class 12 • Physics</span>
                     <h4 class="font-bold text-lg mt-1">Ohm's Law</h4>
-                    <p class="text-sm text-slate-500 mt-2">Voltage V equals Current I multiplied by Resistance R. <br><strong>V = I × R</strong></p>
+                    <p class="text-sm text-gray-500 mt-2">Voltage V equals Current I multiplied by Resistance R. <br><strong>V = I × R</strong></p>
                 </div>
-                <div class="bg-white dark:bg-slate-950 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                <div class="bg-gray-50 dark:bg-gray-900 p-5 rounded-2xl border border-gray-100 dark:border-gray-700">
                     <span class="text-xs font-semibold text-blue-600">Class 11/12 • Chemistry</span>
                     <h4 class="font-bold text-lg mt-1">Molarity Formula</h4>
-                    <p class="text-sm text-slate-500 mt-2">Molarity equals Moles of Solute divided by Volume of Solution in Liters.</p>
+                    <p class="text-sm text-gray-500 mt-2">Molarity equals Moles of Solute divided by Volume of Solution in Liters.</p>
                 </div>
-                <div class="bg-white dark:bg-slate-950 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                <div class="bg-gray-50 dark:bg-gray-900 p-5 rounded-2xl border border-gray-100 dark:border-gray-700">
                     <span class="text-xs font-semibold text-blue-600">Class 12 • Accountancy</span>
                     <h4 class="font-bold text-lg mt-1">P&L Appropriation</h4>
-                    <p class="text-sm text-slate-500 mt-2">Net Profit + Interest on Drawings - Interest on Capital = Shareable Profit.</p>
+                    <p class="text-sm text-gray-500 mt-2">Net Profit + Interest on Drawings - Interest on Capital = Shareable Profit.</p>
                 </div>
             </div>
         </section>
-
-        <!-- 6. Quiz Hub -->
-        <section id="quiz" class="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 shadow-md border border-slate-200/80 dark:border-slate-800">
+                <!-- 6. Quiz Hub (With Add/Remove Quiz & Filters) -->
+        <section id="quiz" class="bg-white dark:bg-gray-800 rounded-3xl p-6 sm:p-8 shadow-sm border border-gray-100 dark:border-gray-700">
             <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
                 <div>
                     <span class="text-blue-600 text-xs font-semibold uppercase tracking-wider">Practice & Test</span>
@@ -352,13 +321,13 @@
                 </div>
                 <div class="flex items-center gap-3">
                     <div id="quizScore" class="text-sm font-semibold text-blue-600">Score: 0 / 3</div>
-                    <button onclick="openModal('quizModal')" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-xl text-sm font-medium transition flex items-center gap-2 shadow">
+                    <button onclick="openModal('quizModal')" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-xl text-sm font-medium transition flex items-center gap-2">
                         <i class="fa-solid fa-plus"></i> Add Quiz
                     </button>
                 </div>
             </div>
-            <div class="bg-slate-50 dark:bg-slate-950 p-6 rounded-2xl border border-slate-200/50 dark:border-slate-800">
-                <div class="flex justify-between text-xs text-slate-400 mb-2">
+            <div class="bg-gray-50 dark:bg-gray-900 p-6 rounded-2xl">
+                <div class="flex justify-between text-xs text-gray-400 mb-2">
                     <span id="quizProgress">Question 1 of 3</span>
                     <span id="quizMeta">Class 12 • Commerce & Science</span>
                 </div>
@@ -368,21 +337,22 @@
                 </div>
                 <div class="flex justify-between items-center">
                     <button onclick="deleteCurrentQuiz()" class="text-red-500 hover:text-red-700 text-xs font-medium"><i class="fa-solid fa-trash mr-1"></i> Delete This Quiz</button>
-                    <button onclick="nextQuizQuestion()" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-xl text-sm font-medium transition shadow">Next Question <i class="fa-solid fa-arrow-right ml-1"></i></button>
+                    <button onclick="nextQuizQuestion()" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-xl text-sm font-medium transition">Next Question <i class="fa-solid fa-arrow-right ml-1"></i></button>
                 </div>
             </div>
         </section>
-                <!-- 7. PDF Vault -->
-        <section id="vault" class="bg-gradient-to-br from-white to-blue-50/50 dark:from-slate-900 dark:to-slate-900/80 rounded-3xl p-6 sm:p-8 shadow-md border border-slate-200/80 dark:border-slate-800">
+
+        <!-- 7. PDF Vault -->
+        <section id="vault" class="bg-white dark:bg-gray-800 rounded-3xl p-6 sm:p-8 shadow-sm border border-gray-100 dark:border-gray-700">
             <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-8 gap-4">
                 <div>
                     <span class="text-blue-600 text-xs font-semibold uppercase tracking-wider">Bilingual Notes</span>
                     <h3 class="text-2xl font-bold mt-1">Bilingual PDF Vault</h3>
-                    <p class="text-slate-500 text-slate-400 text-sm">Access Class 6 to 12 notes across all streams</p>
+                    <p class="text-gray-500 text-sm">Access Class 6 to 12 notes across all streams</p>
                 </div>
                 <!-- Filters -->
                 <div class="flex flex-wrap gap-2">
-                    <select id="pdfClass" onchange="renderResources()" class="bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2 text-sm shadow-sm">
+                    <select id="pdfClass" onchange="renderResources()" class="bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-xl px-3 py-2 text-sm">
                         <option value="all">All Classes (6-12)</option>
                         <option value="12">Class 12</option>
                         <option value="11">Class 11</option>
@@ -392,7 +362,7 @@
                         <option value="7">Class 7</option>
                         <option value="6">Class 6</option>
                     </select>
-                    <select id="pdfSubject" onchange="renderResources()" class="bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2 text-sm shadow-sm">
+                    <select id="pdfSubject" onchange="renderResources()" class="bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-xl px-3 py-2 text-sm">
                         <option value="all">All Subjects</option>
                         <optgroup label="Commerce">
                             <option value="accounts">Accountancy</option>
@@ -404,140 +374,134 @@
                             <option value="chemistry">Chemistry</option>
                             <option value="biology">Biology</option>
                             <option value="mathematics">Mathematics</option>
+                            <option value="science">Science</option>
                         </optgroup>
                         <optgroup label="Arts & Humanities">
                             <option value="history">History</option>
                             <option value="political science">Political Science</option>
                             <option value="geography">Geography</option>
                             <option value="sociology">Sociology</option>
+                            <option value="psychology">Psychology</option>
                         </optgroup>
-                        <optgroup label="Middle School">
-                            <option value="science">Science</option>
+                        <optgroup label="Middle School & Languages">
                             <option value="social science">Social Science</option>
                             <option value="english">English</option>
                             <option value="hindi">Hindi</option>
+                            <option value="sanskrit">Sanskrit</option>
                         </optgroup>
                     </select>
-                    <select id="pdfMedium" onchange="renderResources()" class="bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2 text-sm shadow-sm">
+                    <select id="pdfMedium" onchange="renderResources()" class="bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-xl px-3 py-2 text-sm">
                         <option value="all">Both Medium</option>
                         <option value="hindi">Hindi Medium</option>
                         <option value="english">English Medium</option>
                     </select>
                 </div>
             </div>
-            <div id="pdfContainer" class="text-center py-12 text-slate-400 border-2 border-dashed border-slate-300 dark:border-slate-800 rounded-2xl bg-white/50 dark:bg-slate-950/50">
+            <div id="pdfContainer" class="text-center py-12 text-gray-400 border-2 border-dashed border-gray-200 dark:border-gray-700 rounded-2xl">
                 <i class="fa-solid fa-file-pdf text-4xl mb-3"></i>
                 <p>No PDF notes uploaded yet. Use the Upload Hub below to add notes!</p>
             </div>
         </section>
 
         <!-- 8. CBSE Guidelines Section -->
-        <section id="cbse-guidelines" class="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 shadow-md border border-slate-200/80 dark:border-slate-800">
+        <section id="cbse-guidelines" class="bg-white dark:bg-gray-800 rounded-3xl p-6 sm:p-8 shadow-sm border border-gray-100 dark:border-gray-700">
             <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
                 <div>
                     <span class="text-blue-600 text-xs font-semibold uppercase tracking-wider">Official Circulars</span>
                     <h3 class="text-2xl font-bold mt-1">CBSE Guidelines & Sample Papers</h3>
-                    <p class="text-slate-500 dark:text-slate-400 text-sm">Latest curriculum updates, exam patterns, and sample papers</p>
+                    <p class="text-gray-500 text-sm">Latest curriculum updates, exam patterns, and sample papers</p>
                 </div>
                 <div class="flex flex-wrap gap-2">
-                    <select id="cbseClass" onchange="renderResources()" class="bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2 text-sm shadow-sm">
+                    <select id="cbseClass" onchange="renderResources()" class="bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-xl px-3 py-2 text-sm">
                         <option value="all">All Classes (6-12)</option>
                         <option value="12">Class 12</option>
                         <option value="11">Class 11</option>
                         <option value="10">Class 10</option>
                     </select>
-                    <select id="cbseMedium" onchange="renderResources()" class="bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2 text-sm shadow-sm">
+                    <select id="cbseMedium" onchange="renderResources()" class="bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-xl px-3 py-2 text-sm">
                         <option value="all">Both Medium</option>
                         <option value="hindi">Hindi</option>
                         <option value="english">English</option>
                     </select>
                 </div>
             </div>
-            <div id="cbseContainer" class="text-center py-12 text-slate-400 border-2 border-dashed border-slate-300 dark:border-slate-800 rounded-2xl bg-slate-50 dark:bg-slate-950">
+            <div id="cbseContainer" class="text-center py-12 text-gray-400 border-2 border-dashed border-gray-200 dark:border-gray-700 rounded-2xl">
                 <i class="fa-solid fa-scroll text-4xl mb-3"></i>
                 <p>No CBSE guidelines uploaded yet.</p>
             </div>
         </section>
-
-        <!-- 9. Ask Doubts Section (AI Auto-Reply & Teacher Reply Feature) -->
-        <section id="doubts-section" class="bg-gradient-to-br from-white to-purple-50/50 dark:from-slate-900 dark:to-slate-900/80 rounded-3xl p-6 sm:p-8 shadow-md border border-slate-200/80 dark:border-slate-800">
-            <span class="text-blue-600 text-xs font-semibold uppercase tracking-wider">Peer, Teacher & AI Support</span>
+                <!-- 9. Ask Doubts Section -->
+        <section id="doubts-section" class="bg-white dark:bg-gray-800 rounded-3xl p-6 sm:p-8 shadow-sm border border-gray-100 dark:border-gray-700">
+            <span class="text-blue-600 text-xs font-semibold uppercase tracking-wider">Peer & Teacher Support</span>
             <h3 class="text-2xl font-bold mt-1 mb-2">Ask Doubts Section</h3>
-            <p class="text-slate-500 dark:text-slate-400 text-sm mb-6">Post your queries to get instant AI help and teacher responses</p>
+            <p class="text-gray-500 text-sm mb-6">Post your subject queries and clear concepts</p>
 
-            <div class="space-y-4 mb-8">
+            <div class="space-y-4 mb-6">
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <input type="text" id="doubtName" placeholder="Your Name & Class (e.g., Aman, Class 12)" class="bg-white dark:bg-slate-950 border border-slate-300 dark:border-slate-800 rounded-xl px-4 py-2.5 text-sm focus:outline-none shadow-sm">
-                    <input type="text" id="doubtSubject" placeholder="Subject (e.g., Accounts / Physics)" class="bg-white dark:bg-slate-950 border border-slate-300 dark:border-slate-800 rounded-xl px-4 py-2.5 text-sm focus:outline-none shadow-sm">
+                    <input type="text" id="doubtName" placeholder="Your Name & Class (e.g., Aman, Class 12)" class="bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-xl px-4 py-2.5 text-sm focus:outline-none">
+                    <input type="text" id="doubtSubject" placeholder="Subject (e.g., Accounts / Physics)" class="bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-xl px-4 py-2.5 text-sm focus:outline-none">
                 </div>
-                <textarea id="doubtText" rows="3" placeholder="Type your doubt clearly here..." class="w-full bg-white dark:bg-slate-950 border border-slate-300 dark:border-slate-800 rounded-xl px-4 py-3 text-sm focus:outline-none shadow-sm"></textarea>
-                <button onclick="submitDoubt()" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-xl text-sm font-medium transition shadow">Post Doubt</button>
+                <textarea id="doubtText" rows="3" placeholder="Type your doubt clearly here..." class="w-full bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-xl px-4 py-3 text-sm focus:outline-none"></textarea>
+                <button onclick="submitDoubt()" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-xl text-sm font-medium transition">Post Doubt</button>
             </div>
 
-            <div id="doubtsList" class="space-y-4">
-                <div class="p-4 bg-white dark:bg-slate-950 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div id="doubtsList" class="space-y-3">
+                <div class="p-4 bg-gray-50 dark:bg-gray-900 rounded-2xl border border-gray-100 dark:border-gray-700">
                     <div class="flex justify-between text-xs font-semibold text-blue-600 mb-1">
                         <span>Aman Sharma (Class 12)</span>
                         <span>Physics</span>
                     </div>
-                    <p class="text-sm font-medium mb-3">Why should the voltmeter be connected in parallel and ammeter in series during Ohm's Law practical?</p>
-                    <div class="p-3 bg-blue-50 dark:bg-blue-950/40 rounded-xl text-xs space-y-2 border border-blue-100 dark:border-blue-900">
-                        <div class="font-bold text-blue-600"><i class="fa-solid fa-robot mr-1"></i> AI Assistant Auto-Reply:</div>
-                        <p class="text-slate-600 dark:text-slate-300">Voltmeter has high resistance to draw minimal current, whereas ammeter has very low resistance so it doesn't drop circuit current.</p>
-                    </div>
-                    <div class="mt-3 flex gap-2">
-                        <input type="text" placeholder="Teacher reply..." class="flex-1 bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg px-3 py-1.5 text-xs">
-                        <button onclick="alert('Reply sent successfully!')" class="bg-green-600 text-white px-3 py-1.5 rounded-lg text-xs font-medium">Reply</button>
-                    </div>
+                    <p class="text-sm font-medium">Why should the voltmeter be connected in parallel and ammeter in series during Ohm's Law practical?</p>
+                    <div class="text-xs text-green-600 mt-2 font-medium">Answered by Teacher • Voltmeter has high resistance, Ammeter has low resistance.</div>
                 </div>
             </div>
         </section>
 
-        <!-- 10. Upload Hub (Supports Gallery/Local Files & YouTube URLs with Persistence) -->
+        <!-- 10. Upload Hub -->
         <section id="upload" class="bg-gradient-to-br from-blue-900 to-indigo-900 text-white rounded-3xl p-6 sm:p-10 shadow-xl">
-            <span class="bg-white/20 text-blue-200 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">Contribute & Share</span>
+            <span class="bg-blue-500/30 text-blue-300 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">Contribute & Share</span>
             <h3 class="text-3xl font-bold mt-3 mb-2">Public Resource Upload Hub</h3>
-            <p class="text-blue-200 text-sm mb-8">Upload local files from your device/gallery or paste YouTube links instantly!</p>
+            <p class="text-blue-200 text-sm mb-8">Upload your class notes, YouTube video links, or CBSE circulars instantly for everyone!</p>
 
             <form id="uploadForm" onsubmit="handleUpload(event)" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20">
                 <div>
                     <label class="block text-xs font-medium mb-1">Resource Type</label>
                     <select id="upType" class="w-full bg-white/20 border border-white/30 rounded-xl px-3 py-2 text-sm text-white focus:outline-none">
-                        <option value="video" class="text-slate-900">YouTube Video / Local Video</option>
-                        <option value="pdf" class="text-slate-900">PDF Notes / Sample Paper</option>
-                        <option value="cbse" class="text-slate-900">CBSE Guideline</option>
+                        <option value="video" class="text-gray-800">YouTube Video</option>
+                        <option value="pdf" class="text-gray-800">PDF Notes / Sample Paper</option>
+                        <option value="cbse" class="text-gray-800">CBSE Guideline</option>
                     </select>
                 </div>
                 <div>
                     <label class="block text-xs font-medium mb-1">Class</label>
                     <select id="upClass" class="w-full bg-white/20 border border-white/30 rounded-xl px-3 py-2 text-sm text-white focus:outline-none">
-                        <option value="12" class="text-slate-900">Class 12</option>
-                        <option value="11" class="text-slate-900">Class 11</option>
-                        <option value="10" class="text-slate-900">Class 10</option>
-                        <option value="9" class="text-slate-900">Class 9</option>
-                        <option value="8" class="text-slate-900">Class 8</option>
-                        <option value="7" class="text-slate-900">Class 7</option>
-                        <option value="6" class="text-slate-900">Class 6</option>
+                        <option value="12" class="text-gray-800">Class 12</option>
+                        <option value="11" class="text-gray-800">Class 11</option>
+                        <option value="10" class="text-gray-800">Class 10</option>
+                        <option value="9" class="text-gray-800">Class 9</option>
+                        <option value="8" class="text-gray-800">Class 8</option>
+                        <option value="7" class="text-gray-800">Class 7</option>
+                        <option value="6" class="text-gray-800">Class 6</option>
                     </select>
                 </div>
                 <div>
                     <label class="block text-xs font-medium mb-1">Subject</label>
-                    <input type="text" id="upSubject" placeholder="e.g., Accountancy / Physics" class="w-full bg-white/20 border border-white/30 rounded-xl px-3 py-2 text-sm placeholder-blue-300 text-white focus:outline-none" required>
+                    <input type="text" id="upSubject" placeholder="e.g., Accountancy / Physics / History" class="w-full bg-white/20 border border-white/30 rounded-xl px-3 py-2 text-sm placeholder-blue-300 text-white focus:outline-none" required>
                 </div>
                 <div>
                     <label class="block text-xs font-medium mb-1">Medium</label>
                     <select id="upMedium" class="w-full bg-white/20 border border-white/30 rounded-xl px-3 py-2 text-sm text-white focus:outline-none">
-                        <option value="english" class="text-slate-900">English Medium</option>
-                        <option value="hindi" class="text-slate-900">Hindi Medium</option>
+                        <option value="english" class="text-gray-800">English Medium</option>
+                        <option value="hindi" class="text-gray-800">Hindi Medium</option>
                     </select>
                 </div>
                 <div class="sm:col-span-2">
                     <label class="block text-xs font-medium mb-1">Title / Chapter Name</label>
-                    <input type="text" id="upTitle" placeholder="e.g., Partnership Accounts Summary" class="w-full bg-white/20 border border-white/30 rounded-xl px-3 py-2 text-sm placeholder-blue-300 text-white focus:outline-none" required>
+                    <input type="text" id="upTitle" placeholder="e.g., Partnership Accounts Chapter Summary" class="w-full bg-white/20 border border-white/30 rounded-xl px-3 py-2 text-sm placeholder-blue-300 text-white focus:outline-none" required>
                 </div>
                 <div class="sm:col-span-2">
-                    <label class="block text-xs font-medium mb-1">YouTube URL or Choose Local File from Device</label>
-                    <input type="text" id="upLink" placeholder="https://youtube.com/... or filename.pdf" class="w-full bg-white/20 border border-white/30 rounded-xl px-3 py-2 text-sm placeholder-blue-300 text-white focus:outline-none" required>
+                    <label class="block text-xs font-medium mb-1">YouTube Video Link or File URL</label>
+                    <input type="url" id="upLink" placeholder="https://www.youtube.com/watch?v=..." class="w-full bg-white/20 border border-white/30 rounded-xl px-3 py-2 text-sm placeholder-blue-300 text-white focus:outline-none" required>
                 </div>
                 <div class="sm:col-span-4 text-right">
                     <button type="submit" class="bg-white text-blue-900 font-bold px-8 py-3 rounded-xl hover:bg-blue-50 transition shadow-lg">
@@ -550,90 +514,243 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-12">
+    <footer class="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h4 class="font-bold text-lg mb-2">Scan to Study © CM Shri School Amalwas Jwalapuri</h4>
-            <p class="text-sm text-slate-500 dark:text-slate-400 max-w-2xl mx-auto mb-6">
+            <p class="text-sm text-gray-500 dark:text-gray-400 max-w-2xl mx-auto mb-6">
                 Designed & Maintained with dedication by Class 12 Commerce Students: <strong>Lakshmi, Aafiya, Simran, Ekta & Shreya</strong>. A complete educational initiative to help students across classes 6 to 12 achieve academic excellence.
             </p>
-            <div class="text-xs text-slate-400">Platform Version 2.3 • Public & Free Access</div>
+            <div class="text-xs text-gray-400">Platform Version 2.2 • Public & Free Access</div>
         </div>
     </footer>
+        <!-- Modals (Search, Settings, Login, Calculator, Add Plan, Add Formula, Add Quiz) -->
+    <!-- 1. Search Modal -->
+    <div id="searchModal" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm hidden flex items-start justify-center pt-20 px-4">
+        <div class="bg-white dark:bg-gray-800 rounded-3xl w-full max-w-2xl p-6 shadow-2xl">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-lg font-bold">Search Hub (Class, Subject, Title)</h3>
+                <button onclick="closeModal('searchModal')" class="text-gray-400 hover:text-gray-600"><i class="fa-solid fa-xmark text-xl"></i></button>
+            </div>
+            <input type="text" id="globalSearchInput" oninput="performGlobalSearch(this.value)" placeholder="Type class (e.g. 12), subject (Accounts/Physics) or topic..." class="w-full bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-xl px-4 py-3 text-sm focus:outline-none mb-4">
+            <div id="searchResults" class="max-h-60 overflow-y-auto space-y-2 text-sm text-gray-500">
+                Type above to instantly search all published notes and videos across classes 6-12.
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. Settings Modal -->
+    <div id="settingsModal" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm hidden flex items-center justify-center px-4">
+        <div class="bg-white dark:bg-gray-800 rounded-3xl w-full max-w-md p-6 shadow-2xl space-y-6">
+            <div class="flex justify-between items-center">
+                <h3 class="text-lg font-bold">Preferences & Settings</h3>
+                <button onclick="closeModal('settingsModal')" class="text-gray-400 hover:text-gray-600"><i class="fa-solid fa-xmark text-xl"></i></button>
+            </div>
+            <div class="space-y-4 text-sm">
+                <div class="flex justify-between items-center">
+                    <span>Dark / Light Mode</span>
+                    <button onclick="toggleDarkMode()" class="bg-blue-600 text-white px-4 py-2 rounded-xl text-xs font-medium">Toggle Theme</button>
+                </div>
+                <div class="flex justify-between items-center">
+                    <span>Website Language</span>
+                    <select id="langSelect" class="bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-xl px-3 py-1.5 text-xs">
+                        <option value="hi">Hindi (हिंदी)</option>
+                        <option value="en">English</option>
+                    </select>
+                </div>
+                <div class="flex justify-between items-center">
+                    <span>Push Notifications</span>
+                    <input type="checkbox" checked class="w-4 h-4 text-blue-600 rounded">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. Login Modal -->
+    <div id="loginModal" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm hidden flex items-center justify-center px-4">
+        <div class="bg-white dark:bg-gray-800 rounded-3xl w-full max-w-md p-6 shadow-2xl space-y-6">
+            <div class="flex justify-between items-center">
+                <h3 class="text-lg font-bold">Login & Subscription</h3>
+                <button onclick="closeModal('loginModal')" class="text-gray-400 hover:text-gray-600"><i class="fa-solid fa-xmark text-xl"></i></button>
+            </div>
+            <div class="bg-blue-50 dark:bg-gray-900 p-4 rounded-2xl text-xs space-y-1">
+                <div class="font-bold text-blue-600">Subscription Status: FREE (Active)</div>
+                <div class="text-gray-500">Currently 100% Free for CM Shri School Students. Future plan: ₹99/year.</div>
+            </div>
+            <form onsubmit="event.preventDefault(); alert('Logged in successfully!'); closeModal('loginModal');" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-medium mb-1">Student / Teacher Name</label>
+                    <input type="text" placeholder="Enter your full name" class="w-full bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-xl px-4 py-2.5 text-sm focus:outline-none" required>
+                </div>
+                <div>
+                    <label class="block text-xs font-medium mb-1">Email or Phone Number</label>
+                    <input type="text" placeholder="Enter email or mobile" class="w-full bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-xl px-4 py-2.5 text-sm focus:outline-none" required>
+                </div>
+                <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl font-medium transition shadow">Login / Sign Up</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- 4. Scientific Calculator Modal -->
+    <div id="calcModal" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm hidden flex items-center justify-center px-4">
+        <div class="bg-white dark:bg-gray-800 rounded-3xl w-full max-w-sm p-6 shadow-2xl space-y-4">
+            <div class="flex justify-between items-center">
+                <h3 class="text-lg font-bold">Scientific Calculator</h3>
+                <button onclick="closeModal('calcModal')" class="text-gray-400 hover:text-gray-600"><i class="fa-solid fa-xmark text-xl"></i></button>
+            </div>
+            <input type="text" id="calcScreen" readonly class="w-full bg-gray-100 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-xl px-4 py-3 text-right font-mono text-xl text-blue-600 font-bold" value="0">
+            <div class="grid grid-cols-4 gap-2">
+                <button onclick="calcClear()" class="bg-red-100 text-red-600 p-3 rounded-xl font-bold">C</button>
+                <button onclick="calcAppend('/')" class="bg-gray-100 dark:bg-gray-700 p-3 rounded-xl font-bold">÷</button>
+                <button onclick="calcAppend('*')" class="bg-gray-100 dark:bg-gray-700 p-3 rounded-xl font-bold">×</button>
+                <button onclick="calcBack()" class="bg-gray-100 dark:bg-gray-700 p-3 rounded-xl font-bold">⌫</button>
+                <button onclick="calcAppend('7')" class="bg-gray-50 dark:bg-gray-900 p-3 rounded-xl font-bold">7</button>
+                <button onclick="calcAppend('8')" class="bg-gray-50 dark:bg-gray-900 p-3 rounded-xl font-bold">8</button>
+                <button onclick="calcAppend('9')" class="bg-gray-50 dark:bg-gray-900 p-3 rounded-xl font-bold">9</button>
+                <button onclick="calcAppend('-')" class="bg-gray-100 dark:bg-gray-700 p-3 rounded-xl font-bold">-</button>
+                <button onclick="calcAppend('4')" class="bg-gray-50 dark:bg-gray-900 p-3 rounded-xl font-bold">4</button>
+                <button onclick="calcAppend('5')" class="bg-gray-50 dark:bg-gray-900 p-3 rounded-xl font-bold">5</button>
+                <button onclick="calcAppend('6')" class="bg-gray-50 dark:bg-gray-900 p-3 rounded-xl font-bold">6</button>
+                <button onclick="calcAppend('+')" class="bg-gray-100 dark:bg-gray-700 p-3 rounded-xl font-bold">+</button>
+                <button onclick="calcAppend('1')" class="bg-gray-50 dark:bg-gray-900 p-3 rounded-xl font-bold">1</button>
+                <button onclick="calcAppend('2')" class="bg-gray-50 dark:bg-gray-900 p-3 rounded-xl font-bold">2</button>
+                <button onclick="calcAppend('3')" class="bg-gray-50 dark:bg-gray-900 p-3 rounded-xl font-bold">3</button>
+                <button onclick="calcCompute()" class="bg-blue-600 text-white row-span-2 p-3 rounded-xl font-bold flex items-center justify-center">=</button>
+                <button onclick="calcAppend('0')" class="col-span-2 bg-gray-50 dark:bg-gray-900 p-3 rounded-xl font-bold">0</button>
+                <button onclick="calcAppend('.')" class="bg-gray-50 dark:bg-gray-900 p-3 rounded-xl font-bold">.</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 5. Add Plan Modal -->
+    <div id="planModal" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm hidden flex items-center justify-center px-4">
+        <div class="bg-white dark:bg-gray-800 rounded-3xl w-full max-w-md p-6 shadow-2xl space-y-4">
+            <div class="flex justify-between items-center">
+                <h3 class="text-lg font-bold">Add New Study Target</h3>
+                <button onclick="closeModal('planModal')" class="text-gray-400 hover:text-gray-600"><i class="fa-solid fa-xmark text-xl"></i></button>
+            </div>
+            <form onsubmit="addNewPlan(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-medium mb-1">Target / Task Description</label>
+                    <input type="text" id="newPlanText" placeholder="e.g., Complete Economics Chapter 1 Notes" class="w-full bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-xl px-4 py-2.5 text-sm focus:outline-none" required>
+                </div>
+                <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 rounded-xl text-sm font-medium transition">Add Plan</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- 6. Add Formula Modal -->
+    <div id="formulaModal" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm hidden flex items-center justify-center px-4">
+        <div class="bg-white dark:bg-gray-800 rounded-3xl w-full max-w-md p-6 shadow-2xl space-y-4">
+            <div class="flex justify-between items-center">
+                <h3 class="text-lg font-bold">Add New Formula</h3>
+                <button onclick="closeModal('formulaModal')" class="text-gray-400 hover:text-gray-600"><i class="fa-solid fa-xmark text-xl"></i></button>
+            </div>
+            <form onsubmit="addNewFormula(event)" class="space-y-3">
+                <div class="grid grid-cols-2 gap-2">
+                    <select id="formClass" class="bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-xl px-3 py-2 text-xs">
+                        <option value="12">Class 12</option>
+                        <option value="11">Class 11</option>
+                        <option value="10">Class 10</option>
+                    </select>
+                    <input type="text" id="formSub" placeholder="Subject (e.g. Physics)" class="bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-xl px-3 py-2 text-xs" required>
+                </div>
+                <input type="text" id="formTitle" placeholder="Formula Name (e.g. Newton's Law)" class="w-full bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-xl px-3 py-2 text-xs" required>
+                <textarea id="formDesc" placeholder="Formula & Description..." class="w-full bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-xl px-3 py-2 text-xs" rows="3" required></textarea>
+                <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 rounded-xl text-sm font-medium transition">Save Formula</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- 7. Add Quiz Modal -->
+    <div id="quizModal" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm hidden flex items-center justify-center px-4">
+        <div class="bg-white dark:bg-gray-800 rounded-3xl w-full max-w-md p-6 shadow-2xl space-y-4">
+            <div class="flex justify-between items-center">
+                <h3 class="text-lg font-bold">Add New Quiz Question</h3>
+                <button onclick="closeModal('quizModal')" class="text-gray-400 hover:text-gray-600"><i class="fa-solid fa-xmark text-xl"></i></button>
+            </div>
+            <form onsubmit="addNewQuiz(event)" class="space-y-3 text-xs">
+                <div class="grid grid-cols-2 gap-2">
+                    <select id="qClass" class="bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-xl px-3 py-2">
+                        <option value="Class 12">Class 12</option>
+                        <option value="Class 11">Class 11</option>
+                        <option value="Class 10">Class 10</option>
+                    </select>
+                    <input type="text" id="qSubject" placeholder="Subject / Stream" class="bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-xl px-3 py-2" required>
+                </div>
+                <input type="text" id="qText" placeholder="Question statement..." class="w-full bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-xl px-3 py-2" required>
+                <input type="text" id="optA" placeholder="Option A" class="w-full bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-xl px-3 py-2" required>
+                <input type="text" id="optB" placeholder="Option B" class="w-full bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-xl px-3 py-2" required>
+                <input type="text" id="optC" placeholder="Option C" class="w-full bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-xl px-3 py-2" required>
+                <input type="text" id="optD" placeholder="Option D" class="w-full bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-xl px-3 py-2" required>
+                <div>
+                    <label class="block mb-1 font-medium">Correct Option Index (0 for A, 1 for B, 2 for C, 3 for D):</label>
+                    <input type="number" id="correctIdx" min="0" max="3" value="0" class="w-full bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-xl px-3 py-2" required>
+                </div>
+                <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 rounded-xl font-medium transition">Publish Quiz</button>
+            </form>
+        </div>
+    </div>
         <!-- JavaScript Application Logic Part 1 -->
     <script>
-        let resources = JSON.parse(localStorage.getItem('scanToStudy_resources')) || [];
-        let formulasList = JSON.parse(localStorage.getItem('scanToStudy_formulas')) || [
+        let resources = [];
+        let formulasList = [
             { cls: "12", sub: "Physics", title: "Ohm's Law", desc: "Voltage V equals Current I multiplied by Resistance R. V = I × R" },
             { cls: "11", sub: "Chemistry", title: "Molarity Formula", desc: "Molarity equals Moles of Solute divided by Volume of Solution in Liters." },
             { cls: "12", sub: "Accountancy", title: "P&L Appropriation", desc: "Net Profit + Interest on Drawings - Interest on Capital = Shareable Profit." }
         ];
 
-        let quizData = JSON.parse(localStorage.getItem('scanToStudy_quiz')) || [
-            { cls: "Class 12", meta: "Commerce & Science", q: "Who is known as the Father of Scientific Management?", options: ["A. F.W. Taylor", "B. Henri Fayol", "C. Peter Drucker", "D. Max Weber"], correct: 0 },
-            { cls: "Class 12", meta: "Physics / Science", q: "What is the SI unit of Electric Resistance?", options: ["A. Ampere", "B. Volt", "C. Ohm", "D. Watt"], correct: 2 }
+        let quizData = [
+            {
+                cls: "Class 12",
+                meta: "Commerce & Science",
+                q: "Who is known as the Father of Scientific Management?",
+                options: ["A. F.W. Taylor", "B. Henri Fayol", "C. Peter Drucker", "D. Max Weber"],
+                correct: 0
+            },
+            {
+                cls: "Class 12",
+                meta: "Physics / Science",
+                q: "What is the SI unit of Electric Resistance?",
+                options: ["A. Ampere", "B. Volt", "C. Ohm", "D. Watt"],
+                correct: 2
+            },
+            {
+                cls: "Class 12",
+                meta: "Business Studies / Commerce",
+                q: "Which principle of management states 'One Head, One Plan'?",
+                options: ["A. Unity of Direction", "B. Unity of Command", "C. Equity", "D. Order"],
+                correct: 0
+            }
         ];
 
-        let userSession = JSON.parse(localStorage.getItem('scanToStudy_session')) || null;
         let score = 0;
         let currentQuizIndex = 0;
         let timerInterval = null;
-        let timeLeft = 1500;
+        let timeLeft = 1500; // 25 minutes
 
         function openModal(id) { document.getElementById(id).classList.remove('hidden'); }
         function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
         function toggleMobileMenu() { document.getElementById('mobileMenu').classList.toggle('hidden'); }
         function toggleDarkMode() { document.documentElement.classList.toggle('dark'); }
 
-        // Login & Session
-        function handleLogin(e) {
-            e.preventDefault();
-            const name = document.getElementById('loginNameInput').value.trim();
-            const contact = document.getElementById('loginContactInput').value.trim();
-            if(!name) return;
-            userSession = { name, contact };
-            localStorage.setItem('scanToStudy_session', JSON.stringify(userSession));
-            closeModal('loginModal');
-            updateDashboardUI();
-            alert(`Welcome back, ${name}! You are now successfully logged in.`);
-        }
-
-        function handleLogout() {
-            localStorage.removeItem('scanToStudy_session');
-            userSession = null;
-            updateDashboardUI();
-            alert('Logged out successfully.');
-        }
-
-        function updateDashboardUI() {
-            const navArea = document.getElementById('authNavArea');
-            const dashCard = document.getElementById('userDashboardCard');
-            if(userSession) {
-                navArea.innerHTML = `<span class="text-xs font-bold text-blue-600 bg-blue-50 dark:bg-blue-950 px-3 py-2 rounded-xl">👤 ${userSession.name}</span>`;
-                dashCard.classList.remove('hidden');
-                document.getElementById('dashUserName').innerText = `Welcome, ${userSession.name}!`;
-                document.getElementById('dashUserEmail').innerText = `Active Session • ${userSession.contact}`;
-                document.getElementById('dashPdfCount').innerText = resources.filter(r => r.type === 'pdf').length;
-                document.getElementById('dashVidCount').innerText = resources.filter(r => r.type === 'video').length;
-                document.getElementById('dashQuizScore').innerText = `${score} / ${quizData.length}`;
-            } else {
-                navArea.innerHTML = `<button onclick="openModal('loginModal')" class="bg-blue-600 hover:bg-blue-700 text-white px-3 sm:px-4 py-2 rounded-xl text-sm font-medium shadow transition flex items-center space-x-2"><i class="fa-solid fa-user"></i><span class="hidden sm:inline">Login</span></button>`;
-                dashCard.classList.add('hidden');
-            }
-        }
-
         // Homework Solver AI
         function solveHomework() {
             const input = document.getElementById('solverInput').value.trim();
             const output = document.getElementById('solverOutput');
             if(!input) { alert('Please type a question first!'); return; }
-            output.innerHTML = `<div class="text-left space-y-2"><div class="font-bold text-blue-600">Question: ${input}</div><div class="text-sm text-slate-700 dark:text-slate-300">💡 **Step-by-step AI Explanation:** Based on CBSE curriculum standards, this topic involves core theoretical and formula applications. Check our PDF Vault or ask teachers for more details!</div></div>`;
+            output.innerHTML = `<div class="text-left space-y-2"><div class="font-bold text-blue-600">Question: ${input}</div><div class="text-sm text-gray-700 dark:text-gray-300">💡 **Step-by-step Explanation:** Based on CBSE curriculum standards, this concept involves fundamental principles. Key derivation/points include proper formula application, core definitions, and structured steps. Check our PDF Vault for more!</div></div>`;
         }
 
-        // Timer
+        // Focus Timer
         function startTimer() {
             if(timerInterval) return;
             timerInterval = setInterval(() => {
-                if(timeLeft <= 0) { clearInterval(timerInterval); timerInterval = null; alert('Pomodoro Session Completed!'); return; }
+                if(timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    timerInterval = null;
+                    alert('Pomodoro Session Completed! Take a 5-minute break.');
+                    return;
+                }
                 timeLeft--;
                 let m = Math.floor(timeLeft / 60);
                 let s = timeLeft % 60;
@@ -641,6 +758,7 @@
                 document.getElementById('timerStatus').innerText = 'Session Active...';
             }, 1000);
         }
+
         function resetTimer() {
             clearInterval(timerInterval);
             timerInterval = null;
@@ -671,21 +789,21 @@
             let attended = parseFloat(document.getElementById('attendedClasses').value);
             if(isNaN(total) || isNaN(attended) || total <= 0) { alert('Please enter valid class numbers.'); return; }
             let percentage = (attended / total) * 100;
-            document.getElementById('dashAttendance').innerText = `${percentage.toFixed(1)}%`;
-            if(percentage >= 75) { alert(`Attendance: ${percentage.toFixed(1)}%. You are ELIGIBLE as per CBSE 75% criteria! 🎉`); }
-            else { alert(`Attendance: ${percentage.toFixed(1)}%. Shortage of attendance!`); }
+            if(percentage >= 75) {
+                alert(`Attendance: ${percentage.toFixed(1)}%. You are ELIGIBLE as per CBSE 75% criteria! 🎉`);
+            } else {
+                alert(`Attendance: ${percentage.toFixed(1)}%. Shortage of attendance! You need to attend more classes to reach 75%.`);
+            }
         }
-    </script>
-        <!-- JavaScript Application Logic Part 2 -->
-    <script>
-        // Study Planner
+
+        // Study Planner & Appreciation Popup
         function addNewPlan(e) {
             e.preventDefault();
             const text = document.getElementById('newPlanText').value.trim();
             if(!text) return;
             const container = document.getElementById('plannerContainer');
             const label = document.createElement('label');
-            label.className = "flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-950 rounded-xl cursor-pointer border border-slate-200/50 dark:border-slate-800";
+            label.className = "flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-900 rounded-xl cursor-pointer";
             label.innerHTML = `
                 <div class="flex items-center gap-3">
                     <input type="checkbox" onchange="checkPlannerCompletion()" class="planner-checkbox w-5 h-5 text-blue-600 rounded">
@@ -703,8 +821,10 @@
                 alert('🌟 Outstanding! You have completed all your study targets for today! Keep up the brilliant work, champion!');
             }
         }
-
-        // Formulas
+    </script>
+        <!-- JavaScript Application Logic Part 2 -->
+    <script>
+        // Formulas Management
         function addNewFormula(e) {
             e.preventDefault();
             const cls = document.getElementById('formClass').value;
@@ -712,7 +832,6 @@
             const title = document.getElementById('formTitle').value.trim();
             const desc = document.getElementById('formDesc').value.trim();
             formulasList.push({ cls, sub, title, desc });
-            localStorage.setItem('scanToStudy_formulas', JSON.stringify(formulasList));
             alert('Formula added successfully!');
             e.target.reset();
             closeModal('formulaModal');
@@ -724,17 +843,16 @@
             const container = document.getElementById('formulaContainer');
             const filtered = filter === 'all' ? formulasList : formulasList.filter(f => f.cls === filter);
             container.innerHTML = filtered.map(f => `
-                <div class="bg-white dark:bg-slate-950 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                <div class="bg-gray-50 dark:bg-gray-900 p-5 rounded-2xl border border-gray-100 dark:border-gray-700">
                     <span class="text-xs font-semibold text-blue-600">Class ${f.cls} • ${f.sub}</span>
                     <h4 class="font-bold text-lg mt-1">${f.title}</h4>
-                    <p class="text-sm text-slate-500 mt-2">${f.desc}</p>
+                    <p class="text-sm text-gray-500 mt-2">${f.desc}</p>
                 </div>
             `).join('');
         }
 
-        // Quiz Hub
+        // Quiz Hub Functions
         function loadQuiz() {
-            if(quizData.length === 0) return;
             if(currentQuizIndex >= quizData.length) currentQuizIndex = 0;
             let qObj = quizData[currentQuizIndex];
             document.getElementById('quizProgress').innerText = `Question ${currentQuizIndex + 1} of ${quizData.length}`;
@@ -742,7 +860,7 @@
             document.getElementById('quizQuestion').innerText = qObj.q;
             let optDiv = document.getElementById('quizOptions');
             optDiv.innerHTML = qObj.options.map((opt, idx) => `
-                <button onclick="selectQuizOption(${idx}, ${qObj.correct})" class="quiz-btn p-3 text-left bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl text-sm hover:border-blue-500 transition shadow-sm">${opt}</button>
+                <button onclick="selectQuizOption(${idx}, ${qObj.correct})" class="quiz-btn p-3 text-left bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl text-sm hover:border-blue-500 transition">${opt}</button>
             `).join('');
         }
 
@@ -757,7 +875,6 @@
                 score++;
                 document.getElementById('quizScore').innerText = `Score: ${score} / ${quizData.length}`;
             }
-            updateDashboardUI();
         }
 
         function nextQuizQuestion() {
@@ -776,7 +893,6 @@
         function deleteCurrentQuiz() {
             if(quizData.length <= 1) { alert('Cannot delete the last remaining quiz!'); return; }
             quizData.splice(currentQuizIndex, 1);
-            localStorage.setItem('scanToStudy_quiz', JSON.stringify(quizData));
             currentQuizIndex = 0;
             alert('Quiz deleted successfully!');
             loadQuiz();
@@ -795,14 +911,13 @@
             ];
             const correct = parseInt(document.getElementById('correctIdx').value);
             quizData.push({ cls, meta, q, options, correct });
-            localStorage.setItem('scanToStudy_quiz', JSON.stringify(quizData));
             alert('New quiz added successfully!');
             e.target.reset();
             closeModal('quizModal');
             loadQuiz();
         }
 
-        // Upload Hub & Resources
+        // Upload Hub & Resources Rendering
         function handleUpload(e) {
             e.preventDefault();
             const type = document.getElementById('upType').value;
@@ -813,11 +928,9 @@
             const link = document.getElementById('upLink').value.trim();
 
             resources.push({ type, cls, subject, medium, title, link });
-            localStorage.setItem('scanToStudy_resources', JSON.stringify(resources));
-            alert('Resource published successfully and saved permanently!');
+            alert('Resource published successfully and now live on the platform!');
             e.target.reset();
             renderResources();
-            updateDashboardUI();
         }
 
         function renderResources() {
@@ -841,11 +954,11 @@
             } else {
                 vidContainer.className = "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6";
                 vidContainer.innerHTML = filteredVids.map(v => `
-                    <div class="bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 text-left shadow-sm">
+                    <div class="bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-2xl p-4 text-left">
                         <span class="bg-blue-100 dark:bg-blue-900 text-blue-600 text-xs px-2.5 py-1 rounded-full font-semibold">Class ${v.cls} • ${v.medium}</span>
                         <h4 class="font-bold text-base mt-2">${v.title}</h4>
-                        <p class="text-xs text-slate-500 mt-1">Subject: ${v.subject}</p>
-                        <a href="${v.link}" target="_blank" class="mt-4 inline-block bg-blue-600 hover:bg-blue-700 text-white text-xs px-4 py-2 rounded-xl font-medium shadow">Watch Video</a>
+                        <p class="text-xs text-gray-500 mt-1">Subject: ${v.subject}</p>
+                        <a href="${v.link}" target="_blank" class="mt-4 inline-block bg-blue-600 hover:bg-blue-700 text-white text-xs px-4 py-2 rounded-xl font-medium">Watch Video</a>
                     </div>
                 `).join('');
             }
@@ -859,11 +972,11 @@
             } else {
                 pdfContainer.className = "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6";
                 pdfContainer.innerHTML = filteredPdfs.map(p => `
-                    <div class="bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 text-left shadow-sm">
+                    <div class="bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-2xl p-4 text-left">
                         <span class="bg-indigo-100 dark:bg-indigo-900 text-indigo-600 text-xs px-2.5 py-1 rounded-full font-semibold">Class ${p.cls} • ${p.medium}</span>
                         <h4 class="font-bold text-base mt-2">${p.title}</h4>
-                        <p class="text-xs text-slate-500 mt-1">Subject: ${p.subject}</p>
-                        <a href="${p.link}" target="_blank" class="mt-4 inline-block bg-indigo-600 hover:bg-indigo-700 text-white text-xs px-4 py-2 rounded-xl font-medium shadow">Download / View PDF</a>
+                        <p class="text-xs text-gray-500 mt-1">Subject: ${p.subject}</p>
+                        <a href="${p.link}" target="_blank" class="mt-4 inline-block bg-indigo-600 hover:bg-indigo-700 text-white text-xs px-4 py-2 rounded-xl font-medium">Download / View PDF</a>
                     </div>
                 `).join('');
             }
@@ -877,16 +990,16 @@
             } else {
                 cbseContainer.className = "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6";
                 cbseContainer.innerHTML = filteredCbse.map(c => `
-                    <div class="bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 text-left shadow-sm">
+                    <div class="bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-2xl p-4 text-left">
                         <span class="bg-green-100 dark:bg-green-900 text-green-600 text-xs px-2.5 py-1 rounded-full font-semibold">Class ${c.cls} • ${c.medium}</span>
                         <h4 class="font-bold text-base mt-2">${c.title}</h4>
-                        <a href="${c.link}" target="_blank" class="mt-4 inline-block bg-green-600 hover:bg-green-700 text-white text-xs px-4 py-2 rounded-xl font-medium shadow">View Circular</a>
+                        <a href="${c.link}" target="_blank" class="mt-4 inline-block bg-green-600 hover:bg-green-700 text-white text-xs px-4 py-2 rounded-xl font-medium">View CBSE Circular</a>
                     </div>
                 `).join('');
             }
         }
 
-        // Global Search
+        // Global Search Bug Fix
         function performGlobalSearch(query) {
             query = query.toLowerCase().trim();
             const resultsDiv = document.getElementById('searchResults');
@@ -896,21 +1009,21 @@
             }
             const matches = resources.filter(r => r.title.toLowerCase().includes(query) || r.subject.toLowerCase().includes(query) || r.cls.includes(query));
             if (matches.length === 0) {
-                resultsDiv.innerHTML = `<p class="text-slate-400">No matching resources found for "${query}". Try uploading one!</p>`;
+                resultsDiv.innerHTML = `<p class="text-gray-400">No matching resources found for "${query}". Try uploading one!</p>`;
             } else {
                 resultsDiv.innerHTML = matches.map(m => `
-                    <div class="p-3 bg-slate-50 dark:bg-slate-950 rounded-xl flex justify-between items-center border border-slate-200 dark:border-slate-800">
+                    <div class="p-3 bg-gray-50 dark:bg-gray-900 rounded-xl flex justify-between items-center">
                         <div>
                             <span class="text-xs font-bold text-blue-600">Class ${m.cls} (${m.type.toUpperCase()})</span>
                             <div class="font-semibold text-sm">${m.title}</div>
                         </div>
-                        <a href="${m.link}" target="_blank" class="text-xs bg-blue-600 text-white px-3 py-1.5 rounded-lg shadow">Open</a>
+                        <a href="${m.link}" target="_blank" class="text-xs bg-blue-600 text-white px-3 py-1.5 rounded-lg">Open</a>
                     </div>
                 `).join('');
             }
         }
 
-        // Doubts & AI Reply
+        // Doubts Submission
         function submitDoubt() {
             let name = document.getElementById('doubtName').value.trim();
             let sub = document.getElementById('doubtSubject').value.trim();
@@ -918,35 +1031,26 @@
             if(!name || !sub || !text) { alert('Please fill in all doubt fields.'); return; }
             let list = document.getElementById('doubtsList');
             let newDiv = document.createElement('div');
-            newDiv.className = "p-4 bg-white dark:bg-slate-950 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm";
+            newDiv.className = "p-4 bg-gray-50 dark:bg-gray-900 rounded-2xl border border-gray-100 dark:border-gray-700";
             newDiv.innerHTML = `
                 <div class="flex justify-between text-xs font-semibold text-blue-600 mb-1">
                     <span>${name}</span>
                     <span>${sub}</span>
                 </div>
-                <p class="text-sm font-medium mb-3">${text}</p>
-                <div class="p-3 bg-blue-50 dark:bg-blue-950/40 rounded-xl text-xs space-y-2 border border-blue-100 dark:border-blue-900">
-                    <div class="font-bold text-blue-600"><i class="fa-solid fa-robot mr-1"></i> AI Assistant Auto-Reply:</div>
-                    <p class="text-slate-600 dark:text-slate-300">That's an excellent question regarding ${sub}! Based on standard CBSE curriculum, make sure to review core textbook definitions and practice related examples.</p>
-                </div>
-                <div class="mt-3 flex gap-2">
-                    <input type="text" placeholder="Teacher reply..." class="flex-1 bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg px-3 py-1.5 text-xs">
-                    <button onclick="alert('Reply sent successfully!')" class="bg-green-600 text-white px-3 py-1.5 rounded-lg text-xs font-medium">Reply</button>
-                </div>
+                <p class="text-sm font-medium">${text}</p>
+                <div class="text-xs text-orange-500 mt-2 font-medium">Pending teacher / peer response...</div>
             `;
             list.prepend(newDiv);
             document.getElementById('doubtName').value = '';
             document.getElementById('doubtSubject').value = '';
             document.getElementById('doubtText').value = '';
-            alert('Your doubt has been posted and AI has provided an instant reply!');
+            alert('Your doubt has been posted successfully!');
         }
 
-        // Window Init
+        // Initialize on load
         window.onload = function() {
             loadQuiz();
             renderFormulas();
-            renderResources();
-            updateDashboardUI();
         };
     </script>
 </body>
