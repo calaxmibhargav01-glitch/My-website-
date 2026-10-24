@@ -1,895 +1,1038 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scan to Study | Complete Educational Hub (Classes 6-12)</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            50: '#eef2ff',
-                            100: '#e0e7ff',
-                            500: '#6366f1',
-                            600: '#4f46e5',
-                            700: '#4338ca',
-                            900: '#312e81'
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    <!-- FontAwesome Icons -->
+    <title>Scan to Study - Educational Hub (Class 6 to 12)</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- FontAwesome Icons & Google Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Poppins', sans-serif; scroll-behavior: smooth; }
-        .hero-bg {
-            background: linear-gradient(135deg, rgba(30, 27, 75, 0.95) 0%, rgba(79, 70, 229, 0.9) 100%), 
-                        url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;
-        }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
-<body class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-100 flex flex-col min-h-screen transition-colors duration-300">
+<body>
 
-    <!-- Top Announcement Bar -->
-    <div class="bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-700 text-white text-xs sm:text-sm py-2 px-4 text-center font-medium shadow-inner flex items-center justify-center gap-2">
-        <i class="fa-solid fa-bullhorn animate-bounce"></i>
-        <span>Welcome to Scan to Study! Scan QR from your Geometry Box or Explore Online. Created by Lakshmi, Afiya, Shreya, Simran & Ekta.</span>
-    </div>
-
-    <!-- Navigation Bar -->
-    <header class="sticky top-0 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-sm border-b border-gray-100 dark:border-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <!-- Brand Logo -->
-            <a href="#" class="flex items-center gap-3 group">
-                <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center text-white shadow-lg shadow-indigo-200 dark:shadow-none group-hover:scale-105 transition-transform">
-                    <i class="fa-solid fa-qrcode text-2xl"></i>
+    <!-- Top Notification Bar -->
+    <header class="top-nav">
+        <div class="logo">
+            <i class="fa-solid fa-graduation-cap"></i> <span>Scan to Study</span>
+        </div>
+        <div class="nav-controls">
+            <!-- Real-time Notifications Bell -->
+            <div class="notification-wrapper">
+                <button id="notifBtn" class="icon-btn" title="Notifications">
+                    <i class="fa-solid fa-bell"></i>
+                    <span class="badge" id="notifCount">0</span>
+                </button>
+                <div class="notification-dropdown" id="notifDropdown">
+                    <div class="notif-header">
+                        <h4>Real-time Notifications</h4>
+                        <span id="clearNotif">Clear All</span>
+                    </div>
+                    <div class="notif-body" id="notifList">
+                        <p class="empty-text">No new updates yet. Be the first to upload!</p>
+                    </div>
                 </div>
-                <div>
-                    <h1 class="text-xl font-bold bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent leading-tight">Scan to Study</h1>
-                    <p class="text-xs text-gray-500 dark:text-gray-400 font-medium">Classes 6th to 12th • All Streams</p>
-                </div>
-            </a>
-
-            <!-- Desktop Navigation Links -->
-            <nav class="hidden md:flex items-center gap-6 font-medium text-sm text-gray-600 dark:text-gray-300">
-                <a href="#home" class="hover:text-indigo-600 transition-colors">Home</a>
-                <a href="#explore" class="hover:text-indigo-600 transition-colors">Study Portal</a>
-                <a href="#cbse" class="hover:text-indigo-600 transition-colors">CBSE</a>
-                <a href="#experiments" class="hover:text-indigo-600 transition-colors">Science Labs</a>
-                <a href="#quizSection" class="hover:text-indigo-600 transition-colors">Quiz</a>
-                <a href="#aiChatSection" class="hover:text-indigo-600 transition-colors">AI Tutor</a>
-            </nav>
-
-            <!-- Header Action Buttons -->
-            <div class="flex items-center gap-3">
-                <!-- Dark Mode Toggle -->
-                <button onclick="toggleDarkMode()" class="p-2.5 rounded-xl bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200 hover:bg-indigo-50 transition-colors" title="Toggle Dark/Light Mode">
-                    <i class="fa-solid fa-moon dark:hidden text-lg"></i>
-                    <i class="fa-solid fa-sun hidden dark:inline text-lg text-amber-400"></i>
-                </button>
-
-                <!-- Notification Bell -->
-                <button onclick="openNotifications()" class="relative p-2.5 rounded-xl bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200 hover:bg-indigo-50 transition-colors" title="Notifications">
-                    <i class="fa-solid fa-bell text-lg"></i>
-                    <span id="notifBadge" class="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white rounded-full text-xs flex items-center justify-center font-bold shadow">0</span>
-                </button>
-
-                <!-- Student Login / Register Button -->
-                <button onclick="openAuthModal()" class="flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs transition-all shadow-md">
-                    <i class="fa-solid fa-user-lock"></i>
-                    <span id="authButtonText">Login / Register</span>
-                </button>
-
-                <!-- Public Upload Button -->
-                <button onclick="openUploadModal()" class="flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-xs transition-all shadow-md">
-                    <i class="fa-solid fa-cloud-arrow-up"></i>
-                    <span>Upload</span>
-                </button>
             </div>
+
+            <!-- Dark / Light Mode Toggle -->
+            <button id="themeToggle" class="icon-btn" title="Toggle Theme">
+                <i class="fa-solid fa-moon" id="themeIcon"></i>
+            </button>
+
+            <!-- Student Login & Subscription Button (₹99/Year) -->
+            <button id="loginBtn" class="primary-btn">
+                <i class="fa-solid fa-user"></i> Login / ₹99 Sub
+            </button>
         </div>
     </header>
-        <!-- Hero Section -->
-    <section id="home" class="hero-bg text-white py-20 lg:py-28 px-4 relative overflow-hidden">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
-            <div class="space-y-6">
-                <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md text-indigo-200 text-xs font-semibold uppercase tracking-wider border border-white/20">
-                    <i class="fa-solid fa-star text-amber-400"></i> Ultimate Learning Platform • ₹99/Year Subscription
-                </span>
-                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
-                    Scan, Learn & Excel from <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 to-yellow-400">Class 6 to 12</span>
-                </h1>
-                <p class="text-gray-200 text-base sm:text-lg max-w-xl font-light">
-                    Access bilingual PDF notes with formula sheets, safe home science experiments, AI doubt solving, chapter quizzes, and latest CBSE updates instantly!
-                </p>
-                <div class="flex flex-wrap gap-4 pt-4">
-                    <a href="#explore" class="px-8 py-4 rounded-xl bg-gradient-to-r from-amber-400 to-yellow-500 text-gray-900 font-bold shadow-lg hover:shadow-amber-500/25 hover:scale-105 transition-all flex items-center gap-2">
-                        <span>Explore Portal</span>
-                        <i class="fa-solid fa-arrow-right"></i>
-                    </a>
-                    <button onclick="openAuthModal()" class="px-8 py-4 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold backdrop-blur-md border border-white/20 transition-all">
-                        Student Registration (€99 Plan)
-                    </button>
-                </div>
-            </div>
 
-            <!-- Hero Feature Card -->
-            <div class="glass-card p-6 sm:p-8 rounded-3xl shadow-2xl text-gray-800 border border-white/45">
-                <h3 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-                    <i class="fa-solid fa-bolt text-indigo-600"></i> Quick Student Finder
-                </h3>
-                <form onsubmit="quickSearch(event)" class="space-y-4">
-                    <div>
-                        <label class="block text-xs font-semibold text-gray-600 uppercase mb-1">Select Class</label>
-                        <select id="quickClass" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
-                            <option value="6">Class 6th</option><option value="7">Class 7th</option><option value="8">Class 8th</option><option value="9">Class 9th</option><option value="10">Class 10th</option><option value="11">Class 11th</option><option value="12" selected>Class 12th</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-xs font-semibold text-gray-600 uppercase mb-1">Select Stream / Subject</label>
-                        <select id="quickSubject" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
-                            <optgroup label="Science">
-                                <option value="Physics">Physics</option><option value="Chemistry">Chemistry</option><option value="Biology">Biology</option><option value="Mathematics">Mathematics</option><option value="Science">General Science</option>
-                            </optgroup>
-                            <optgroup label="Commerce">
-                                <option value="Accountancy">Accountancy</option><option value="Business Studies">Business Studies</option><option value="Economics">Economics</option>
-                            </optgroup>
-                            <optgroup label="Arts / Humanities & Common">
-                                <option value="History">History</option><option value="Political Science">Political Science</option><option value="English">English</option><option value="Hindi">Hindi</option><option value="Social Science">Social Science</option>
-                            </optgroup>
-                        </select>
-                    </div>
-                    <button type="submit" class="w-full py-3.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm shadow-md transition-all flex items-center justify-center gap-2">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                        <span>Search Materials Now</span>
-                    </button>
-                </form>
-            </div>
-        </div>
+    <!-- Main Hero Banner -->
+    <section class="hero-section">
+        <h1>Welcome to Scan to Study</h1>
+        <p>Your ultimate clean & professional educational hub for Classes 6 to 12. Upload, learn, track, and grow completely free of clutter!</p>
     </section>
 
-    <!-- Main Study Portal Section -->
-    <section id="explore" class="py-20 px-4 max-w-7xl mx-auto w-full">
-        <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
-            <span class="px-3 py-1 rounded-full bg-indigo-100 text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200 text-xs font-bold uppercase tracking-wider">Interactive Learning Hub</span>
-            <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 dark:text-white">Find Your Study Materials</h2>
-            <p class="text-gray-600 dark:text-gray-300 text-sm sm:text-base">Filter by class, subject, medium, and type to instantly access uploaded notes & video tutorials.</p>
-        </div>
+    <!-- Main Container Grid -->
+    <main class="main-container">
 
-        <!-- Filter Controls Bar -->
-        <div class="bg-white dark:bg-gray-800 rounded-3xl shadow-xl p-6 sm:p-8 border border-gray-100 dark:border-gray-700 mb-12">
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-                <div>
-                    <label class="block text-xs font-bold text-gray-600 dark:text-gray-300 uppercase mb-2">1. Select Class</label>
-                    <select id="filterClass" onchange="filterContent()" class="w-full bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl px-4 py-3 text-sm font-medium text-gray-800 dark:text-gray-200">
-                        <option value="all">All Classes</option><option value="6">Class 6th</option><option value="7">Class 7th</option><option value="8">Class 8th</option><option value="9">Class 9th</option><option value="10">Class 10th</option><option value="11">Class 11th</option><option value="12" selected>Class 12th</option>
-                    </select>
-                </div>
-                <div>
-                    <label class="block text-xs font-bold text-gray-600 dark:text-gray-300 uppercase mb-2">2. Select Subject</label>
-                    <select id="filterSubject" onchange="filterContent()" class="w-full bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl px-4 py-3 text-sm font-medium text-gray-800 dark:text-gray-200">
-                        <option value="all">All Subjects</option><option value="Physics">Physics</option><option value="Chemistry">Chemistry</option><option value="Biology">Biology</option><option value="Mathematics">Mathematics</option><option value="Accountancy">Accountancy</option><option value="Business Studies">Business Studies</option><option value="Economics">Economics</option><option value="History">History</option><option value="Political Science">Political Science</option><option value="English">English</option><option value="Hindi">Hindi</option><option value="Science">Science (6-10)</option><option value="Social Science">Social Science (6-10)</option>
-                    </select>
-                </div>
-                <div>
-                    <label class="block text-xs font-bold text-gray-600 dark:text-gray-300 uppercase mb-2">3. Select Medium</label>
-                    <select id="filterMedium" onchange="filterContent()" class="w-full bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl px-4 py-3 text-sm font-medium text-gray-800 dark:text-gray-200">
-                        <option value="all">Both Mediums</option><option value="English">English Medium</option><option value="Hindi">Hindi Medium</option>
-                    </select>
-                </div>
-                <div>
-                    <label class="block text-xs font-bold text-gray-600 dark:text-gray-300 uppercase mb-2">4. Content Type</label>
-                    <select id="filterType" onchange="filterContent()" class="w-full bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl px-4 py-3 text-sm font-medium text-gray-800 dark:text-gray-200">
-                        <option value="all">All Types</option><option value="notes">PDF Notes</option><option value="video">Video & Experiments</option>
-                    </select>
-                </div>
-                <div>
-                    <label class="block text-xs font-bold text-gray-600 dark:text-gray-300 uppercase mb-2">5. Search Chapter</label>
-                    <div class="relative">
-                        <input type="text" id="searchInput" oninput="filterContent()" placeholder="e.g. Chapter 1..." class="w-full bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl pl-10 pr-4 py-3 text-sm font-medium text-gray-800 dark:text-gray-200">
-                        <i class="fa-solid fa-search absolute left-3.5 top-3.5 text-gray-400"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <!-- Left Sidebar / Navigation Tabs -->
+        <aside class="sidebar-tabs">
+            <button class="tab-btn active" data-target="uploadSection"><i class="fa-solid fa-cloud-arrow-up"></i> Public Upload</button>
+            <button class="tab-btn" data-target="timerSection"><i class="fa-solid fa-stopwatch"></i> Study Stopwatch</button>
+            <button class="tab-btn" data-target="contentSection"><i class="fa-solid fa-book-open"></i> Browse Hub (Empty)</button>
+            <button class="tab-btn" data-target="aiSection"><i class="fa-solid fa-robot"></i> AI Doubt Solver</button>
+            <button class="tab-btn" data-target="leaderboardSection"><i class="fa-solid fa-trophy"></i> Leaderboard & Mistakes</button>
+            <button class="tab-btn" data-target="reviewSection"><i class="fa-solid fa-star"></i> Reviews & Feedback</button>
+        </aside>
 
-        <!-- Content Grid Display -->
-        <div id="contentGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
-    </section>
-        <!-- AI Doubt Solver (AI Tutor) -->
-    <section id="aiChatSection" class="py-20 bg-gradient-to-r from-violet-900 to-indigo-900 text-white px-4">
-        <div class="max-w-4xl mx-auto space-y-8">
-            <div class="text-center space-y-3">
-                <span class="px-3 py-1 rounded-full bg-amber-400 text-gray-900 text-xs font-bold uppercase tracking-wider">AI Powered Assistant</span>
-                <h2 class="text-3xl sm:text-4xl font-extrabold">Ask AI Study Tutor</h2>
-                <p class="text-indigo-200 text-sm">Have a question in Science, Math, or Commerce? Type it here and get instant answers!</p>
-            </div>
-            <div class="bg-white/10 backdrop-blur-md rounded-3xl p-6 sm:p-8 border border-white/20 shadow-2xl space-y-6">
-                <div id="aiChatBox" class="bg-black/30 rounded-2xl p-4 h-64 overflow-y-auto space-y-3 text-sm">
-                    <div class="p-3 rounded-2xl bg-indigo-600/60 text-white max-w-md">
-                        <p class="font-bold text-xs text-amber-300 mb-1">AI Tutor</p>
-                        Hello student! Ask me anything about Physics, Chemistry, Math, Accounts or any school subject.
-                    </div>
-                </div>
-                <form onsubmit="handleAiQuery(event)" class="flex gap-3">
-                    <input type="text" id="aiQueryInput" placeholder="e.g. What is Ohm's Law? or Explain Photosynthesis..." class="flex-1 bg-white/20 border border-white/30 rounded-xl px-4 py-3 text-sm text-white placeholder-indigo-200 focus:outline-none focus:ring-2 focus:ring-amber-400" required>
-                    <button type="submit" class="px-6 py-3 bg-amber-400 hover:bg-amber-500 text-gray-900 font-bold text-sm rounded-xl transition-all shadow-md flex items-center gap-2">
-                        <span>Ask AI</span> <i class="fa-solid fa-paper-plane"></i>
-                    </button>
-                </form>
-            </div>
-        </div>
-    </section>
+        <!-- Right Content Area -->
+        <div class="content-area">
 
-    <!-- Chapter MCQ Quiz & Leaderboard -->
-    <section id="quizSection" class="py-20 px-4 max-w-5xl mx-auto w-full">
-        <div class="text-center max-w-2xl mx-auto mb-12 space-y-3">
-            <span class="px-3 py-1 rounded-full bg-emerald-100 text-emerald-700 dark:bg-emerald-900 dark:text-emerald-200 text-xs font-bold uppercase tracking-wider">Self Assessment</span>
-            <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 dark:text-white">Chapter MCQ Practice & Leaderboard</h2>
-            <p class="text-gray-600 dark:text-gray-300 text-sm">Test your knowledge, find out where you made mistakes, and check top rankers!</p>
-        </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <div class="lg:col-span-2 bg-white dark:bg-gray-800 rounded-3xl p-6 sm:p-8 shadow-xl border border-gray-100 dark:border-gray-700 space-y-6">
-                <div id="quizCardContent">
-                    <h3 id="quizQuestionTitle" class="text-lg font-bold text-gray-900 dark:text-white mb-4">Q1. What is the SI unit of Electric Charge?</h3>
-                    <div id="quizOptionsContainer" class="space-y-3">
-                        <label class="block p-4 rounded-2xl bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 cursor-pointer text-sm font-medium">
-                            <input type="radio" name="quizOpt" value="A" class="mr-3"> A) Volt
-                        </label>
-                        <label class="block p-4 rounded-2xl bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 cursor-pointer text-sm font-medium">
-                            <input type="radio" name="quizOpt" value="B" class="mr-3"> B) Coulomb
-                        </label>
-                        <label class="block p-4 rounded-2xl bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 cursor-pointer text-sm font-medium">
-                            <input type="radio" name="quizOpt" value="C" class="mr-3"> C) Ampere
-                        </label>
-                        <label class="block p-4 rounded-2xl bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 cursor-pointer text-sm font-medium">
-                            <input type="radio" name="quizOpt" value="D" class="mr-3"> D) Joule
-                        </label>
-                    </div>
-                    <button onclick="submitQuizAnswer()" class="mt-6 w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl shadow transition-all">Submit Answer & Check Performance</button>
-                </div>
-                <div id="quizResultBox" class="hidden space-y-4 pt-4 border-t dark:border-gray-700">
-                    <div id="quizFeedbackTitle" class="font-bold text-lg"></div>
-                    <p id="quizFeedbackExplanation" class="text-xs text-gray-600 dark:text-gray-300"></p>
-                    <button onclick="resetQuiz()" class="px-6 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white font-semibold rounded-xl text-xs">Try Another Question</button>
-                </div>
-            </div>
-
-            <!-- Leaderboard & Mistakes Analysis -->
-            <div class="bg-white dark:bg-gray-800 rounded-3xl p-6 shadow-xl border border-gray-100 dark:border-gray-700 space-y-6">
-                <div>
-                    <h3 class="font-bold text-gray-900 dark:text-white text-base mb-3 flex items-center gap-2">
-                        <i class="fa-solid fa-trophy text-amber-500"></i> Top Performers Leaderboard
-                    </h3>
-                    <div class="space-y-2 text-xs">
-                        <div class="flex items-center justify-between p-3 rounded-xl bg-amber-50 dark:bg-amber-900/30 border border-amber-200">
-                            <span class="font-bold">1. Anjali Sharma</span>
-                            <span class="font-extrabold text-amber-600">98% (1st)</span>
-                        </div>
-                        <div class="flex items-center justify-between p-3 rounded-xl bg-gray-50 dark:bg-gray-900 border">
-                            <span class="font-bold">2. Rohan Verma</span>
-                            <span class="font-extrabold text-gray-600">95% (2nd)</span>
-                        </div>
-                        <div class="flex items-center justify-between p-3 rounded-xl bg-gray-50 dark:bg-gray-900 border">
-                            <span class="font-bold">3. Priya Singh</span>
-                            <span class="font-extrabold text-amber-700">92% (3rd)</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="pt-4 border-t dark:border-gray-700 space-y-2">
-                    <h4 class="font-bold text-xs uppercase tracking-wider text-indigo-600">Mistake & Improvement Tracker</h4>
-                    <p id="studentMistakeTip" class="text-xs text-gray-500 dark:text-gray-400">Attempt quizzes to identify weak chapters and get customized revision tips!</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Smart Study Timer -->
-    <section id="timerSection" class="py-20 bg-indigo-50 dark:bg-gray-800/50 px-4 border-y border-gray-200 dark:border-gray-700">
-        <div class="max-w-xl mx-auto bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-xl border text-center space-y-6">
-            <div class="w-16 h-16 bg-indigo-100 text-indigo-600 rounded-2xl flex items-center justify-center mx-auto text-2xl">
-                <i class="fa-solid fa-stopwatch"></i>
-            </div>
-            <div>
-                <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Smart Study Session Timer</h3>
-                <p class="text-xs text-gray-500 mt-1">Track your study hours and stay focused!</p>
-            </div>
-            <div id="timerDisplay" class="text-5xl font-black text-indigo-600 dark:text-indigo-400 tracking-wider">25:00</div>
-            <div class="flex justify-center gap-4">
-                <button onclick="startStudyTimer()" class="px-6 py-3 bg-emerald-600 text-white font-bold rounded-xl text-sm shadow">Start Timer</button>
-                <button onclick="pauseStudyTimer()" class="px-6 py-3 bg-amber-500 text-white font-bold rounded-xl text-sm shadow">Pause</button>
-                <button onclick="resetStudyTimer()" class="px-6 py-3 bg-gray-200 dark:bg-gray-700 text-white font-bold rounded-xl text-sm shadow">Reset</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Student Feedback & Reviews Section -->
-    <section id="feedbackSection" class="py-20 px-4 max-w-4xl mx-auto w-full">
-        <div class="bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-xl border border-gray-100 dark:border-gray-700 space-y-6">
-            <div class="text-center space-y-2">
-                <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Student Feedback & Reviews</h3>
-                <p class="text-xs text-gray-500">Share your experience or rating about our notes and experiments!</p>
-            </div>
-            <form onsubmit="submitFeedback(event)" class="space-y-4">
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <input type="text" id="fbName" placeholder="Your Name & Class" class="w-full bg-gray-50 dark:bg-gray-900 border rounded-xl px-4 py-3 text-sm" required>
-                    <select id="fbRating" class="w-full bg-gray-50 dark:bg-gray-900 border rounded-xl px-4 py-3 text-sm">
-                        <option value="⭐⭐⭐⭐⭐">5 Stars - Excellent!</option>
-                        <option value="⭐⭐⭐⭐">4 Stars - Very Good</option>
-                        <option value="⭐⭐⭐">3 Stars - Good</option>
-                    </select>
-                </div>
-                <textarea id="fbComment" rows="3" placeholder="Write your review here..." class="w-full bg-gray-50 dark:bg-gray-900 border rounded-xl px-4 py-3 text-sm" required></textarea>
-                <button type="submit" class="w-full py-3 bg-indigo-600 text-white font-bold rounded-xl shadow">Submit Review</button>
-            </form>
-            <div id="feedbackList" class="space-y-3 pt-4 border-t dark:border-gray-700"></div>
-        </div>
-    </section>
-        <!-- CBSE Updates Section -->
-    <section id="cbse" class="py-20 bg-indigo-900 text-white px-4">
-        <div class="max-w-7xl mx-auto">
-            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
-                <div>
-                    <span class="px-3 py-1 rounded-full bg-white/10 text-indigo-200 text-xs font-bold uppercase tracking-wider border border-white/20">Official Circulars</span>
-                    <h2 class="text-3xl sm:text-4xl font-extrabold mt-3">Latest CBSE Updates & Date Sheets</h2>
-                    <p class="text-indigo-200 text-sm sm:text-base mt-2">Stay ahead with real-time syllabus changes, exam dates, and official notices.</p>
-                </div>
-            </div>
-            <div id="cbseGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
-        </div>
-    </section>
-
-    <!-- Science Lab & Experiments Section -->
-    <section id="experiments" class="py-20 px-4 max-w-7xl mx-auto w-full">
-        <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
-            <span class="px-3 py-1 rounded-full bg-emerald-100 text-emerald-700 dark:bg-emerald-900 dark:text-emerald-200 text-xs font-bold uppercase tracking-wider">Safe Home Science</span>
-            <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 dark:text-white">Science Experiments You Can Do At Home</h2>
-            <p class="text-gray-600 dark:text-gray-300 text-sm sm:text-base">Step-by-step safe science demonstrations curated specially for students from class 6th to 12th.</p>
-        </div>
-        <div id="experimentsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
-    </section>
-
-    <!-- About Us & Team Section -->
-    <section id="about" class="py-20 bg-gradient-to-b from-gray-100 to-indigo-50 dark:from-gray-800 dark:to-gray-900 px-4 border-t border-gray-200 dark:border-gray-800">
-        <div class="max-w-7xl mx-auto text-center space-y-12">
-            <div class="max-w-3xl mx-auto space-y-4">
-                <span class="px-3 py-1 rounded-full bg-indigo-200 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-200 text-xs font-bold uppercase tracking-wider">Our Visionaries</span>
-                <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 dark:text-white">Meet The Team Behind Scan to Study</h2>
-                <p class="text-gray-600 dark:text-gray-300 text-base">Created with passion by Class 12th Commerce students to revolutionize learning through geometry box QR codes!</p>
-            </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
-                <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md border dark:border-gray-700 text-center space-y-3">
-                    <div class="w-16 h-16 mx-auto rounded-full bg-gradient-to-tr from-indigo-600 to-violet-500 text-white font-bold text-xl flex items-center justify-center shadow-md">L</div>
-                    <h3 class="font-bold text-lg">Lakshmi</h3>
-                    <p class="text-xs text-indigo-600 font-semibold uppercase">Founder & Lead Admin</p>
-                </div>
-                <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md border dark:border-gray-700 text-center space-y-3">
-                    <div class="w-16 h-16 mx-auto rounded-full bg-gradient-to-tr from-purple-600 to-pink-500 text-white font-bold text-xl flex items-center justify-center shadow-md">A</div>
-                    <h3 class="font-bold text-lg">Afiya</h3>
-                    <p class="text-xs text-purple-600 font-semibold uppercase">Co-Founder & Editor</p>
-                </div>
-                <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md border dark:border-gray-700 text-center space-y-3">
-                    <div class="w-16 h-16 mx-auto rounded-full bg-gradient-to-tr from-blue-600 to-indigo-500 text-white font-bold text-xl flex items-center justify-center shadow-md">S</div>
-                    <h3 class="font-bold text-lg">Shreya</h3>
-                    <p class="text-xs text-blue-600 font-semibold uppercase">Co-Founder & Content</p>
-                </div>
-                <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md border dark:border-gray-700 text-center space-y-3">
-                    <div class="w-16 h-16 mx-auto rounded-full bg-gradient-to-tr from-amber-500 to-orange-500 text-white font-bold text-xl flex items-center justify-center shadow-md">S</div>
-                    <h3 class="font-bold text-lg">Simran</h3>
-                    <p class="text-xs text-amber-600 font-semibold uppercase">Co-Founder & Manager</p>
-                </div>
-                <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md border dark:border-gray-700 text-center space-y-3">
-                    <div class="w-16 h-16 mx-auto rounded-full bg-gradient-to-tr from-emerald-600 to-teal-500 text-white font-bold text-xl flex items-center justify-center shadow-md">E</div>
-                    <h3 class="font-bold text-lg">Ekta</h3>
-                    <p class="text-xs text-emerald-600 font-semibold uppercase">Co-Founder & Support</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12 px-4 mt-auto">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-            <div class="space-y-3">
-                <div class="flex items-center gap-2">
-                    <div class="w-10 h-10 rounded-lg bg-indigo-600 flex items-center justify-center text-white font-bold"><i class="fa-solid fa-qrcode"></i></div>
-                    <span class="font-bold text-lg">Scan to Study</span>
-                </div>
-                <p class="text-xs text-gray-400">Scan QR from Geometry Box or visit online for Class 6th to 12th Notes, Science Labs, and CBSE updates.</p>
-            </div>
-            <div>
-                <h4 class="font-bold text-sm mb-3 uppercase tracking-wider text-indigo-400">Quick Links</h4>
-                <ul class="space-y-2 text-xs text-gray-300">
-                    <li><a href="#home" class="hover:text-white">Home</a></li>
-                    <li><a href="#explore" class="hover:text-white">Study Portal</a></li>
-                    <li><a href="#cbse" class="hover:text-white">CBSE Updates</a></li>
-                    <li><a href="#experiments" class="hover:text-white">Science Labs</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4 class="font-bold text-sm mb-3 uppercase tracking-wider text-indigo-400">Streams Supported</h4>
-                <ul class="space-y-2 text-xs text-gray-300">
-                    <li>Science (Physics, Chem, Bio, Math)</li>
-                    <li>Commerce (Accounts, BST, Eco)</li>
-                    <li>Arts & Humanities</li>
-                    <li>Middle School (6-10)</li>
-                </ul>
-            </div>
-            <div>
-                <h4 class="font-bold text-sm mb-3 uppercase tracking-wider text-indigo-400">Owner Team</h4>
-                <p class="text-xs text-gray-300 leading-relaxed">Lakshmi, Afiya, Shreya, Simran & Ekta.<br>© 2026 Scan to Study.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Student Registration / Login Modal (For ₹99/Year Subscription) -->
-    <div id="authModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4">
-        <div class="bg-white dark:bg-gray-800 rounded-3xl max-w-md w-full p-8 shadow-2xl relative space-y-6">
-            <button onclick="closeAuthModal()" class="absolute top-6 right-6 text-gray-400 hover:text-gray-600"><i class="fa-solid fa-xmark text-xl"></i></button>
-            <div class="text-center space-y-2">
-                <div class="w-14 h-14 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center mx-auto text-2xl"><i class="fa-solid fa-user-graduate"></i></div>
-                <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Student Account</h3>
-                <p class="text-xs text-gray-500">Register or Login for ₹99/Year Subscription Plan</p>
-            </div>
-            <form onsubmit="handleAuthSubmit(event)" class="space-y-4">
-                <div>
-                    <label class="block text-xs font-bold uppercase mb-1">Student Name</label>
-                    <input type="text" id="authName" placeholder="Enter your full name..." class="w-full bg-gray-50 dark:bg-gray-900 border rounded-xl px-4 py-3 text-sm" required>
-                </div>
-                <div>
-                    <label class="block text-xs font-bold uppercase mb-1">Email / Mobile Number</label>
-                    <input type="text" id="authEmail" placeholder="Enter email or phone..." class="w-full bg-gray-50 dark:bg-gray-900 border rounded-xl px-4 py-3 text-sm" required>
-                </div>
-                <button type="submit" class="w-full py-3.5 bg-emerald-600 text-white font-bold rounded-xl shadow-md">Register / Login Now</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- Public Upload Modal -->
-    <div id="uploadModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4 overflow-y-auto">
-        <div class="bg-white dark:bg-gray-800 rounded-3xl max-w-3xl w-full p-6 sm:p-8 shadow-2xl relative my-8 space-y-6">
-            <div class="flex items-center justify-between border-b dark:border-gray-700 pb-4">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 bg-indigo-600 text-white rounded-xl flex items-center justify-center"><i class="fa-solid fa-cloud-arrow-up"></i></div>
-                    <div>
-                        <h3 class="text-xl font-bold text-gray-900 dark:text-white">Public Upload Dashboard</h3>
-                        <p class="text-xs text-gray-500">Anyone can upload notes or videos publicly!</p>
-                    </div>
-                </div>
-                <button onclick="closeUploadModal()" class="text-gray-400 hover:text-gray-600 text-xl"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-
-            <!-- Tabs -->
-            <div class="flex border-b dark:border-gray-700 gap-4">
-                <button onclick="switchUploadTab('notes')" id="tabBtnNotes" class="pb-3 font-bold text-sm border-b-2 border-indigo-600 text-indigo-600">Upload PDF Notes</button>
-                <button onclick="switchUploadTab('video')" id="tabBtnVideo" class="pb-3 font-bold text-sm border-b-2 border-transparent text-gray-500">Upload Video/Photo</button>
-                <button onclick="switchUploadTab('cbse')" id="tabBtnCbse" class="pb-3 font-bold text-sm border-b-2 border-transparent text-gray-500">Upload CBSE Notice</button>
-            </div>
-
-            <!-- Notes Form -->
-            <div id="uploadTabNotes" class="space-y-4">
-                <form onsubmit="uploadNotes(event)" class="space-y-4">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-xs font-bold uppercase mb-1">Class</label>
-                            <select id="upClass" class="w-full bg-gray-50 dark:bg-gray-900 border rounded-xl px-4 py-2.5 text-sm">
-                                <option value="6">Class 6th</option><option value="7">Class 7th</option><option value="8">Class 8th</option><option value="9">Class 9th</option><option value="10">Class 10th</option><option value="11">Class 11th</option><option value="12" selected>Class 12th</option>
+            <!-- 1. Public Upload Section -->
+            <section id="uploadSection" class="tab-content active">
+                <div class="card">
+                    <h2><i class="fa-solid fa-upload"></i> Clear Public Upload Dashboard</h2>
+                    <p class="subtitle">Select a category and share notes, videos, notices, or quizzes publicly with no restrictions.</p>
+                    
+                    <form id="uploadForm">
+                        <div class="form-group">
+                            <label>Select Category:</label>
+                            <select id="uploadCategory" required>
+                                <option value="" disabled selected>-- Choose Upload Category --</option>
+                                <option value="notes">PDF Notes & Formula Sheet</option>
+                                <option value="video">Video / Experiment</option>
+                                <option value="notice">CBSE Notice / Syllabus</option>
+                                <option value="quiz">MCQ Quiz & Practice</option>
                             </select>
                         </div>
-                        <div>
-                            <label class="block text-xs font-bold uppercase mb-1">Subject</label>
-                            <select id="upSubject" class="w-full bg-gray-50 dark:bg-gray-900 border rounded-xl px-4 py-2.5 text-sm">
-                                <option value="Physics">Physics</option><option value="Chemistry">Chemistry</option><option value="Biology">Biology</option><option value="Mathematics">Mathematics</option><option value="Accountancy">Accountancy</option><option value="Business Studies">Business Studies</option><option value="Economics">Economics</option><option value="History">History</option><option value="Political Science">Political Science</option><option value="English">English</option><option value="Hindi">Hindi</option><option value="Science">Science (6-10)</option><option value="Social Science">Social Science (6-10)</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-xs font-bold uppercase mb-1">Medium</label>
-                            <select id="upMedium" class="w-full bg-gray-50 dark:bg-gray-900 border rounded-xl px-4 py-2.5 text-sm">
-                                <option value="English">English Medium</option><option value="Hindi">Hindi Medium</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold uppercase mb-1">Chapter Name & Formulas Included</label>
-                            <input type="text" id="upChapter" placeholder="e.g. Chapter 1 (Includes Formula Sheet)" class="w-full bg-gray-50 dark:bg-gray-900 border rounded-xl px-4 py-2.5 text-sm" required>
-                        </div>
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold uppercase mb-1">Select PDF File</label>
-                        <input type="file" id="upPdfFile" accept=".pdf" class="w-full bg-gray-50 dark:bg-gray-900 border rounded-xl px-4 py-2 text-sm" required>
-                    </div>
-                    <button type="submit" class="w-full py-3 bg-indigo-600 text-white font-bold rounded-xl shadow">Publish PDF Notes Publicly</button>
-                </form>
-            </div>
 
-            <!-- Video Form -->
-            <div id="uploadTabVideo" class="space-y-4 hidden">
-                <form onsubmit="uploadVideo(event)" class="space-y-4">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-xs font-bold uppercase mb-1">Class</label>
-                            <select id="upVClass" class="w-full bg-gray-50 dark:bg-gray-900 border rounded-xl px-4 py-2.5 text-sm">
-                                <option value="6">Class 6th</option><option value="7">Class 7th</option><option value="8">Class 8th</option><option value="9">Class 9th</option><option value="10">Class 10th</option><option value="11">Class 11th</option><option value="12" selected>Class 12th</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold uppercase mb-1">Subject</label>
-                            <select id="upVSubject" class="w-full bg-gray-50 dark:bg-gray-900 border rounded-xl px-4 py-2.5 text-sm">
-                                <option value="Physics">Physics</option><option value="Chemistry">Chemistry</option><option value="Biology">Biology</option><option value="Science">Science (Experiments)</option><option value="Mathematics">Mathematics</option><option value="English">English</option><option value="Hindi">Hindi</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-xs font-bold uppercase mb-1">Medium</label>
-                            <select id="upVMedium" class="w-full bg-gray-50 dark:bg-gray-900 border rounded-xl px-4 py-2.5 text-sm">
-                                <option value="English">English Medium</option><option value="Hindi">Hindi Medium</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold uppercase mb-1">Title / Chapter</label>
-                            <input type="text" id="upVTitle" placeholder="e.g. Safe Home Experiment" class="w-full bg-gray-50 dark:bg-gray-900 border rounded-xl px-4 py-2.5 text-sm" required>
-                        </div>
-                    </div>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-xs font-bold uppercase mb-1">Upload from Gallery / Device</label>
-                            <input type="file" id="upVideoFile" accept="video/*,image/*" class="w-full bg-gray-50 dark:bg-gray-900 border rounded-xl px-4 py-2 text-sm">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold uppercase mb-1">OR YouTube Video Link</label>
-                            <input type="text" id="upYoutubeLink" placeholder="https://www.youtube.com/watch?v=..." class="w-full bg-gray-50 dark:bg-gray-900 border rounded-xl px-4 py-2.5 text-sm">
-                        </div>
-                    </div>
-                    <button type="submit" class="w-full py-3 bg-purple-600 text-white font-bold rounded-xl shadow">Publish Video/Photo Publicly</button>
-                </form>
-            </div>
-
-            <!-- CBSE Form -->
-            <div id="uploadTabCbse" class="space-y-4 hidden">
-                <form onsubmit="uploadCbse(event)" class="space-y-4">
-                    <div>
-                        <label class="block text-xs font-bold uppercase mb-1">Notice Title</label>
-                        <input type="text" id="upCbseTitle" placeholder="e.g. CBSE Date Sheet Released" class="w-full bg-gray-50 dark:bg-gray-900 border rounded-xl px-4 py-2.5 text-sm" required>
-                    </div>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-xs font-bold uppercase mb-1">Category</label>
-                            <select id="upCbseCategory" class="w-full bg-gray-50 dark:bg-gray-900 border rounded-xl px-4 py-2.5 text-sm">
-                                <option value="Date Sheet">Date Sheet</option><option value="Syllabus">Syllabus</option><option value="Circular">Official Circular</option><option value="Exam Notice">Exam Notice</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold uppercase mb-1">Date</label>
-                            <input type="text" id="upCbseDate" placeholder="e.g. October 24, 2026" class="w-full bg-gray-50 dark:bg-gray-900 border rounded-xl px-4 py-2.5 text-sm" required>
-                        </div>
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold uppercase mb-1">Description</label>
-                        <textarea id="upCbseDesc" rows="3" placeholder="Enter details..." class="w-full bg-gray-50 dark:bg-gray-900 border rounded-xl px-4 py-2.5 text-sm" required></textarea>
-                    </div>
-                    <button type="submit" class="w-full py-3 bg-indigo-600 text-white font-bold rounded-xl shadow">Publish CBSE Notice Publicly</button>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <!-- Notifications Modal -->
-    <div id="notifModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4">
-        <div class="bg-white dark:bg-gray-800 rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative space-y-6">
-            <button onclick="closeNotifications()" class    <!-- JavaScript Application Logic -->
-    <script>
-        if (!localStorage.getItem('sts_notes')) localStorage.setItem('sts_notes', JSON.stringify([]));
-        if (!localStorage.getItem('sts_videos')) localStorage.setItem('sts_videos', JSON.stringify([]));
-        if (!localStorage.getItem('sts_cbse')) localStorage.setItem('sts_cbse', JSON.stringify([]));
-        if (!localStorage.getItem('sts_notifs')) localStorage.setItem('sts_notifs', JSON.stringify([]));
-        if (!localStorage.getItem('sts_feedbacks')) localStorage.setItem('sts_feedbacks', JSON.stringify([]));
-
-        window.addEventListener('DOMContentLoaded', () => {
-            filterContent();
-            renderCbse();
-            renderExperiments();
-            renderNotifications();
-            renderFeedbacks();
-            checkUserAuth();
-        });
-
-        function toggleDarkMode() { document.documentElement.classList.toggle('dark'); }
-
-        function openAuthModal() { document.getElementById('authModal').classList.replace('hidden', 'flex'); }
-        function closeAuthModal() { document.getElementById('authModal').classList.replace('flex', 'hidden'); }
-
-        function handleAuthSubmit(e) {
-            e.preventDefault();
-            const name = document.getElementById('authName').value;
-            localStorage.setItem('sts_user', name);
-            alert(`Welcome ${name}! Account registered successfully for ₹99/Year Plan.`);
-            closeAuthModal();
-            checkUserAuth();
-        }
-
-        function checkUserAuth() {
-            const user = localStorage.getItem('sts_user');
-            if (user) {
-                document.getElementById('authButtonText').innerText = user.split(' ')[0];
-            }
-        }
-
-        function filterContent() {
-            const fClass = document.getElementById('filterClass').value;
-            const fSubject = document.getElementById('filterSubject').value;
-            const fMedium = document.getElementById('filterMedium').value;
-            const fType = document.getElementById('filterType').value;
-            const query = document.getElementById('searchInput').value.toLowerCase();
-
-            const notes = JSON.parse(localStorage.getItem('sts_notes')) || [];
-            const videos = JSON.parse(localStorage.getItem('sts_videos')) || [];
-            const allItems = [...notes, ...videos];
-
-            const filtered = allItems.filter(item => {
-                if (fClass !== 'all' && item.class !== fClass) return false;
-                if (fSubject !== 'all' && item.subject !== fSubject) return false;
-                if (fMedium !== 'all' && item.medium !== fMedium) return false;
-                if (fType !== 'all' && item.type !== fType) return false;
-                if (query && !item.chapter.toLowerCase().includes(query)) return false;
-                return true;
-            });
-
-            const grid = document.getElementById('contentGrid');
-            if (filtered.length === 0) {
-                grid.innerHTML = `
-                    <div class="col-span-full py-16 text-center space-y-3 bg-white dark:bg-gray-800 rounded-3xl shadow-sm border border-gray-100 dark:border-gray-700">
-                        <div class="w-16 h-16 bg-indigo-50 text-indigo-500 rounded-2xl flex items-center justify-center mx-auto text-2xl"><i class="fa-solid fa-folder-open"></i></div>
-                        <h3 class="text-lg font-bold text-gray-800 dark:text-gray-200">No Study Materials Found</h3>
-                        <p class="text-xs text-gray-500">Click 'Upload' to add notes or videos publicly!</p>
-                    </div>
-                `;
-                return;
-            }
-
-            grid.innerHTML = filtered.map(item => {
-                if (item.type === 'notes') {
-                    return `
-                        <div class="bg-white dark:bg-gray-800 rounded-3xl p-6 shadow-xl border border-gray-100 dark:border-gray-700 flex flex-col justify-between space-y-4">
-                            <div>
-                                <div class="flex items-center justify-between mb-3">
-                                    <span class="px-3 py-1 bg-indigo-50 text-indigo-600 rounded-xl text-xs font-bold uppercase">Class ${item.class} • ${item.subject}</span>
-                                    <span class="text-xs font-semibold px-2.5 py-1 bg-gray-100 dark:bg-gray-700 rounded-lg">${item.medium}</span>
-                                </div>
-                                <h3 class="text-lg font-bold text-gray-900 dark:text-white leading-snug">${item.chapter}</h3>
-                                <p class="text-xs text-indigo-500 mt-1 font-semibold"><i class="fa-solid fa-file-pdf mr-1"></i> Includes Formula Sheet & Quick Notes</p>
-                                <p class="text-xs text-gray-400 mt-1"><i class="fa-solid fa-calendar-days mr-1"></i> ${item.date}</p>
+                        <!-- Common Details -->
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Class:</label>
+                                <select id="itemClass" required>
+                                    <option value="" disabled selected>Select Class</option>
+                                    <option value="Class 6">Class 6</option>
+                                    <option value="Class 7">Class 7</option>
+                                    <option value="Class 8">Class 8</option>
+                                    <option value="Class 9">Class 9</option>
+                                    <option value="Class 10">Class 10</option>
+                                    <option value="Class 11">Class 11</option>
+                                    <option value="Class 12">Class 12</option>
+                                </select>
                             </div>
-                            <div class="pt-4 border-t dark:border-gray-700 flex items-center gap-3">
-                                <a href="${item.url || '#'}" download class="flex-1 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs rounded-xl shadow text-center flex items-center justify-center gap-2">
-                                    <i class="fa-solid fa-download"></i> Download PDF Notes
-                                </a>
+                            <div class="form-group">
+                                <label>Subject:</label>
+                                <input type="text" id="itemSubject" placeholder="e.g. Mathematics, Physics" required>
                             </div>
                         </div>
-                    `;
-                } else {
-                    let mediaHtml = item.isEmbed ? `<iframe src="${item.url}" class="w-full h-48 rounded-2xl" allowfullscreen></iframe>` : `<video src="${item.url}" controls class="w-full h-48 rounded-2xl object-cover bg-black"></video>`;
-                    return `
-                        <div class="bg-white dark:bg-gray-800 rounded-3xl p-6 shadow-xl border border-gray-100 dark:border-gray-700 flex flex-col justify-between space-y-4">
-                            <div>
-                                <div class="flex items-center justify-between mb-3">
-                                    <span class="px-3 py-1 bg-purple-50 text-purple-600 rounded-xl text-xs font-bold uppercase">Class ${item.class} • ${item.subject}</span>
-                                    <span class="text-xs font-semibold px-2.5 py-1 bg-gray-100 dark:bg-gray-700 rounded-lg">${item.medium}</span>
-                                </div>
-                                ${mediaHtml}
-                                <h3 class="text-lg font-bold text-gray-900 dark:text-white mt-3 leading-snug">${item.chapter}</h3>
-                                <p class="text-xs text-gray-400 mt-1"><i class="fa-solid fa-calendar-days mr-1"></i> ${item.date}</p>
-                            </div>
+
+                        <div class="form-group">
+                            <label>Title / Chapter Details:</label>
+                            <input type="text" id="itemTitle" placeholder="e.g. Chapter 4 - Quadratic Equations + Formula Sheet" required>
                         </div>
-                    `;
-                }
-            }).join('');
-        }
 
-        function renderCbse() {
-            const cbseList = JSON.parse(localStorage.getItem('sts_cbse')) || [];
-            const grid = document.getElementById('cbseGrid');
-            if (cbseList.length === 0) {
-                grid.innerHTML = `<div class="col-span-full text-center py-6 text-indigo-200 text-sm">No CBSE updates posted yet.</div>`;
-                return;
-            }
-            grid.innerHTML = cbseList.map(item => `
-                <div class="bg-white/15 backdrop-blur-md rounded-3xl p-6 border border-white/20 space-y-3">
-                    <div class="flex items-center justify-between">
-                        <span class="px-3 py-1 rounded-full bg-amber-400 text-gray-900 text-xs font-bold">${item.category}</span>
-                        <span class="text-xs text-indigo-200">${item.date}</span>
+                        <!-- Dynamic Fields based on Category -->
+                        <div id="dynamicFields"></div>
+
+                        <button type="submit" class="submit-btn"><i class="fa-solid fa-paper-plane"></i> Publish Now</button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- 2. Stopwatch Study Timer Section -->
+            <section id="timerSection" class="tab-content">
+                <div class="card timer-card">
+                    <h2><i class="fa-solid fa-stopwatch"></i> Stopwatch Study Timer (0 से शुरू)</h2>
+                    <p class="subtitle">Track your deep work study session duration effortlessly.</p>
+                    
+                    <div class="stopwatch-display" id="stopwatchDisplay">00:00:00</div>
+                    
+                    <div class="timer-controls">
+                        <button id="startTimer" class="btn-green"><i class="fa-solid fa-play"></i> Start</button>
+                        <button id="pauseTimer" class="btn-yellow" disabled><i class="fa-solid fa-pause"></i> Pause</button>
+                        <button id="resetTimer" class="btn-red"><i class="fa-solid fa-rotate-right"></i> Reset</button>
                     </div>
-                    <h3 class="text-lg font-bold text-white">${item.title}</h3>
-                    <p class="text-xs text-indigo-100 leading-relaxed">${item.desc}</p>
                 </div>
-            `).join('');
-        }
+                :root {
+    --bg-color: #f4f7f6;
+    --card-bg: #ffffff;
+    --text-color: #2c3e50;
+    --text-muted: #7f8c8d;
+    --primary-color: #4f46e5;
+    --primary-hover: #4338ca;
+    --border-color: #e2e8f0;
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
 
-        function renderExperiments() {
-            const videos = JSON.parse(localStorage.getItem('sts_videos')) || [];
-            const grid = document.getElementById('experimentsGrid');
-            if (videos.length === 0) {
-                grid.innerHTML = `<div class="col-span-full text-center py-10 text-gray-500">No home experiments uploaded yet.</div>`;
-                return;
-            }
-            grid.innerHTML = videos.map(item => `
-                <div class="bg-white dark:bg-gray-800 rounded-3xl p-6 shadow-xl border dark:border-gray-700 space-y-3">
-                    <span class="px-3 py-1 bg-emerald-50 text-emerald-700 text-xs font-bold uppercase rounded-xl">Class ${item.class} Science Lab</span>
-                    <h3 class="font-bold text-lg">${item.chapter}</h3>
-                    <p class="text-xs text-gray-500">Safe home experiment tutorial.</p>
+[data-theme="dark"] {
+    --bg-color: #0f172a;
+    --card-bg: #1e293b;
+    --text-color: #f1f5f9;
+    --text-muted: #94a3b8;
+    --primary-color: #6366f1;
+    --primary-hover: #4f46e5;
+    --border-color: #334155;
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    min-height: 100vh;
+}
+
+/* Top Navigation */
+.top-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background-color: var(--card-bg);
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.nav-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.icon-btn {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+}
+
+.icon-btn:hover {
+    background-color: var(--border-color);
+}
+
+.badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: #ef4444;
+    color: white;
+    font-size: 0.7rem;
+    padding: 2px 6px;
+    border-radius: 50%;
+}
+
+.primary-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.primary-btn:hover {
+    background-color: var(--primary-hover);
+}
+
+/* Hero Section */
+.hero-section {
+    text-align: center;
+    padding: 30px 20px;
+    background: linear-gradient(135deg, var(--primary-color), #3b82f6);
+    color: white;
+    margin-bottom: 20px;
+}
+
+.hero-section h1 {
+    font-size: 1.8rem;
+    margin-bottom: 8px;
+}
+
+.hero-section p {
+    font-size: 0.95rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Main Container Layout */
+.main-container {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 20px;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 20px 40px 20px;
+}
+
+/* Sidebar Tabs */
+.sidebar-tabs {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 15px;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    box-shadow: var(--shadow);
+}
+
+.tab-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-color);
+    text-align: left;
+    padding: 12px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.tab-btn:hover, .tab-btn.active {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* Content Area Cards */
+.content-area .tab-content {
+    display: none;
+}
+
+.content-area .tab-content.active {
+    display: block;
+}
+
+.card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: var(--shadow);
+}
+
+.card h2 {
+    font-size: 1.3rem;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.subtitle {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+}
+
+/* Forms styling */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 10px 14px;
+    background-color: var(--bg-color);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    border-radius: 8px;
+    font-size: 0.9rem;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.submit-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.submit-btn:hover {
+    background-color: var(--primary-hover);
+}
+
+/* Stopwatch Timer Styling */
+.timer-card {
+    text-align: center;
+}
+
+.stopwatch-display {
+    font-size: 3.5rem;
+    font-weight: 700;
+    font-family: monospace;
+    margin: 30px 0;
+    color: var(--primary-color);
+}
+
+.timer-controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.timer-controls button {
+    padding: 10px 24px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    color: white;
+    font-size: 1rem;
+}
+
+.btn-green { background-color: #10b981; }
+.btn-yellow { background-color: #f59e0b; }
+.btn-red { background-color: #ef4444; }
+.timer-controls button:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* Empty States & Grids */
+.empty-state-box {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--text-muted);
+    grid-column: 1 / -1;
+}
+
+.empty-state-box i {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.content-item-card {
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.content-item-card h4 {
+    margin-bottom: 5px;
+    color: var(--primary-color);
+}
+
+.content-item-card p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+}
+
+/* AI Chatbox */
+.chat-box {
+    height: 300px;
+    background-color: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 15px;
+    overflow-y: auto;
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.chat-message {
+    padding: 10px 14px;
+    border-radius: 8px;
+    max-width: 80%;
+    font-size: 0.9rem;
+}
+
+.chat-message.bot {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    align-self: flex-start;
+}
+
+.chat-message.user {
+    background-color: var(--primary-color);
+    color: white;
+    align-self: flex-end;
+}
+
+.chat-input-area {
+    display: flex;
+    gap: 10px;
+}
+
+.chat-input-area input {
+    flex: 1;
+}
+
+.chat-input-area button {
+    width: 50px;
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+}
+
+/* Notifications Dropdown */
+.notification-wrapper {
+    position: relative;
+}
+
+.notification-dropdown {
+    position: absolute;
+    right: 0;
+    top: 50px;
+    width: 320px;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow);
+    border-radius: 10px;
+    display: none;
+    z-index: 1100;
+}
+
+.notification-dropdown.show {
+    display: block;
+}
+
+.notif-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 15px;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.notif-header span {
+    color: var(--primary-color);
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+
+.notif-body {
+    max-height: 250px;
+    overflow-y: auto;
+    padding: 10px;
+}
+
+.notif-item {
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 0.85rem;
+}
+
+.empty-text {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    padding: 15px;
+}
+
+/* Modal styling */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    align-items: center;
+    justify-content: center;
+}
+
+.modal.show {
+    display: flex;
+}
+
+.modal-content {
+    background-color: var(--card-bg);
+    padding: 25px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 450px;
+    position: relative;
+    box-shadow: var(--shadow);
+}
+
+.close-modal {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text-muted);
+}
+
+.auth-tabs {
+    display: flex;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.auth-tab-btn {
+    flex: 1;
+    padding: 8px;
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.auth-tab-btn.active {
+    background: var(--primary-color);
+    color: white;
+}
+
+.auth-form {
+    display: none;
+}
+
+.auth-form.active {
+    display: block;
+}
+
+.subscription-banner {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.8rem;
+    margin: 12px 0;
+    background: var(--bg-color);
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.subscription-banner input {
+    width: auto;
+    margin-top: 3px;
+}
+
+/* Leaderboard & Reviews */
+.leaderboard-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.sub-box {
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.sub-box h3 {
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.simple-list {
+    list-style: none;
+    font-size: 0.85rem;
+}
+
+.simple-list li {
+    padding: 6px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.empty-list {
+    color: var(--text-muted);
+    text-align: center;
+}
+
+.review-form {
+    margin-bottom: 15px;
+}
+
+.review-form textarea, .review-form select, .review-form input {
+    margin-bottom: 10px;
+}
+
+.reviews-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.review-card {
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+}
+
+/* Responsive Media Query */
+@media(max-width: 768px) {
+    .main-container {
+        grid-template-columns: 1fr;
+    }
+    .leaderboard-grid {
+        grid-template-columns: 1fr;
+    }
+    .top-nav {
+        padding: 10px 15px;
+    }
+}
+                // --- DYNAMIC UPLOAD FORM HANDLER ---
+const categorySelect = document.getElementById('uploadCategory');
+const dynamicFields = document.getElementById('dynamicFields');
+
+categorySelect.addEventListener('change', (e) => {
+    const val = e.target.value;
+    let html = '';
+
+    if (val === 'notes') {
+        html = `
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Medium:</label>
+                    <select id="notesMedium" required>
+                        <option value="Hindi">Hindi Medium</option>
+                        <option value="English">English Medium</option>
+                    </select>
                 </div>
-            `).join('');
-        }
-
-        function renderNotifications() {
-            const notifs = JSON.parse(localStorage.getItem('sts_notifs')) || [];
-            document.getElementById('notifBadge').innerText = notifs.length;
-            const list = document.getElementById('notifList');
-            if (notifs.length === 0) {
-                list.innerHTML = `<div class="text-center py-6 text-gray-400 text-sm">No new notifications.</div>`;
-                return;
-            }
-            list.innerHTML = notifs.map(n => `
-                <div class="p-4 bg-gray-50 dark:bg-gray-900 rounded-2xl border space-y-1">
-                    <div class="flex items-center justify-between">
-                        <h4 class="font-bold text-sm">${n.title}</h4>
-                        <span class="text-[10px] text-gray-400">${n.time}</span>
-                    </div>
-                    <p class="text-xs text-gray-600 dark:text-gray-300">${n.desc}</p>
+                <div class="form-group">
+                    <label>Formula Sheet Included?</label>
+                    <select id="formulaSupport">
+                        <option value="Yes">Yes, with Formula Sheet</option>
+                        <option value="No">No Standard Notes</option>
+                    </select>
                 </div>
-            `).join('');
-        }
+            </div>
+            <div class="form-group">
+                <label>Upload PDF File:</label>
+                <input type="file" id="pdfFile" accept=".pdf" required>
+            </div>
+        `;
+    } else if (val === 'video') {
+        html = `
+            <div class="form-group">
+                <label>Video Source Type:</label>
+                <select id="videoType" onchange="toggleVideoInput(this.value)" required>
+                    <option value="youtube">Paste YouTube Video Link</option>
+                    <option value="device">Upload Video/Photo from Device Gallery</option>
+                </select>
+            </div>
+            <div class="form-group" id="videoInputContainer">
+                <label>YouTube Video URL:</label>
+                <input type="url" id="youtubeUrl" placeholder="https://www.youtube.com/watch?v=..." required>
+            </div>
+        `;
+    } else if (val === 'notice') {
+        html = `
+            <div class="form-group">
+                <label>Notice Type:</label>
+                <select id="noticeType" required>
+                    <option value="Date Sheet">Exam Date Sheet</option>
+                    <option value="Syllabus">Updated Syllabus</option>
+                    <option value="Circular">CBSE Circular / Update</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Upload Notice File / PDF:</label>
+                <input type="file" id="noticeFile" accept=".pdf, .jpg, .png" required>
+            </div>
+        `;
+    } else if (val === 'quiz') {
+        html = `
+            <div class="form-group">
+                <label>Number of Questions & Chapter Test Name:</label>
+                <input type="text" id="quizDetails" placeholder="e.g. 10 MCQs - Light Reflection & Refraction" required>
+            </div>
+        `;
+    }
+    dynamicFields.innerHTML = html;
+});
 
-        function handleAiQuery(e) {
-            e.preventDefault();
-            const input = document.getElementById('aiQueryInput');
-            const q = input.value;
-            const chatBox = document.getElementById('aiChatBox');
-            chatBox.innerHTML += `<div class="p-3 rounded-2xl bg-white/20 text-white max-w-md ml-auto text-right"><p class="font-bold text-xs text-amber-300 mb-1">You</p>${q}</div>`;
-            input.value = '';
-            setTimeout(() => {
-                let ans = "That's a great question! Check your chapter notes for detailed derivations.";
-                if (q.toLowerCase().includes('ohm')) ans = "Ohm's Law states V = IR.";
-                chatBox.innerHTML += `<div class="p-3 rounded-2xl bg-indigo-600/60 text-white max-w-md"><p class="font-bold text-xs text-amber-300 mb-1">AI Tutor</p>${ans}</div>`;
-                chatBox.scrollTop = chatBox.scrollHeight;
-            }, 600);
-        }
+// Toggle Video input options (YouTube link vs Device upload)
+function toggleVideoInput(type) {
+    const container = document.getElementById('videoInputContainer');
+    if (type === 'youtube') {
+        container.innerHTML = `
+            <label>YouTube Video URL:</label>
+            <input type="url" id="youtubeUrl" placeholder="https://www.youtube.com/watch?v=..." required>
+        `;
+    } else {
+        container.innerHTML = `
+            <label>Upload Video/Photo from Device Gallery:</label>
+            <input type="file" id="deviceVideo" accept="video/*, image/*" required>
+        `;
+    }
+}
+                // --- STOPWATCH STUDY TIMER (0 से शुरू होने वाला टाइमर) ---
+let timerInterval = null;
+let totalSeconds = 0;
+const display = document.getElementById('stopwatchDisplay');
+const startBtn = document.getElementById('startTimer');
+const pauseBtn = document.getElementById('pauseTimer');
+const resetBtn = document.getElementById('resetTimer');
 
-        function submitQuizAnswer() {
-            const selected = document.querySelector('input[name="quizOpt"]:checked');
-            if (!selected) { alert('Please select an option first!'); return; }
-            const val = selected.value;
-            document.getElementById('quizCardContent').classList.add('hidden');
-            const resBox = document.getElementById('quizResultBox');
-            resBox.classList.remove('hidden');
-            const title = document.getElementById('quizFeedbackTitle');
-            const exp = document.getElementById('quizFeedbackExplanation');
-            const mistakeTip = document.getElementById('studentMistakeTip');
+function formatTime(secs) {
+    const hrs = Math.floor(secs / 3600).toString().padStart(2, '0');
+    const mins = Math.floor((secs % 3600) / 60).toString().padStart(2, '0');
+    const s = (secs % 60).toString().padStart(2, '0');
+    return `${hrs}:${mins}:${s}`;
+}
 
-            if (val === 'B') {
-                title.innerHTML = `<span class="text-emerald-600">Correct! Score: 100% (1st Rank Range)</span>`;
-                exp.innerText = "Explanation: The SI unit of electric charge is Coulomb (C).";
-                mistakeTip.innerText = "Great accuracy! Maintain your streak.";
-            } else {
-                title.innerHTML = `<span class="text-red-500">Incorrect! (Your choice was ${val})</span>`;
-                exp.innerText = "Correct Answer is B) Coulomb. Volt is potential difference unit.";
-                mistakeTip.innerText = "Improvement Tip: Revise Chapter 1 electrostatics formulas.";
-            }
-        }
-        function resetQuiz() {
-            document.getElementById('quizResultBox').classList.add('hidden');
-            document.getElementById('quizCardContent').classList.remove('hidden');
-            document.querySelectorAll('input[name="quizOpt"]').forEach(i => i.checked = false);
-        }
+startBtn.addEventListener('click', () => {
+    if (timerInterval) return;
+    timerInterval = setInterval(() => {
+        totalSeconds++;
+        display.textContent = formatTime(totalSeconds);
+    }, 1000);
+    startBtn.disabled = true;
+    pauseBtn.disabled = false;
+});
 
-        let timerInterval;
-        let totalSeconds = 25 * 60;
-        function startStudyTimer() {
-            clearInterval(timerInterval);
-            timerInterval = setInterval(() => {
-                if (totalSeconds > 0) {
-                    totalSeconds--;
-                    let m = Math.floor(totalSeconds / 60);
-                    let s = totalSeconds % 60;
-                    document.getElementById('timerDisplay').innerText = `${m < 10 ? '0' : ''}${m}:${s < 10 ? '0' : ''}${s}`;
-                } else { clearInterval(timerInterval); alert('Session complete!'); }
-            }, 1000);
-        }
-        function pauseStudyTimer() { clearInterval(timerInterval); }
-        function resetStudyTimer() { clearInterval(timerInterval); totalSeconds = 25*60; document.getElementById('timerDisplay').innerText = "25:00"; }
+pauseBtn.addEventListener('click', () => {
+    clearInterval(timerInterval);
+    timerInterval = null;
+    startBtn.disabled = false;
+    pauseBtn.disabled = true;
+});
 
-        function submitFeedback(e) {
-            e.preventDefault();
-            const list = JSON.parse(localStorage.getItem('sts_feedbacks')) || [];
-            list.unshift({ name: document.getElementById('fbName').value, rating: document.getElementById('fbRating').value, comment: document.getElementById('fbComment').value });
-            localStorage.setItem('sts_feedbacks', JSON.stringify(list));
-            alert('Review submitted successfully!');
-            document.getElementById('fbName').value = ''; document.getElementById('fbComment').value = '';
-            renderFeedbacks();
-        }
-        function renderFeedbacks() {
-            const list = JSON.parse(localStorage.getItem('sts_feedbacks')) || [];
-            document.getElementById('feedbackList').innerHTML = list.map(f => `<div class="p-3 bg-gray-50 dark:bg-gray-900 rounded-xl border text-xs space-y-1"><div class="flex justify-between font-bold"><span>${f.name}</span><span>${f.rating}</span></div><p class="text-gray-600 dark:text-gray-300">${f.comment}</p></div>`).join('');
-        }
+resetBtn.addEventListener('click', () => {
+    clearInterval(timerInterval);
+    timerInterval = null;
+    totalSeconds = 0;
+    display.textContent = "00:00:00";
+    startBtn.disabled = false;
+    pauseBtn.disabled = true;
+});
 
-        function openUploadModal() { document.getElementById('uploadModal').classList.replace('hidden', 'flex'); }
-        function closeUploadModal() { document.getElementById('uploadModal').classList.replace('flex', 'hidden'); }
-        function switchUploadTab(tab) {
-            ['Notes', 'Video', 'Cbse'].forEach(t => {
-                document.getElementById('uploadTab' + t).classList.add('hidden');
-                document.getElementById('tabBtn' + t).className = "pb-3 font-bold text-sm border-b-2 border-transparent text-gray-500";
-            });
-            document.getElementById('uploadTab' + tab.charAt(0).toUpperCase() + tab.slice(1)).classList.remove('hidden');
-            document.getElementById('tabBtn' + tab.charAt(0).toUpperCase() + tab.slice(1)).className = "pb-3 font-bold text-sm border-b-2 border-indigo-600 text-indigo-600";
-        }
+// --- AI DOUBT SOLVER CHATBOT ---
+const chatBox = document.getElementById('chatBox');
+const chatInput = document.getElementById('chatInput');
+const sendChatBtn = document.getElementById('sendChatBtn');
 
-        function uploadNotes(e) {
-            e.preventDefault();
-            const notes = JSON.parse(localStorage.getItem('sts_notes')) || [];
-            const newNote = { id: Date.now(), class: document.getElementById('upClass').value, subject: document.getElementById('upSubject').value, medium: document.getElementById('upMedium').value, chapter: document.getElementById('upChapter').value, type: 'notes', url: '#', date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) };
-            notes.unshift(newNote);
-            localStorage.setItem('sts_notes', JSON.stringify(notes));
-            addNotif("New Notes & Formula Sheet Added!", `${newNote.chapter} for Class ${newNote.class} is now live.`);
-            alert('PDF Notes uploaded successfully!');
-            closeUploadModal(); filterContent();
-        }
+function handleAiQuery() {
+    const text = chatInput.value.trim();
+    if (!text) return;
 
-        function uploadVideo(e) {
-            e.preventDefault();
-            const ytLink = document.getElementById('upYoutubeLink').value;
-            let videoUrl = "https://www.w3schools.com/html/mov_bbb.mp4"; let isEmbed = false;
-            if (ytLink) { isEmbed = true; videoUrl = ytLink.includes('watch?v=') ? ytLink.replace('watch?v=', 'embed/') : ytLink; }
-            const videos = JSON.parse(localStorage.getItem('sts_videos')) || [];
-            const newVideo = { id: Date.now(), class: document.getElementById('upVClass').value, subject: document.getElementById('upVSubject').value, medium: document.getElementById('upVMedium').value, chapter: document.getElementById('upVTitle').value, type: 'video', url: videoUrl, isEmbed: isEmbed, date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) };
-            videos.unshift(newVideo);
-            localStorage.setItem('sts_videos', JSON.stringify(videos));
-            addNotif("New Video Uploaded!", `${newVideo.chapter} is now available.`);
-            alert('Video uploaded successfully!');
-            closeUploadModal(); filterContent(); renderExperiments();
-        }
+    // Append User Message
+    const userMsg = document.createElement('div');
+    userMsg.className = 'chat-message user';
+    userMsg.innerHTML = `<p>${text}</p>`;
+    chatBox.appendChild(userMsg);
+    chatInput.value = '';
+    chatBox.scrollTop = chatBox.scrollHeight;
 
-        function uploadCbse(e) {
-            e.preventDefault();
-            const cbseList = JSON.parse(localStorage.getItem('sts_cbse')) || [];
-            const newCbse = { id: Date.now(), title: document.getElementById('upCbseTitle').value, category: document.getElementById('upCbseCategory').value, date: document.getElementById('upCbseDate').value, desc: document.getElementById('upCbseDesc').value };
-            cbseList.unshift(newCbse);
-            localStorage.setItem('sts_cbse', JSON.stringify(cbseList));
-            addNotif("CBSE Update Released!", newCbse.title);
-            alert('CBSE Notice uploaded successfully!');
-            closeUploadModal(); renderCbse();
-        }
+    // Simulated Intelligent AI Response for Classes 6-12
+    setTimeout(() => {
+        const botMsg = document.createElement('div');
+        botMsg.className = 'chat-message bot';
+        botMsg.innerHTML = `<p><strong>Scan to Study AI:</strong> Great question! Regarding "<em>${text}</em>", for Class 6-12 curriculum, the core concept involves breaking down the definition, standard formulas, and step-by-step NCERT explanation. (Ensure you check uploaded notes for detailed derivations!)</p>`;
+        chatBox.appendChild(botMsg);
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }, 800);
+}
 
-        function addNotif(title, desc) {
-            const notifs = JSON.parse(localStorage.getItem('sts_notifs')) || [];
-            notifs.unshift({ title, desc, time: 'Just now' });
-            localStorage.setItem('sts_notifs', JSON.stringify(notifs));
-            renderNotifications();
-        }
+sendChatBtn.addEventListener('click', handleAiQuery);
+chatInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') handleAiQuery();
+});
+                // --- NOTIFICATIONS SYSTEM ---
+let notifications = [];
+const notifBtn = document.getElementById('notifBtn');
+const notifDropdown = document.getElementById('notifDropdown');
+const notifCount = document.getElementById('notifCount');
+const notifList = document.getElementById('notifList');
+const clearNotif = document.getElementById('clearNotif');
 
-        function openNotifications() { document.getElementById('notifModal').classList.replace('hidden', 'flex'); }
-        function closeNotifications() { document.getElementById('notifModal').classList.replace('flex', 'hidden'); }
-        function quickSearch(e) {
-            e.preventDefault();
-            document.getElementById('filterClass').value = document.getElementById('quickClass').value;
-            document.getElementById('filterSubject').value = document.getElementById('quickSubject').value;
-            document.getElementById('explore').scrollIntoView({ behavior: 'smooth' });
-            filterContent();
-        }
-    </script>
-</body>
-    </html>
-                
+notifBtn.addEventListener('click', () => {
+    notifDropdown.classList.toggle('show');
+});
+
+function addNotification(message) {
+    notifications.unshift(message);
+    notifCount.textContent = notifications.length;
+    
+    let html = '';
+    notifications.forEach(n => {
+        html += `<div class="notif-item"><i class="fa-solid fa-circle-info" style="color:var(--primary-color)"></i> ${n}</div>`;
+    });
+    notifList.innerHTML = html;
+}
+
+clearNotif.addEventListener('click', () => {
+    notifications = [];
+    notifCount.textContent = '0';
+    notifList.innerHTML = `<p class="empty-text">No new updates yet.</p>`;
+});
+
+// --- THEME TOGGLE (Dark / Light Mode) ---
+const themeToggle = document.getElementById('themeToggle');
+const themeIcon = document.getElementById('themeIcon');
+const htmlRoot = document.documentElement;
+
+themeToggle.addEventListener('click', () => {
+    const currentTheme = htmlRoot.getAttribute('data-theme');
+    if (currentTheme === 'light') {
+        htmlRoot.setAttribute('data-theme', 'dark');
+        themeIcon.className = 'fa-solid fa-sun';
+    } else {
+        htmlRoot.setAttribute('data-theme', 'light');
+        themeIcon.className = 'fa-solid fa-moon';
+    }
+});
+
+// --- SIDEBAR TAB NAVIGATION ---
+const tabButtons = document.querySelectorAll('.tab-btn');
+const tabContents = document.querySelectorAll('.tab-content');
+
+tabButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+        tabButtons.forEach(b => b.classList.remove('active'));
+        tabContents.forEach(c => c.classList.remove('active'));
+        
+        btn.classList.add('active');
+        const targetId = btn.getAttribute('data-target');
+        document.getElementById(targetId).classList.add('active');
+    });
+});
+
+// --- LOGIN & SUBSCRIPTION MODAL ---
+const loginBtn = document.getElementById('loginBtn');
+const authModal = document.getElementById('authModal');
+const closeModal = document.getElementById('closeModal');
+const authTabBtns = document.querySelectorAll('.auth-tab-btn');
+const authForms = document.querySelectorAll('.auth-form');
+
+loginBtn.addEventListener('click', () => authModal.classList.add('show'));
+closeModal.addEventListener('click', () => authModal.classList.remove('show'));
+window.addEventListener('click', (e) => {
+    if (e.target === authModal) authModal.classList.remove('show');
+});
+
+authTabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        authTabBtns.forEach(b => b.classList.remove('active'));
+        authForms.forEach(f => f.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById(btn.getAttribute('data-form')).classList.add('active');
+    });
+});
+
+// --- UPLOAD FORM SUBMISSION & HUB DISPLAY ---
+const uploadForm = document.getElementById('uploadForm');
+const hubListContainer = document.getElementById('hubListContainer');
+let uploadedItems = [];
+
+uploadForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const category = document.getElementById('uploadCategory').value;
+    const studentClass = document.getElementById('itemClass').value;
+    const subject = document.getElementById('itemSubject').value;
+    const title = document.getElementById('itemTitle').value;
+
+    const newItem = { category, studentClass, subject, title, time: new Date().toLocaleTimeString() };
+    uploadedItems.unshift(newItem);
+
+    // Render Hub List
+    renderHubContent();
+
+    // Trigger Real-time Notification
+    addNotification(`New ${category.toUpperCase()} uploaded for ${studentClass} (${subject})!`);
+
+    alert('Successfully uploaded to Scan to Study Hub!');
+    uploadForm.reset();
+    dynamicFields.innerHTML = '';
+});
+
+function renderHubContent() {
+    if (uploadedItems.length === 0) {
+        hubListContainer.innerHTML = `
+            <div class="empty-state-box">
+                <i class="fa-solid fa-box-open"></i>
+                <h3>No Content Available Yet</h3>
+                <p>The website is completely clean and empty. Use the Public Upload section to add new study material!</p>
+            </div>
+        `;
+        return;
+    }
+
+    let html = '';
+    uploadedItems.forEach(item => {
+        html += `
+            <div class="content-item-card">
+                <span class="badge" style="position:static; float:right; background:var(--primary-color);">${item.category.toUpperCase()}</span>
+                <h4>${item.title}</h4>
+                <p><strong>${item.studentClass}</strong> | Subject: ${item.subject}</p>
+                <button class="primary-btn" style="padding: 5px 10px; font-size:0.8rem;" onclick="alert('Accessing study resource...')">View / Download</button>
+            </div>
+        `;
+    });
+    hubListContainer.innerHTML = html;
+}
+
+// --- REVIEWS & FEEDBACK SUBMISSION ---
+const reviewForm = document.getElementById('reviewForm');
+const reviewsContainer = document.getElementById('reviewsContainer');
+let reviewListArray = [];
+
+reviewForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('reviewerName').value;
+    const rating = document.getElementById('reviewRating').value;
+    const text = document.getElementById('reviewText').value;
+
+    reviewListArray.unshift({ name, rating, text });
+    
+    let html = '';
+    reviewListArray.forEach(r => {
+        html += `
+            <div class="review-card">
+                <strong>${r.name}</strong> - Rating: ${r.rating} ⭐
+                <p>${r.text}</p>
+            </div>
+        `;
+    });
+    reviewsContainer.innerHTML = html;
+    alert('Thank you for your valuable review!');
+    reviewForm.reset();
+});
+                                                                                                                            
