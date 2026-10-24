@@ -522,13 +522,81 @@
         </div>
 
         <!-- Render Containers for Displaying Uploaded Resources -->
-        <section id="vault" class="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 shadow-lg border border-slate-200 dark:border-slate-800">
-            <h3 class="text-2xl font-bold mb-6">📂 Bilingual PDF Vault & Circulars Feed</h3>
-            <div id="pdfContainer" class="text-center py-8 text-slate-400 border border-dashed border-slate-300 dark:border-slate-800 rounded-2xl">
-                <p>No PDF notes uploaded yet. Use Upload Section 2 above!</p>
+                        <!-- Render Containers for Displaying Uploaded Resources with Filters -->
+        <section id="vault" class="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 shadow-lg border border-slate-200 dark:border-slate-800 space-y-6">
+            <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
+                <h3 class="text-2xl font-bold">📂 Bilingual PDF Vault & Circulars Feed</h3>
+                
+                <!-- Student Filter Selectors -->
+                <div class="flex flex-wrap gap-2 items-center">
+                    <select id="filterClass" onchange="renderPdfVault()" class="bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2 text-xs font-medium">
+                        <option value="all">All Classes</option>
+                        <option value="12">Class 12</option>
+                        <option value="11">Class 11</option>
+                        <option value="10">Class 10</option>
+                        <option value="9">Class 9</option>
+                        <option value="8">Class 8</option>
+                        <option value="7">Class 7</option>
+                        <option value="6">Class 6</option>
+                    </select>
+
+                    <select id="filterSubject" onchange="renderPdfVault()" class="bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2 text-xs font-medium">
+                        <option value="all">All Subjects</option>
+                        <option value="business studies">Business Studies</option>
+                        <option value="accountancy">Accountancy</option>
+                        <option value="economics">Economics</option>
+                        <option value="physics">Physics</option>
+                        <option value="chemistry">Chemistry</option>
+                        <option value="biology">Biology</option>
+                        <option value="mathematics">Mathematics</option>
+                        <option value="history">History</option>
+                        <option value="political science">Political Science</option>
+                    </select>
+
+                    <select id="filterChapter" onchange="renderPdfVault()" class="bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2 text-xs font-medium">
+                        <option value="all">All Chapters (1-10)</option>
+                        <option value="ch 1">Chapter 1</option>
+                        <option value="ch 2">Chapter 2</option>
+                        <option value="ch 3">Chapter 3</option>
+                        <option value="ch 4">Chapter 4</option>
+                        <option value="ch 5">Chapter 5</option>
+                        <option value="ch 6">Chapter 6</option>
+                        <option value="ch 7">Chapter 7</option>
+                        <option value="ch 8">Chapter 8</option>
+                        <option value="ch 9">Chapter 9</option>
+                        <option value="ch 10">Chapter 10</option>
+                    </select>
+
+                    <select id="filterMedium" onchange="renderPdfVault()" class="bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2 text-xs font-medium">
+                        <option value="all">All Mediums</option>
+                        <option value="hindi">Hindi</option>
+                        <option value="english">English</option>
+                        <option value="both">Both</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="pdfContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-left">
+                <p class="text-slate-400 text-center col-span-full py-8">No PDF notes uploaded yet.</p>
             </div>
         </section>
-
+        
+                    <div class="p-4 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-sm space-y-2">
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs font-bold text-teal-600 bg-teal-50 dark:bg-teal-950/50 px-2.5 py-1 rounded-full">Class ${p.cls} • ${p.medium}</span>
+                            <span class="text-xs text-slate-400 font-medium">${p.subject}</span>
+                        </div>
+                        <h4 class="font-bold text-base text-slate-800 dark:text-slate-100">${p.title}</h4>
+                        <a href="${p.link}" target="_blank" class="inline-block text-xs bg-teal-600 hover:bg-teal-700 text-white px-3.5 py-1.5 rounded-lg font-medium shadow transition">
+                            <i class="fa-solid fa-file-arrow-down mr-1"></i> View / Download PDF
+                        </a>
+                    </div>
+                `).join('');
+            } else {
+                pdfContainer.innerHTML = `<p class="text-slate-400 text-center col-span-full py-8">No matching PDF notes found for selected filters.</p>`;
+            }
+        }
+        
         <section id="cbse-guidelines" class="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 shadow-lg border border-slate-200 dark:border-slate-800">
             <h3 class="text-2xl font-bold mb-6">📜 CBSE Guidelines & Sample Papers Feed</h3>
             <div id="cbseContainer" class="text-center py-8 text-slate-400 border border-dashed border-slate-300 dark:border-slate-800 rounded-2xl">
