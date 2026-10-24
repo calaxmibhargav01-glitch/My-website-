@@ -920,7 +920,7 @@
             closeModal('formulaModal');
             renderFormulas();
         }
-
+//function render formula 
         function renderFormulas() {
             let sel = document.getElementById('formulaClassFilter');
             let container = document.getElementById('formulaContainer');
@@ -956,28 +956,65 @@
             updateDashboardUI();
         }
 
-        function renderResources() {
-            // Render Videos
-            let vidContainer = document.getElementById('vidContainer');
-            let vids = resources.filter(r => r.type === 'video');
-            if(vidContainer && vids.length > 0) {
-                vidContainer.innerHTML = vids.map(v => `<div class="p-4 bg-white dark:bg-slate-950 border rounded-2xl text-left shadow-sm inline-block w-full sm:w-[48%] lg:w-[30%] m-2"><span class="text-xs font-bold text-blue-600">Class ${v.cls} • ${v.medium}</span><h4 class="font-bold">${v.title}</h4><p class="text-xs text-slate-500">Subject: ${v.subject}</p><a href="${v.link}" target="_blank" class="mt-2 inline-block text-xs bg-blue-600 text-white px-3 py-1 rounded">Watch Video</a></div>`).join('');
-            }
+                <!-- Render Containers for Displaying Uploaded Resources with Filters -->
+        <section id="vault" class="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 shadow-lg border border-slate-200 dark:border-slate-800 space-y-6">
+            <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
+                <h3 class="text-2xl font-bold">📂 Bilingual PDF Vault & Circulars Feed</h3>
+                
+                <!-- Student Filter Selectors -->
+                <div class="flex flex-wrap gap-2 items-center">
+                    <select id="filterClass" onchange="renderPdfVault()" class="bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2 text-xs font-medium">
+                        <option value="all">All Classes</option>
+                        <option value="12">Class 12</option>
+                        <option value="11">Class 11</option>
+                        <option value="10">Class 10</option>
+                        <option value="9">Class 9</option>
+                        <option value="8">Class 8</option>
+                        <option value="7">Class 7</option>
+                        <option value="6">Class 6</option>
+                    </select>
 
-            // Render PDFs
-            let pdfContainer = document.getElementById('pdfContainer');
-            let pdfs = resources.filter(r => r.type === 'pdf');
-            if(pdfContainer && pdfs.length > 0) {
-                pdfContainer.innerHTML = pdfs.map(p => `<div class="p-4 bg-white dark:bg-slate-950 border rounded-2xl text-left shadow-sm inline-block w-full sm:w-[48%] lg:w-[30%] m-2"><span class="text-xs font-bold text-teal-600">Class ${p.cls} • ${p.medium}</span><h4 class="font-bold">${p.title}</h4><p class="text-xs text-slate-500">Subject: ${p.subject}</p><a href="${p.link}" target="_blank" class="mt-2 inline-block text-xs bg-teal-600 text-white px-3 py-1 rounded">View/Download PDF</a></div>`).join('');
-            }
+                    <select id="filterSubject" onchange="renderPdfVault()" class="bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2 text-xs font-medium">
+                        <option value="all">All Subjects</option>
+                        <option value="business studies">Business Studies</option>
+                        <option value="accountancy">Accountancy</option>
+                        <option value="economics">Economics</option>
+                        <option value="physics">Physics</option>
+                        <option value="chemistry">Chemistry</option>
+                        <option value="biology">Biology</option>
+                        <option value="mathematics">Mathematics</option>
+                        <option value="history">History</option>
+                        <option value="political science">Political Science</option>
+                    </select>
 
-            // Render CBSE Circulars
-            let cbseContainer = document.getElementById('cbseContainer');
-            let cbses = resources.filter(r => r.type === 'cbse');
-            if(cbseContainer && cbses.length > 0) {
-                cbseContainer.innerHTML = cbses.map(c => `<div class="p-4 bg-white dark:bg-slate-950 border rounded-2xl text-left shadow-sm inline-block w-full sm:w-[48%] lg:w-[30%] m-2"><span class="text-xs font-bold text-amber-600">Class ${c.cls} • ${c.medium}</span><h4 class="font-bold">${c.title}</h4><a href="${c.link}" target="_blank" class="mt-2 inline-block text-xs bg-amber-600 text-white px-3 py-1 rounded">View Circular/Sample Paper</a></div>`).join('');
-            }
-        }
+                    <select id="filterChapter" onchange="renderPdfVault()" class="bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2 text-xs font-medium">
+                        <option value="all">All Chapters (1-10)</option>
+                        <option value="ch 1">Chapter 1</option>
+                        <option value="ch 2">Chapter 2</option>
+                        <option value="ch 3">Chapter 3</option>
+                        <option value="ch 4">Chapter 4</option>
+                        <option value="ch 5">Chapter 5</option>
+                        <option value="ch 6">Chapter 6</option>
+                        <option value="ch 7">Chapter 7</option>
+                        <option value="ch 8">Chapter 8</option>
+                        <option value="ch 9">Chapter 9</option>
+                        <option value="ch 10">Chapter 10</option>
+                    </select>
+
+                    <select id="filterMedium" onchange="renderPdfVault()" class="bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2 text-xs font-medium">
+                        <option value="all">All Mediums</option>
+                        <option value="hindi">Hindi</option>
+                        <option value="english">English</option>
+                        <option value="both">Both</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="pdfContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-left">
+                <p class="text-slate-400 text-center col-span-full py-8">No PDF notes uploaded yet.</p>
+            </div>
+        </section>
+         }
 
         // Instant Auto-Search
         function performGlobalSearch(query) {
