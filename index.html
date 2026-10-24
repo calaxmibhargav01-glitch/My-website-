@@ -989,8 +989,7 @@
             renderFormulas();
         }
 //function render formula 
-        <script>
-    function renderPdfVault() {
+        function renderPdfVault() {
         let pdfContainer = document.getElementById('pdfContainer');
         if(!pdfContainer) return;
 
@@ -1026,7 +1025,6 @@
             pdfContainer.innerHTML = `<p class="text-slate-400 text-center col-span-full py-8">No matching PDF notes found for selected filters.</p>`;
         }
     }
-</script>
     
         // Separate Upload Handler
         function handleSeparateUpload(e, defaultType) {
@@ -1048,7 +1046,7 @@
 
             resources.push({ type: defaultType, cls, subject, medium, title, link });
             localStorage.setItem('scanToStudy_resources', JSON.stringify(resources));
-            renderResources();
+            renderPdfVault();
             alert(`✅ ${defaultType.toUpperCase()} published successfully from device gallery/link and saved permanently!`);
             e.target.reset();
             updateDashboardUI();
