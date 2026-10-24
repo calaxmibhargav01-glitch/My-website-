@@ -419,16 +419,16 @@
                     </div>
                 </form>
             </section>
-                        <!-- Upload Box 2: PDF Notes -->
+                                    <!-- Upload Box 2: PDF Notes (Updated with Class, Subject, Chapter & Medium Options) -->
             <section class="bg-gradient-to-br from-teal-900 to-emerald-900 text-white rounded-3xl p-6 sm:p-10 shadow-xl border border-teal-700">
                 <span class="bg-white/20 text-teal-200 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">Upload Section 2</span>
                 <h3 class="text-2xl sm:text-3xl font-bold mt-3 mb-2">📚 Upload Bilingual PDF Notes</h3>
-                <p class="text-teal-200 text-sm mb-6">Upload PDF chapter notes and study material directly from your phone/PC gallery.</p>
+                <p class="text-teal-200 text-sm mb-6">Upload PDF chapter notes, select class, subject, medium and chapter directly from your gallery.</p>
 
                 <form onsubmit="handleSeparateUpload(event, 'pdf')" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20">
                     <input type="hidden" id="upType_pdf" value="pdf">
                     <div>
-                        <label class="block text-xs font-medium mb-1">Class</label>
+                        <label class="block text-xs font-medium mb-1">Select Class</label>
                         <select id="upClass_pdf" class="w-full bg-white/20 border border-white/30 rounded-xl px-3 py-2 text-sm text-white focus:outline-none">
                             <option value="12" class="text-slate-900">Class 12</option>
                             <option value="11" class="text-slate-900">Class 11</option>
@@ -440,20 +440,20 @@
                         </select>
                     </div>
                     <div>
-                        <label class="block text-xs font-medium mb-1">Subject</label>
-                        <input type="text" id="upSubject_pdf" placeholder="e.g., Chemistry / Economics" class="w-full bg-white/20 border border-white/30 rounded-xl px-3 py-2 text-sm placeholder-teal-300 text-white focus:outline-none" required>
+                        <label class="block text-xs font-medium mb-1">Select Subject</label>
+                        <input type="text" id="upSubject_pdf" placeholder="e.g., Physics / Accountancy" class="w-full bg-white/20 border border-white/30 rounded-xl px-3 py-2 text-sm placeholder-teal-300 text-white focus:outline-none" required>
                     </div>
                     <div>
-                        <label class="block text-xs font-medium mb-1">Medium</label>
+                        <label class="block text-xs font-medium mb-1">Chapter Name / Title</label>
+                        <input type="text" id="upTitle_pdf" placeholder="e.g., Chapter 1: Partnership" class="w-full bg-white/20 border border-white/30 rounded-xl px-3 py-2 text-sm placeholder-teal-300 text-white focus:outline-none" required>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium mb-1">Select Medium</label>
                         <select id="upMedium_pdf" class="w-full bg-white/20 border border-white/30 rounded-xl px-3 py-2 text-sm text-white focus:outline-none">
                             <option value="hindi" class="text-slate-900">Hindi Medium</option>
                             <option value="english" class="text-slate-900">English Medium</option>
                             <option value="both" class="text-slate-900">Both (हिंदी & English)</option>
                         </select>
-                    </div>
-                    <div>
-                        <label class="block text-xs font-medium mb-1">Chapter / Title Name</label>
-                        <input type="text" id="upTitle_pdf" placeholder="Notes Title" class="w-full bg-white/20 border border-white/30 rounded-xl px-3 py-2 text-sm placeholder-teal-300 text-white focus:outline-none" required>
                     </div>
                     <div class="sm:col-span-4">
                         <label class="block text-xs font-medium mb-1">Choose PDF / Photo File from Device Gallery OR Paste URL</label>
@@ -469,8 +469,8 @@
                     </div>
                 </form>
             </section>
-
-            <!-- Upload Box 3: CBSE Circulars & Sample Papers -->
+            
+         <!-- Upload Box 3: CBSE Circulars & Sample Papers -->
             <section class="bg-gradient-to-br from-amber-900 to-orange-900 text-white rounded-3xl p-6 sm:p-10 shadow-xl border border-amber-700">
                 <span class="bg-white/20 text-amber-200 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">Upload Section 3</span>
                 <h3 class="text-2xl sm:text-3xl font-bold mt-3 mb-2">📜 Upload CBSE Circulars & Sample Papers</h3>
