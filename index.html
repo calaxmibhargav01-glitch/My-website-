@@ -1,442 +1,298 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scan to Study | Complete Educational Hub (Classes 6-12)</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            50: '#eef2ff',
-                            100: '#e0e7ff',
-                            500: '#6366f1',
-                            600: '#4f46e5',
-                            700: '#4338ca',
-                            900: '#312e81'
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>Scan to Study | Complete Educational Hub</title>
     <style>
-        body { font-family: 'Poppins', sans-serif; scroll-behavior: smooth; }
-        .hero-bg {
-            background: linear-gradient(135deg, rgba(30, 27, 75, 0.95) 0%, rgba(79, 70, 229, 0.9) 100%), 
-                        url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;
+        /* --- Themes --- */
+        :root {
+            --bg-color: #f4f7f6;
+            --text-color: #333333;
+            --card-bg: #ffffff;
+            --primary-color: #4a90e2;
+            --primary-hover: #357abd;
+            --border-color: #dddddd;
         }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
+
+        [data-theme="dark"] {
+            --bg-color: #121212;
+            --text-color: #e0e0e0;
+            --card-bg: #1e1e1e;
+            --primary-color: #bb86fc;
+            --primary-hover: #9955eb;
+            --border-color: #333333;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            background-color: var(--card-bg);
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .nav-controls {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        button, .btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.2s;
+        }
+
+        button:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+        }
+
+        .full-width {
+            grid-column: span 2;
+        }
+
+        h2 {
+            margin-top: 0;
+            font-size: 18px;
+            color: var(--primary-color);
+        }
+
+        /* Timer Styles */
+        .timer-display {
+            font-size: 40px;
+            font-weight: bold;
+            text-align: center;
+            margin: 15px 0;
+            letter-spacing: 2px;
+        }
+
+        .timer-btns, .flex-row {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        /* AI Doubt Box */
+        textarea {
+            width: 100%;
+            height: 80px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid var(--border-color);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            resize: none;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+        }
+
+        .ai-response {
+            margin-top: 10px;
+            padding: 10px;
+            background: rgba(74, 144, 226, 0.1);
+            border-left: 4px solid var(--primary-color);
+            border-radius: 4px;
+            font-size: 14px;
+            display: none;
+        }
+
+        /* Notification Badge */
+        .notification-icon {
+            position: relative;
+            cursor: pointer;
+            font-size: 20px;
+        }
+        .badge {
+            position: absolute;
+            top: -5px;
+            right: -8px;
+            background: red;
+            color: white;
+            font-size: 10px;
+            padding: 2px 5px;
+            border-radius: 50%;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            .full-width {
+                grid-column: span 1;
+            }
         }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen">
+<body data-theme="light">
 
-    <!-- Top Announcement Bar -->
-    <div class="bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-700 text-white text-xs sm:text-sm py-2 px-4 text-center font-medium shadow-inner flex items-center justify-center gap-2">
-        <i class="fa-solid fa-bullhorn animate-bounce"></i>
-        <span>Welcome to Scan to Study! Scan QR from your Geometry Box or Explore Online. Created by Lakshmi, Afiya, Shreya, Simran & Ekta.</span>
-    </div>
-
-    <!-- Navigation Bar -->
-    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <!-- Brand Logo -->
-            <a href="#" class="flex items-center gap-3 group">
-                <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center text-white shadow-lg shadow-indigo-200 group-hover:scale-105 transition-transform">
-                    <i class="fa-solid fa-qrcode text-2xl"></i>
-                </div>
-                <div>
-                    <h1 class="text-xl font-bold bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent leading-tight">Scan to Study</h1>
-                    <p class="text-xs text-gray-500 font-medium">Classes 6th to 12th • All Streams</p>
-                </div>
-            </a>
-
-            <!-- Desktop Navigation Links -->
-            <nav class="hidden md:flex items-center gap-8 font-medium text-sm text-gray-600">
-                <a href="#home" class="hover:text-indigo-600 transition-colors">Home</a>
-                <a href="#explore" class="hover:text-indigo-600 transition-colors">Study Portal</a>
-                <a href="#cbse" class="hover:text-indigo-600 transition-colors">CBSE Updates</a>
-                <a href="#experiments" class="hover:text-indigo-600 transition-colors">Science Labs</a>
-                <a href="#about" class="hover:text-indigo-600 transition-colors">Our Team</a>
-            </nav>
-
-            <!-- Header Action Buttons -->
-            <div class="flex items-center gap-3">
-                <!-- Notification Bell -->
-                <button onclick="openNotifications()" class="relative p-2.5 rounded-xl bg-gray-100 hover:bg-indigo-50 text-gray-700 hover:text-indigo-600 transition-colors" title="Notifications">
-                    <i class="fa-solid fa-bell text-lg"></i>
-                    <span id="notifBadge" class="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white rounded-full text-xs flex items-center justify-center font-bold shadow">3</span>
-                </button>
-
-                <!-- Admin Login Button -->
-                <button onclick="openAdminModal()" class="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-indigo-50 hover:bg-indigo-100 text-indigo-700 font-semibold text-sm transition-all shadow-sm">
-                    <i class="fa-solid fa-lock text-xs"></i>
-                    <span>Owner Login</span>
-                </button>
+    <!-- Header & Controls -->
+    <header>
+        <div class="logo">📚 Scan to Study</div>
+        <div class="nav-controls">
+            <div class="notification-icon" onclick="showNotificationAlert()">
+                🔔 <span class="badge">1</span>
             </div>
+            <button onclick="toggleTheme()">🌓 Theme</button>
+            <button onclick="alert('Login / Signup modal can be opened here!')">👤 Login</button>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero-bg text-white py-20 lg:py-28 px-4 relative overflow-hidden">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
-            <div class="space-y-6">
-                <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md text-indigo-200 text-xs font-semibold uppercase tracking-wider border border-white/20">
-                    <i class="fa-solid fa-star text-amber-400"></i> Ultimate Learning Platform
-                </span>
-                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
-                    Scan, Learn & Excel from <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 to-yellow-400">Class 6 to 12</span>
-                </h1>
-                <p class="text-gray-200 text-base sm:text-lg max-w-xl font-light">
-                    Access bilingual PDF notes, safe home science experiments, latest CBSE syllabus & date sheets, and expert video tutorials instantly via QR code or online portal.
-                </p>
-                <div class="flex flex-wrap gap-4 pt-4">
-                    <a href="#explore" class="px-8 py-4 rounded-xl bg-gradient-to-r from-amber-400 to-yellow-500 text-gray-900 font-bold shadow-lg hover:shadow-amber-500/25 hover:scale-105 transition-all flex items-center gap-2">
-                        <span>Explore Notes & Videos</span>
-                        <i class="fa-solid fa-arrow-right"></i>
-                    </a>
-                    <a href="#experiments" class="px-8 py-4 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold backdrop-blur-md border border-white/20 transition-all">
-                        Watch Science Labs
-                    </a>
-                </div>
-            </div>
+    <div class="container">
 
-            <!-- Hero Feature Card -->
-            <div class="glass-card p-6 sm:p-8 rounded-3xl shadow-2xl text-gray-800 border border-white/40">
-                <h3 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-                    <i class="fa-solid fa-bolt text-indigo-600"></i> Quick Student Finder
-                </h3>
-                <form onsubmit="quickSearch(event)" class="space-y-4">
-                    <div>
-                        <label class="block text-xs font-semibold text-gray-600 uppercase mb-1">Select Class</label>
-                        <select id="quickClass" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
-                            <option value="6">Class 6th</option>
-                            <option value="7">Class 7th</option>
-                            <option value="8">Class 8th</option>
-                            <option value="9">Class 9th</option>
-                            <option value="10">Class 10th</option>
-                            <option value="11">Class 11th</option>
-                            <option value="12" selected>Class 12th</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-xs font-semibold text-gray-600 uppercase mb-1">Select Stream / Subject</label>
-                        <select id="quickSubject" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
-                            <optgroup label="Science">
-                                <option value="Physics">Physics</option>
-                                <option value="Chemistry">Chemistry</option>
-                                <option value="Biology">Biology</option>
-                                <option value="Mathematics">Mathematics</option>
-                                <option value="Science">General Science</option>
-                            </optgroup>
-                            <optgroup label="Commerce">
-                                <option value="Accountancy">Accountancy</option>
-                                <option value="Business Studies">Business Studies</option>
-                                <option value="Economics">Economics</option>
-                            </optgroup>
-                            <optgroup label="Arts / Humanities & Common">
-                                <option value="History">History</option>
-                                <option value="Political Science">Political Science</option>
-                                <option value="English">English</option>
-                                <option value="Hindi">Hindi</option>
-                                <option value="Social Science">Social Science</option>
-                            </optgroup>
-                        </select>
-                    </div>
-                    <button type="submit" class="w-full py-3.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm shadow-md transition-all flex items-center justify-center gap-2">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                        <span>Search Materials Now</span>
-                    </button>
-                </form>
-            </div>
-        </div>
-    </section>
-        <!-- Main Study Portal Section -->
-    <section id="explore" class="py-20 px-4 max-w-7xl mx-auto">
-        <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
-            <span class="px-3 py-1 rounded-full bg-indigo-100 text-indigo-700 text-xs font-bold uppercase tracking-wider">Interactive Learning Hub</span>
-            <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900">Find Your Study Materials</h2>
-            <p class="text-gray-600 text-sm sm:text-base">Select your class, subject, chapter, and medium to instantly access high-quality PDF notes, science experiment videos, and CBSE guides.</p>
-        </div>
-
-        <!-- Filter Controls Bar -->
-        <div class="bg-white rounded-3xl shadow-xl p-6 sm:p-8 border border-gray-100 mb-12">
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-                <!-- 1. Class -->
-                <div>
-                    <label class="block text-xs font-bold text-gray-600 uppercase mb-2">1. Select Class</label>
-                    <select id="filterClass" onchange="filterContent()" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm font-medium text-gray-800 focus:ring-2 focus:ring-indigo-500 focus:outline-none">
-                        <option value="all">All Classes</option>
-                        <option value="6">Class 6th</option>
-                        <option value="7">Class 7th</option>
-                        <option value="8">Class 8th</option>
-                        <option value="9">Class 9th</option>
-                        <option value="10">Class 10th</option>
-                        <option value="11">Class 11th</option>
-                        <option value="12" selected>Class 12th</option>
-                    </select>
-                </div>
-
-                <!-- 2. Subject -->
-                <div>
-                    <label class="block text-xs font-bold text-gray-600 uppercase mb-2">2. Select Subject</label>
-                    <select id="filterSubject" onchange="filterContent()" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm font-medium text-gray-800 focus:ring-2 focus:ring-indigo-500 focus:outline-none">
-                        <option value="all">All Subjects</option>
-                        <option value="Physics">Physics</option>
-                        <option value="Chemistry">Chemistry</option>
-                        <option value="Biology">Biology</option>
-                        <option value="Mathematics">Mathematics</option>
-                        <option value="Accountancy">Accountancy</option>
-                        <option value="Business Studies">Business Studies</option>
-                        <option value="Economics">Economics</option>
-                        <option value="History">History</option>
-                        <option value="Political Science">Political Science</option>
-                        <option value="English">English</option>
-                        <option value="Hindi">Hindi</option>
-                        <option value="Science">Science (6-10)</option>
-                        <option value="Social Science">Social Science (6-10)</option>
-                    </select>
-                </div>
-
-                <!-- 3. Medium -->
-                <div>
-                    <label class="block text-xs font-bold text-gray-600 uppercase mb-2">3. Select Medium</label>
-                    <select id="filterMedium" onchange="filterContent()" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm font-medium text-gray-800 focus:ring-2 focus:ring-indigo-500 focus:outline-none">
-                        <option value="all">Both Mediums</option>
-                        <option value="English">English Medium</option>
-                        <option value="Hindi">Hindi Medium</option>
-                    </select>
-                </div>
-
-                <!-- 4. Type (Notes vs Videos) -->
-                <div>
-                    <label class="block text-xs font-bold text-gray-600 uppercase mb-2">4. Content Type</label>
-                    <select id="filterType" onchange="filterContent()" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm font-medium text-gray-800 focus:ring-2 focus:ring-indigo-500 focus:outline-none">
-                        <option value="all">All Types</option>
-                        <option value="notes">PDF Notes</option>
-                        <option value="video">Video & Experiments</option>
-                    </select>
-                </div>
-
-                <!-- Search Input -->
-                <div>
-                    <label class="block text-xs font-bold text-gray-600 uppercase mb-2">5. Search Chapter</label>
-                    <div class="relative">
-                        <input type="text" id="searchInput" oninput="filterContent()" placeholder="e.g. Electrostatics..." class="w-full bg-gray-50 border border-gray-200 rounded-xl pl-10 pr-4 py-3 text-sm font-medium text-gray-800 focus:ring-2 focus:ring-indigo-500 focus:outline-none">
-                        <i class="fa-solid fa-search absolute left-3.5 top-3.5 text-gray-400"></i>
-                    </div>
-                </div>
+        <!-- 1. Study Timer (Zero se shuru hone wala) -->
+        <div class="card">
+            <h2>⏱️ Study Timer (अनंत समय)</h2>
+            <div class="timer-display" id="timer">00:00:00</div>
+            <div class="timer-btns">
+                <button onclick="startTimer()">Start</button>
+                <button onclick="pauseTimer()">Pause</button>
+                <button onclick="resetTimer()">Reset</button>
             </div>
         </div>
 
-        <!-- Content Grid Display -->
-        <div id="contentGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Dynamic items will be injected here by JavaScript -->
-        </div>
-    </section>
-
-    <!-- CBSE Updates Section -->
-    <section id="cbse" class="py-20 bg-indigo-900 text-white px-4">
-        <div class="max-w-7xl mx-auto">
-            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
-                <div>
-                    <span class="px-3 py-1 rounded-full bg-white/10 text-indigo-200 text-xs font-bold uppercase tracking-wider border border-white/20">Official Circulars</span>
-                    <h2 class="text-3xl sm:text-4xl font-extrabold mt-3">Latest CBSE Updates & Date Sheets</h2>
-                    <p class="text-indigo-200 text-sm sm:text-base mt-2">Stay ahead with real-time syllabus changes, exam dates, and official notices.</p>
-                </div>
-                <div class="flex items-center gap-2">
-                    <span class="w-3 h-3 rounded-full bg-emerald-400 animate-ping"></span>
-                    <span class="text-xs font-semibold text-emerald-300">Live Sync Enabled</span>
-                </div>
-            </div>
-
-            <div id="cbseGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- CBSE cards injected here -->
+        <!-- 2. Sample Papers & MCQs -->
+        <div class="card">
+            <h2>📝 Sample Papers & MCQs</h2>
+            <p>कक्षा 6 से 12 के लिए अभ्यास सेट और पिछले साल के पेपर्स:</p>
+            <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 15px;">
+                <button onclick="window.location.href='#'">📄 Sample Papers डाउनलोड करें</button>
+                <button onclick="window.location.href='#'">❓ Daily MCQ Quiz लगाएं</button>
             </div>
         </div>
-    </section>
 
-    <!-- Science Lab & Experiments Section -->
-    <section id="experiments" class="py-20 px-4 max-w-7xl mx-auto">
-        <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
-            <span class="px-3 py-1 rounded-full bg-emerald-100 text-emerald-700 text-xs font-bold uppercase tracking-wider">Safe Home Science</span>
-            <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900">Science Experiments You Can Do At Home</h2>
-            <p class="text-gray-600 text-sm sm:text-base">Step-by-step safe science demonstrations curated specially for students from class 6th to 12th.</p>
+        <!-- 3. AI Doubt Box (Full Width) -->
+        <div class="card full-width">
+            <h2>🤖 AI Doubt Solver Box</h2>
+            <p>पढ़ाई के दौरान कोई भी सवाल या संदेह हो? यहाँ टाइप करें:</p>
+            <textarea id="doubtInput" placeholder="अपना सवाल यहाँ लिखें (जैसे: Photosynthesis क्या है?)..."></textarea>
+            <button onclick="askAI()">Ask AI</button>
+            <div class="ai-response" id="aiResponse">
+                <strong>AI उत्तर:</strong> <span id="aiAnswerText"></span>
+            </div>
         </div>
 
-        <div id="experimentsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Experiment cards injected here -->
-        </div>
-    </section>
-
-    <!-- About Us & Team Section -->
-    <section id="about" class="py-20 bg-gradient-to-b from-gray-100 to-indigo-50 px-4 border-t border-gray-200">
-        <div class="max-w-7xl mx-auto text-center space-y-12">
-            <div class="max-w-3xl mx-auto space-y-4">
-                <span class="px-3 py-1 rounded-full bg-indigo-200 text-indigo-800 text-xs font-bold uppercase tracking-wider">Our Visionaries</span>
-                <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900">Meet The Team Behind Scan to Study</h2>
-                <p class="text-gray-600 text-base">Created with passion by Class 12th Commerce students to revolutionize learning through geometry box QR codes!</p>
-            </div>
-
-            <!-- Team Cards -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
-                <div class="bg-white p-6 rounded-2xl shadow-md border border-gray-100 hover:shadow-xl transition-shadow text-center space-y-3">
-                    <div class="w-16 h-16 mx-auto rounded-full bg-gradient-to-tr from-indigo-600 to-violet-500 text-white font-bold text-xl flex items-center justify-center shadow-md">L</div>
-                    <h3 class="font-bold text-gray-900 text-lg">Lakshmi</h3>
-                    <p class="text-xs text-indigo-600 font-semibold uppercase">Founder & Lead Admin</p>
-                </div>
-                <div class="bg-white p-6 rounded-2xl shadow-md border border-gray-100 hover:shadow-xl transition-shadow text-center space-y-3">
-                    <div class="w-16 h-16 mx-auto rounded-full bg-gradient-to-tr from-purple-600 to-pink-500 text-white font-bold text-xl flex items-center justify-center shadow-md">A</div>
-                    <h3 class="font-bold text-gray-900 text-lg">Afiya</h3>
-                    <p class="text-xs text-purple-600 font-semibold uppercase">Co-Founder & Editor</p>
-                </div>
-                <div class="bg-white p-6 rounded-2xl shadow-md border border-gray-100 hover:shadow-xl transition-shadow text-center space-y-3">
-                    <div class="w-16 h-16 mx-auto rounded-full bg-gradient-to-tr from-blue-600 to-indigo-500 text-white font-bold text-xl flex items-center justify-center shadow-md">S</div>
-                    <h3 class="font-bold text-gray-900 text-lg">Shreya</h3>
-                    <p class="text-xs text-blue-600 font-semibold uppercase">Co-Founder & Content</p>
-                </div>
-                <div class="bg-white p-6 rounded-2xl shadow-md border border-gray-100 hover:shadow-xl transition-shadow text-center space-y-3">
-                    <div class="w-16 h-16 mx-auto rounded-full bg-gradient-to-tr from-amber-500 to-orange-500 text-white font-bold text-xl flex items-center justify-center shadow-md">S</div>
-                    <h3 class="font-bold text-gray-900 text-lg">Simran</h3>
-                    <p class="text-xs text-amber-600 font-semibold uppercase">Co-Founder & Manager</p>
-                </div>
-                <div class="bg-white p-6 rounded-2xl shadow-md border border-gray-100 hover:shadow-xl transition-shadow text-center space-y-3">
-                    <div class="w-16 h-16 mx-auto rounded-full bg-gradient-to-tr from-emerald-600 to-teal-500 text-white font-bold text-xl flex items-center justify-center shadow-md">E</div>
-                    <h3 class="font-bold text-gray-900 text-lg">Ekta</h3>
-                    <p class="text-xs text-emerald-600 font-semibold uppercase">Co-Founder & Support</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12 px-4 mt-auto">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-            <div class="space-y-3">
-                <div class="flex items-center gap-2">
-                    <div class="w-10 h-10 rounded-lg bg-indigo-600 flex items-center justify-center text-white font-bold">
-                        <i class="fa-solid fa-qrcode"></i>
-                    </div>
-                    <span class="font-bold text-lg">Scan to Study</span>
-                </div>
-                <p class="text-xs text-gray-400">Scan QR from Geometry Box or visit online for Class 6th to 12th Notes, Science Labs, and CBSE updates in Hindi & English.</p>
-            </div>
-            <div>
-                <h4 class="font-bold text-sm mb-3 uppercase tracking-wider text-indigo-400">Quick Links</h4>
-                <ul class="space-y-2 text-xs text-gray-300">
-                    <li><a href="#home" class="hover:text-white">Home</a></li>
-                    <li><a href="#explore" class="hover:text-white">Study Portal</a></li>
-                    <li><a href="#cbse" class="hover:text-white">CBSE Updates</a></li>
-                    <li><a href="#experiments" class="hover:text-white">Science Labs</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4 class="font-bold text-sm mb-3 uppercase tracking-wider text-indigo-400">Streams Supported</h4>
-                <ul class="space-y-2 text-xs text-gray-300">
-                    <li>Science (Physics, Chem, Bio, Math)</li>
-                    <li>Commerce (Accounts, BST, Eco)</li>
-                    <li>Arts & Humanities</li>
-                    <li>Middle School Science & Sst (6-10)</li>
-                </ul>
-            </div>
-            <div>
-                <h4 class="font-bold text-sm mb-3 uppercase tracking-wider text-indigo-400">Owner Team</h4>
-                <p class="text-xs text-gray-300 leading-relaxed">Lakshmi, Afiya, Shreya, Simran & Ekta.<br>Class 12th Commerce Project.<br>© 2026 Scan to Study. All rights reserved.</p>
-            </div>
-        </div>
-        <div class="max-w-7xl mx-auto pt-6 border-t border-gray-800 text-center text-xs text-gray-500">
-            Proudly built for students across India. Scan geometry box QR to learn anywhere!
-        </div>
-    </footer>
-
-    <!-- Owner Login Modal -->
-    <div id="adminModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4">
-        <div class="bg-white rounded-3xl max-w-md w-full p-8 shadow-2xl relative space-y-6">
-            <button onclick="closeAdminModal()" class="absolute top-6 right-6 text-gray-400 hover:text-gray-600">
-                <i class="fa-solid fa-xmark text-xl"></i>
-            </button>
-            <div class="text-center space-y-2">
-                <div class="w-14 h-14 bg-indigo-100 text-indigo-600 rounded-2xl flex items-center justify-center mx-auto text-2xl">
-                    <i class="fa-solid fa-lock"></i>
-                </div>
-                <h3 class="text-2xl font-bold text-gray-900">Owner Login</h3>
-                <p class="text-xs text-gray-500">Enter secure password to access admin upload dashboard.</p>
-            </div>
-            <form onsubmit="handleAdminLogin(event)" class="space-y-4">
-                <div>
-                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Password</label>
-                    <input type="password" id="adminPasswordInput" placeholder="Enter owner password..." class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none" required>
-                </div>
-                <button type="submit" class="w-full py-3.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl shadow-md transition-all">
-                    Login to Dashboard
-                </button>
-            </form>
-        </div>
     </div>
 
-    <!-- Admin Dashboard Modal (Tabs: Notes, Videos, CBSE) -->
-    <div id="adminDashboardModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4 overflow-y-auto">
-        <div class="bg-white rounded-3xl max-w-3xl w-full p-6 sm:p-8 shadow-2xl relative my-8 space-y-6">
-            <div class="flex items-center justify-between border-b pb-4">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 bg-indigo-600 text-white rounded-xl flex items-center justify-center">
-                        <i class="fa-solid fa-cloud-arrow-up"></i>
-                    </div>
-                    <div>
-                        <h3 class="text-xl font-bold text-gray-900">Owner Upload Dashboard</h3>
-                        <p class="text-xs text-gray-500">Authorized Team Only: Lakshmi, Afiya, Shreya, Simran, Ekta</p>
-                    </div>
-                </div>
-                <button onclick="closeAdminDashboard()" class="text-gray-400 hover:text-gray-600 text-xl"><i class="fa-solid fa-xmark"></i></button>
-            </div>
+    <script>
+        // --- Theme Switcher Logic ---
+        function toggleTheme() {
+            const body = document.body;
+            if (body.getAttribute('data-theme') === 'light') {
+                body.setAttribute('data-theme', 'dark');
+            } else {
+                body.setAttribute('data-theme', 'light');
+            }
+        }
 
-            <!-- Admin Tabs Navigation -->
-            <div class="flex border-b gap-4">
-                <button onclick="switchAdminTab('notes')" id="tabBtnNotes" class="pb-3 font-bold text-sm border-b-2 border-indigo-600 text-indigo-600 transition-all">Upload PDF Notes</button>
-                <button onclick="switchAdminTab('video')" id="tabBtnVideo" class="pb-3 font-bold text-sm border-b-2 border-transparent text-gray-500 hover:text-gray-800 transition-all">Upload Video / Experiment</button>
-                <button onclick="switchAdminTab('cbse')" id="tabBtnCbse" class="pb-3 font-bold text-sm border-b-2 border-transparent text-gray-500 hover:text-gray-800 transition-all">Upload CBSE Notice</button>
-            </div>
+        // --- Timer Logic (0 se start, bina limit ke) ---
+        let seconds = 0, minutes = 0, hours = 0;
+        let timerInterval = null;
+        let isRunning = false;
 
-            <!-- TAB 1: Upload Notes -->
-            <div id="adminTabNotes" class="space-y-4">
-                <form onsubmit="uploadNotes(event)" class="space-y-4">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Class</label>
-                            <select id="upClass" class="w-full bg-gray-50 border rounded-xl px-4 py-2.5 text-sm">
-                                <option value="6">Class 6th</option><option value="7">Class 7th</option><option value="8">Class 8th</option><option value="9">Class 9th</option><option value="10">Class 10th</option><option value="11">Class 11th</option><option value="12" selected>Class 12th</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Subject</label>
-                            <select id="upSubject" class="w-full bg-gray-50 border rounded-xl px-4 py-2.5 text-sm">
-                                <option value="Physics">Physics</option><option value="Chemistry">Chemistry</option><option value="Biology">Biology</option><option value="Mathematics">Mathematics</option><option value="Accountancy">Accountancy</option><option value="Business Studies">Business Studies</option><option value="Economics">Economics</option><option value="History">History</option><option value="Political Science">Political Science</option><option value="English">English</option><option value="Hindi">Hindi</option><option value="Science">Science (6-10)</option><option value="Social Science">Social Science (6-10)</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Medium</label>
-                            <select id="upMedium" class="w-full bg-gray-50 border rounded-xl px-4 py-2.5 text-sm">
-                                <option value="English">English Medium</option><option value="Hindi">Hindi Medium</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Chapter Name</label>
-                            <input type="text" id="upChapter" placeholder="e.g. Chapter 1: Electric Charges" class="w-full bg-gray-50 border rounded-xl px-4 py-2.5 text-sm" required>
-                        </div>
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Select PDF File</label>
-                        <input type="file" id="upPdfFile" accept=".pdf" class="w-full bg-gray-50 border rounded-xl px-4 py-2 text-sm file:mr-4 file:
+        function updateTimerDisplay() {
+            let h = hours < 10 ? "0" + hours : hours;
+            let m = minutes < 10 ? "0" + minutes : minutes;
+            let s = seconds < 10 ? "0" + seconds : seconds;
+            document.getElementById('timer').innerText = `${h}:${m}:${s}`;
+        }
+
+        function startTimer() {
+            if (!isRunning) {
+                isRunning = true;
+                timerInterval = setInterval(() => {
+                    seconds++;
+                    if (seconds === 60) {
+                        seconds = 0;
+                        minutes++;
+                    }
+                    if (minutes === 60) {
+                        minutes = 0;
+                        hours++;
+                    }
+                    updateTimerDisplay();
+                }, 1000);
+            }
+        }
+
+        function pauseTimer() {
+            isRunning = false;
+            clearInterval(timerInterval);
+        }
+
+        function resetTimer() {
+            pauseTimer();
+            seconds = 0;
+            minutes = 0;
+            hours = 0;
+            updateTimerDisplay();
+        }
+
+        // --- AI Doubt Mock Logic ---
+        function askAI() {
+            const query = document.getElementById('doubtInput').value.trim();
+            const responseBox = document.getElementById('aiResponse');
+            const answerText = document.getElementById('aiAnswerText');
+
+            if(query === "") {
+                alert("कृपया पहले अपना सवाल लिखें!");
+                return;
+            }
+
+            responseBox.style.display = "block";
+            answerText.innerText = "सोच रहा हूँ... (यह एक सैंपल रिस्पॉन्स है, आप इसे अपने AI API से जोड़ सकती हैं)";
+            
+            setTimeout(() => {
+                answerText.innerText = `"${query}" का यह बेहतरीन उत्तर है: पढ़ाई करते रहें, कॉन्सेप्ट क्लियर करना सबसे जरूरी है!`;
+            }, 1000);
+        }
+
+        // --- Notification Alert ---
+        function notificationAlert() {
+            alert("🔔 नोटिफिकेशन: नया सैंपल पेपर (Class 10 & 12) अपलोड कर दिया गया है!");
+        }
+        function showNotificationAlert() {
+            notificationAlert();
+        }
+    </script>
+</body>
+</html>
