@@ -1,416 +1,857 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scan to Study | Smart Educational Hub (Class 6-12)</title>
-    <!-- Tailwind CSS -->
+    <title>Scan to Study | Complete Educational Hub (Classes 6-12)</title>
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
                         brand: {
-                            50: '#f0fdf4',
-                            100: '#dcfce7',
-                            500: '#22c55e',
-                            600: '#16a34a',
-                            700: '#15803d',
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                            900: '#312e81'
                         }
                     }
                 }
             }
         }
     </script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Poppins', sans-serif; scroll-behavior: smooth; }
+        .hero-bg {
+            background: linear-gradient(135deg, rgba(30, 27, 75, 0.95) 0%, rgba(79, 70, 229, 0.9) 100%), 
+                        url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+    </style>
 </head>
-<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-brand-500 selection:text-white">
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-100 flex flex-col min-h-screen transition-colors duration-300">
 
-    <!-- Top Announcement Banner -->
-    <div class="bg-gradient-to-r from-emerald-600 to-teal-700 text-white text-xs sm:text-sm py-2 px-4 text-center font-medium shadow-inner">
-        🚀 <strong>Scan to Study</strong> | CM Shri School Amalwas Jwalapuri &bull; Currently <strong>100% Free</strong> &bull; Future Subscription: <strong>₹99/Year</strong>
+    <!-- Top Announcement Bar -->
+    <div class="bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-700 text-white text-xs sm:text-sm py-2 px-4 text-center font-medium shadow-inner flex items-center justify-center gap-2">
+        <i class="fa-solid fa-bullhorn animate-bounce"></i>
+        <span>Welcome to Scan to Study! Scan QR from your Geometry Box or Explore Online. Created by Lakshmi, Afiya, Shreya, Simran & Ekta.</span>
     </div>
 
-    <!-- Navigation Header -->
-    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-slate-200 shadow-sm">
+    <!-- Navigation Bar -->
+    <header class="sticky top-0 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-sm border-b border-gray-100 dark:border-gray-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <div class="flex items-center space-x-3">
-                <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-brand-600 to-emerald-400 flex items-center justify-center text-white shadow-lg shadow-brand-500/30">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center text-white shadow-lg shadow-indigo-200 dark:shadow-none group-hover:scale-105 transition-transform">
                     <i class="fa-solid fa-qrcode text-2xl"></i>
                 </div>
                 <div>
-                    <h1 class="text-xl sm:text-2xl font-black bg-gradient-to-r from-brand-700 to-teal-600 bg-clip-text text-transparent">Scan to Study</h1>
-                    <p class="text-xs text-slate-500 font-medium">CM Shri School Amalwas Jwalapuri</p>
+                    <h1 class="text-xl font-bold bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent leading-tight">Scan to Study</h1>
+                    <p class="text-xs text-gray-500 dark:text-gray-400 font-medium">Classes 6th to 12th • All Streams</p>
                 </div>
-            </div>
-            
-            <nav class="hidden md:flex items-center space-x-6 text-sm font-semibold text-slate-600">
-                <a href="#about" class="hover:text-brand-600 transition">About</a>
-                <a href="#keychain" class="hover:text-brand-600 transition">QR Keychain Kit</a>
-                <a href="#vault" class="hover:text-brand-600 transition">PDF Vault</a>
-                <a href="#lab" class="hover:text-brand-600 transition">DIY Science Lab</a>
-                <a href="#cbse" class="hover:text-brand-600 transition">CBSE Hub</a>
-                <a href="#upload" class="hover:text-brand-600 transition">Upload Hub</a>
-                <a href="#doubts" class="hover:text-brand-600 transition">Ask Doubts</a>
+            </a>
+
+            <!-- Desktop Navigation Links -->
+            <nav class="hidden md:flex items-center gap-6 font-medium text-sm text-gray-600 dark:text-gray-300">
+                <a href="#home" class="hover:text-indigo-600 transition-colors">Home</a>
+                <a href="#explore" class="hover:text-indigo-600 transition-colors">Study Portal</a>
+                <a href="#cbse" class="hover:text-indigo-600 transition-colors">CBSE</a>
+                <a href="#experiments" class="hover:text-indigo-600 transition-colors">Science Labs</a>
+                <a href="#quizSection" class="hover:text-indigo-600 transition-colors">Quiz & Leaderboard</a>
+                <a href="#aiChatSection" class="hover:text-indigo-600 transition-colors">AI Tutor</a>
+                <a href="#feedbackSection" class="hover:text-indigo-600 transition-colors">Reviews</a>
             </nav>
 
-            <div class="flex items-center space-x-3">
-                <a href="#upload" class="hidden sm:inline-flex items-center justify-center px-4 py-2 text-sm font-bold text-white bg-brand-600 rounded-xl hover:bg-brand-700 shadow-md shadow-brand-600/20 transition">
-                    <i class="fa-solid fa-cloud-arrow-up mr-2"></i> Upload
-                </a>
-                <button id="mobileMenuBtn" class="md:hidden text-slate-700 p-2 focus:outline-none">
-                    <i class="fa-solid fa-bars text-xl"></i>
+            <!-- Header Action Buttons -->
+            <div class="flex items-center gap-3">
+                <!-- Dark Mode Toggle -->
+                <button onclick="toggleDarkMode()" class="p-2.5 rounded-xl bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200 hover:bg-indigo-50 transition-colors" title="Toggle Dark/Light Mode">
+                    <i class="fa-solid fa-moon dark:hidden text-lg"></i>
+                    <i class="fa-solid fa-sun hidden dark:inline text-lg text-amber-400"></i>
+                </button>
+
+                <!-- Notification Bell -->
+                <button onclick="openNotifications()" class="relative p-2.5 rounded-xl bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200 hover:bg-indigo-50 transition-colors" title="Notifications">
+                    <i class="fa-solid fa-bell text-lg"></i>
+                    <span id="notifBadge" class="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white rounded-full text-xs flex items-center justify-center font-bold shadow">0</span>
+                </button>
+
+                <!-- Public Upload Button (No Password) -->
+                <button onclick="openUploadModal()" class="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-sm transition-all shadow-md">
+                    <i class="fa-solid fa-cloud-arrow-up text-xs"></i>
+                    <span>Upload Content</span>
                 </button>
             </div>
         </div>
-        
-        <!-- Mobile Dropdown Menu -->
-        <div id="mobileMenu" class="hidden md:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-4 space-y-2">
-            <a href="#about" class="block py-2 text-slate-700 font-medium">About</a>
-            <a href="#keychain" class="block py-2 text-slate-700 font-medium">QR Keychain Kit</a>
-            <a href="#vault" class="block py-2 text-slate-700 font-medium">PDF Vault</a>
-            <a href="#lab" class="block py-2 text-slate-700 font-medium">DIY Science Lab</a>
-            <a href="#cbse" class="block py-2 text-slate-700 font-medium">CBSE Hub</a>
-            <a href="#upload" class="block py-2 text-slate-700 font-medium">Upload Hub</a>
-            <a href="#doubts" class="block py-2 text-slate-700 font-medium">Ask Doubts</a>
-        </div>
     </header>
-
-    <main>
         <!-- Hero Section -->
-        <section id="about" class="relative py-16 sm:py-24 bg-gradient-to-b from-brand-50/60 via-white to-white overflow-hidden">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-                <span class="inline-flex items-center px-3.5 py-1.5 rounded-full text-xs font-bold bg-brand-100 text-brand-800 mb-6 border border-brand-200">
-                    <i class="fa-solid fa-graduation-cap mr-2"></i> Class 6 to 12 Bilingual Educational Hub
+    <section id="home" class="hero-bg text-white py-20 lg:py-28 px-4 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
+            <div class="space-y-6">
+                <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md text-indigo-200 text-xs font-semibold uppercase tracking-wider border border-white/20">
+                    <i class="fa-solid fa-star text-amber-400"></i> Ultimate Learning Platform
                 </span>
-                <h2 class="text-3xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-tight max-w-4xl mx-auto">
-                    Transforming Geometry Box QR Codes into a <span class="bg-gradient-to-r from-brand-600 to-teal-600 bg-clip-text text-transparent">Powerful Learning Tool</span>
-                </h2>
-                <p class="mt-6 text-base sm:text-xl text-slate-600 max-w-2xl mx-auto font-normal">
-                    Scan the QR code from your school keychain or stationery to access complete chapter notes, DIY science lab experiments, and CBSE updates instantly.
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
+                    Scan, Learn & Excel from <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 to-yellow-400">Class 6 to 12</span>
+                </h1>
+                <p class="text-gray-200 text-base sm:text-lg max-w-xl font-light">
+                    Access bilingual PDF notes (with formula sheets), safe home science experiments, AI doubt solving, chapter quizzes, and latest CBSE updates instantly!
                 </p>
-
-                <!-- Creators & School Highlighting Box -->
-                <div class="mt-10 max-w-3xl mx-auto bg-white rounded-2xl shadow-xl shadow-slate-100 border border-slate-200 p-6 sm:p-8 text-left">
-                    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 border-b border-slate-100 pb-4 mb-4">
-                        <div>
-                            <span class="text-xs font-bold text-brand-600 uppercase tracking-widest">Presented By</span>
-                            <h3 class="text-lg font-bold text-slate-900">Class 12 Commerce Students</h3>
-                        </div>
-                        <div class="bg-slate-100 px-4 py-2 rounded-xl text-center sm:text-right">
-                            <span class="text-xs text-slate-500 block">Institution</span>
-                            <strong class="text-sm text-slate-800">CM Shri School Amalwas Jwalapuri</strong>
-                        </div>
-                    </div>
-                    <div>
-                        <span class="text-xs font-bold text-slate-400 block mb-2 uppercase">Project Team Members</span>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 rounded-lg bg-brand-50 text-brand-700 font-bold text-sm border border-brand-100">Lakshmi</span>
-                            <span class="px-3 py-1 rounded-lg bg-brand-50 text-brand-700 font-bold text-sm border border-brand-100">Aafia</span>
-                            <span class="px-3 py-1 rounded-lg bg-brand-50 text-brand-700 font-bold text-sm border border-brand-100">Simran</span>
-                            <span class="px-3 py-1 rounded-lg bg-brand-50 text-brand-700 font-bold text-sm border border-brand-100">Ekta</span>
-                            <span class="px-3 py-1 rounded-lg bg-brand-50 text-brand-700 font-bold text-sm border border-brand-100">Shreya</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mt-10 flex flex-col sm:flex-row justify-center gap-4">
-                    <a href="#vault" class="inline-flex items-center justify-center px-8 py-4 text-base font-bold text-white bg-brand-600 rounded-2xl hover:bg-brand-700 shadow-xl shadow-brand-600/25 transition">
-                        <i class="fa-solid fa-book-open mr-2"></i> Explore PDF Vault
+                <div class="flex flex-wrap gap-4 pt-4">
+                    <a href="#explore" class="px-8 py-4 rounded-xl bg-gradient-to-r from-amber-400 to-yellow-500 text-gray-900 font-bold shadow-lg hover:shadow-amber-500/25 hover:scale-105 transition-all flex items-center gap-2">
+                        <span>Explore Portal</span>
+                        <i class="fa-solid fa-arrow-right"></i>
                     </a>
-                    <a href="#keychain" class="inline-flex items-center justify-center px-8 py-4 text-base font-bold text-slate-700 bg-white border border-slate-300 rounded-2xl hover:bg-slate-50 shadow-sm transition">
-                        <i class="fa-solid fa-key mr-2 text-brand-600"></i> QR Keychain Kit
+                    <a href="#aiChatSection" class="px-8 py-4 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold backdrop-blur-md border border-white/20 transition-all flex items-center gap-2">
+                        <i class="fa-solid fa-robot text-amber-300"></i> Ask AI Tutor
                     </a>
                 </div>
             </div>
-        </section>
 
-        <!-- QR Keychain Distribution Section -->
-        <section id="keychain" class="py-16 bg-white border-y border-slate-100">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <!-- Hero Feature Card -->
+            <div class="glass-card p-6 sm:p-8 rounded-3xl shadow-2xl text-gray-800 border border-white/45">
+                <h3 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                    <i class="fa-solid fa-bolt text-indigo-600"></i> Quick Student Finder
+                </h3>
+                <form onsubmit="quickSearch(event)" class="space-y-4">
                     <div>
-                        <span class="text-brand-600 font-bold text-sm tracking-wider uppercase bg-brand-50 px-3 py-1 rounded-full">Innovative Distribution</span>
-                        <h2 class="text-3xl font-black text-slate-900 mt-4 mb-6">Geometry Box & QR Keychain Kits</h2>
-                        <p class="text-slate-600 text-base leading-relaxed mb-6">
-                            Instead of empty branding codes found in standard geometry boxes, we distribute specially curated <strong>QR Keychains</strong> to students. Simply scan the keychain using any smartphone camera to instantly launch this complete digital study portal!
-                        </p>
-                        <ul class="space-y-3 text-slate-700 font-medium">
-                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-brand-600 mr-3"></i> Durable keychain attached with scannable QR code</li>
-                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-brand-600 mr-3"></i> Instant redirection to Class 6-12 bilingual notes</li>
-                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-brand-600 mr-3"></i> Pocket-friendly learning companion for every student</li>
-                        </ul>
+                        <label class="block text-xs font-semibold text-gray-600 uppercase mb-1">Select Class</label>
+                        <select id="quickClass" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                            <option value="6">Class 6th</option><option value="7">Class 7th</option><option value="8">Class 8th</option><option value="9">Class 9th</option><option value="10">Class 10th</option><option value="11">Class 11th</option><option value="12" selected>Class 12th</option>
+                        </select>
                     </div>
-                    <div class="bg-gradient-to-tr from-brand-50 to-teal-50 p-8 rounded-3xl border border-brand-100 text-center relative shadow-inner">
-                        <div class="w-48 h-48 mx-auto bg-white rounded-2xl shadow-xl p-6 flex flex-col items-center justify-center border border-slate-200">
-                            <i class="fa-solid fa-qrcode text-7xl text-brand-600 mb-2"></i>
-                            <span class="text-xs font-bold text-slate-500 uppercase tracking-widest">Scan Me</span>
-                        </div>
-                        <p class="mt-6 text-sm text-slate-600 font-medium">Scan with your camera to open <span class="text-brand-700 font-bold">Scan to Study</span></p>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-600 uppercase mb-1">Select Stream / Subject</label>
+                        <select id="quickSubject" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                            <optgroup label="Science">
+                                <option value="Physics">Physics</option><option value="Chemistry">Chemistry</option><option value="Biology">Biology</option><option value="Mathematics">Mathematics</option><option value="Science">General Science</option>
+                            </optgroup>
+                            <optgroup label="Commerce">
+                                <option value="Accountancy">Accountancy</option><option value="Business Studies">Business Studies</option><option value="Economics">Economics</option>
+                            </optgroup>
+                            <optgroup label="Arts / Humanities & Common">
+                                <option value="History">History</option><option value="Political Science">Political Science</option><option value="English">English</option><option value="Hindi">Hindi</option><option value="Social Science">Social Science</option>
+                            </optgroup>
+                        </select>
                     </div>
-                </div>
+                    <button type="submit" class="w-full py-3.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm shadow-md transition-all flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <span>Search Materials Now</span>
+                    </button>
+                </form>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- PDF Vault Section (Clean & Empty) -->
-        <section id="vault" class="py-16 bg-slate-50">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center max-w-2xl mx-auto mb-12">
-                    <span class="text-brand-600 font-bold text-sm uppercase tracking-wider bg-brand-100 px-3 py-1 rounded-full">Bilingual Notes</span>
-                    <h2 class="text-3xl font-black text-slate-900 mt-4">Chapter-Wise PDF Vault</h2>
-                    <p class="text-slate-600 mt-2">Access comprehensive notes for Class 6 to 12 in both English and Hindi mediums.</p>
-                </div>
+    <!-- Main Study Portal Section -->
+    <section id="explore" class="py-20 px-4 max-w-7xl mx-auto w-full">
+        <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+            <span class="px-3 py-1 rounded-full bg-indigo-100 text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200 text-xs font-bold uppercase tracking-wider">Interactive Learning Hub</span>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 dark:text-white">Find Your Study Materials</h2>
+            <p class="text-gray-600 dark:text-gray-300 text-sm sm:text-base">Filter by class, subject, medium, and type to instantly access uploaded notes & video tutorials.</p>
+        </div>
 
-                <div class="flex flex-wrap justify-center gap-4 mb-8">
-                    <select class="px-4 py-2.5 rounded-xl border border-slate-300 bg-white font-medium text-slate-700 focus:outline-none focus:border-brand-600">
-                        <option value="">Select Class (Class 6 - 12)</option>
-                        <option value="6">Class 6</option>
-                        <option value="7">Class 7</option>
-                        <option value="8">Class 8</option>
-                        <option value="9">Class 9</option>
-                        <option value="10">Class 10</option>
-                        <option value="11">Class 11</option>
-                        <option value="12">Class 12</option>
-                    </select>
-                    <select class="px-4 py-2.5 rounded-xl border border-slate-300 bg-white font-medium text-slate-700 focus:outline-none focus:border-brand-600">
-                        <option value="">Select Subject (All Subjects)</option>
-                        <option value="math">Mathematics</option>
-                        <option value="science">Science</option>
-                        <option value="social">Social Science</option>
-                        <option value="english">English</option>
-                        <option value="hindi">Hindi</option>
+        <!-- Filter Controls Bar -->
+        <div class="bg-white dark:bg-gray-800 rounded-3xl shadow-xl p-6 sm:p-8 border border-gray-100 dark:border-gray-700 mb-12">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+                <div>
+                    <label class="block text-xs font-bold text-gray-600 dark:text-gray-300 uppercase mb-2">1. Select Class</label>
+                    <select id="filterClass" onchange="filterContent()" class="w-full bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl px-4 py-3 text-sm font-medium text-gray-800 dark:text-gray-200">
+                        <option value="all">All Classes</option><option value="6">Class 6th</option><option value="7">Class 7th</option><option value="8">Class 8th</option><option value="9">Class 9th</option><option value="10">Class 10th</option><option value="11">Class 11th</option><option value="12" selected>Class 12th</option>
                     </select>
                 </div>
-
-                <div id="pdfVaultContainer" class="bg-white rounded-3xl border border-slate-200 p-12 text-center shadow-sm">
-                    <div class="w-16 h-16 bg-brand-50 text-brand-600 rounded-2xl flex items-center justify-center mx-auto mb-4 text-2xl">
-                        <i class="fa-solid fa-folder-open"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-slate-800">No PDF Notes Uploaded Yet</h3>
-                    <p class="text-slate-500 text-sm mt-1 max-w-md mx-auto">Notes uploaded via the Upload Hub below will appear here automatically.</p>
+                <div>
+                    <label class="block text-xs font-bold text-gray-600 dark:text-gray-300 uppercase mb-2">2. Select Subject</label>
+                    <select id="filterSubject" onchange="filterContent()" class="w-full bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl px-4 py-3 text-sm font-medium text-gray-800 dark:text-gray-200">
+                        <option value="all">All Subjects</option><option value="Physics">Physics</option><option value="Chemistry">Chemistry</option><option value="Biology">Biology</option><option value="Mathematics">Mathematics</option><option value="Accountancy">Accountancy</option><option value="Business Studies">Business Studies</option><option value="Economics">Economics</option><option value="History">History</option><option value="Political Science">Political Science</option><option value="English">English</option><option value="Hindi">Hindi</option><option value="Science">Science (6-10)</option><option value="Social Science">Social Science (6-10)</option>
+                    </select>
                 </div>
-            </div>
-        </section>
-                <!-- DIY Science Lab Section (Clean & Empty) -->
-        <section id="lab" class="py-16 bg-white border-t border-slate-100">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center max-w-2xl mx-auto mb-12">
-                    <span class="text-teal-600 font-bold text-sm uppercase tracking-wider bg-teal-50 px-3 py-1 rounded-full">Practical Learning</span>
-                    <h2 class="text-3xl font-black text-slate-900 mt-4">DIY Science Lab Video Gallery</h2>
-                    <p class="text-slate-600 mt-2">Safe home science experiments for classes 6 to 12 with full procedure and video demonstrations.</p>
+                <div>
+                    <label class="block text-xs font-bold text-gray-600 dark:text-gray-300 uppercase mb-2">3. Select Medium</label>
+                    <select id="filterMedium" onchange="filterContent()" class="w-full bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl px-4 py-3 text-sm font-medium text-gray-800 dark:text-gray-200">
+                        <option value="all">Both Mediums</option><option value="English">English Medium</option><option value="Hindi">Hindi Medium</option>
+                    </select>
                 </div>
-
-                <div id="scienceLabContainer" class="bg-slate-50 rounded-3xl border border-slate-200 p-12 text-center shadow-inner">
-                    <div class="w-16 h-16 bg-teal-50 text-teal-600 rounded-2xl flex items-center justify-center mx-auto mb-4 text-2xl">
-                        <i class="fa-solid fa-flask-vial"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-slate-800">No Science Experiment Videos Added Yet</h3>
-                    <p class="text-slate-500 text-sm mt-1 max-w-md mx-auto">Videos uploaded directly from device galleries will show up here.</p>
+                <div>
+                    <label class="block text-xs font-bold text-gray-600 dark:text-gray-300 uppercase mb-2">4. Content Type</label>
+                    <select id="filterType" onchange="filterContent()" class="w-full bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl px-4 py-3 text-sm font-medium text-gray-800 dark:text-gray-200">
+                        <option value="all">All Types</option><option value="notes">PDF Notes</option><option value="video">Video & Experiments</option>
+                    </select>
                 </div>
-            </div>
-        </section>
-
-        <!-- CBSE Updates Section (Clean & Empty) -->
-        <section id="cbse" class="py-16 bg-slate-50 border-t border-slate-200">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center max-w-2xl mx-auto mb-12">
-                    <span class="text-brand-600 font-bold text-sm uppercase tracking-wider bg-brand-100 px-3 py-1 rounded-full">Official Board Hub</span>
-                    <h2 class="text-3xl font-black text-slate-900 mt-4">CBSE Guidelines, Date Sheets & Syllabus</h2>
-                    <p class="text-slate-600 mt-2">Latest updates, exam schedules, and practical guidelines uploaded in PDF format.</p>
-                </div>
-
-                <div id="cbseContainer" class="bg-white rounded-3xl border border-slate-200 p-12 text-center shadow-sm">
-                    <div class="w-16 h-16 bg-brand-50 text-brand-600 rounded-2xl flex items-center justify-center mx-auto mb-4 text-2xl">
-                        <i class="fa-solid fa-bullhorn"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-slate-800">No CBSE Updates or Date Sheets Posted Yet</h3>
-                    <p class="text-slate-500 text-sm mt-1 max-w-md mx-auto">Latest CBSE notices and schedules will appear here when posted.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Upload Hub Section (Device Gallery Video & PDF Uploads) -->
-        <section id="upload" class="py-16 bg-white border-t border-slate-100">
-            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="bg-gradient-to-br from-brand-600 to-teal-700 rounded-3xl shadow-xl p-8 sm:p-12 text-white">
-                    <div class="text-center max-w-xl mx-auto mb-8">
-                        <span class="bg-white/25 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest">Contribute & Earn</span>
-                        <h2 class="text-2xl sm:text-3xl font-black mt-3">Upload Hub</h2>
-                        <p class="text-brand-100 text-sm mt-2">
-                            Upload your notes or pick experiment videos straight from your phone/device gallery. Choose free sharing or paid submission!
-                        </p>
-                    </div>
-
-                    <form id="uploadForm" class="space-y-6 bg-white text-slate-800 p-6 sm:p-8 rounded-2xl shadow-lg">
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                            <div>
-                                <label class="block text-sm font-bold text-slate-700 mb-2">Your Full Name</label>
-                                <input type="text" id="uploaderName" required placeholder="Enter your name" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:border-brand-600">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-bold text-slate-700 mb-2">Upload Section</label>
-                                <select id="uploadType" required class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:border-brand-600">
-                                    <option value="notes">PDF Notes (Class 6-12 Notes Vault)</option>
-                                    <option value="video">DIY Science Lab Video (From Gallery)</option>
-                                    <option value="cbse">CBSE Date Sheet / Syllabus PDF</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                            <div>
-                                <label class="block text-sm font-bold text-slate-700 mb-2">Title / Description</label>
-                                <input type="text" id="uploadTitle" required placeholder="e.g., Physics Chapter 1 Notes / Experiment 3" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:border-brand-600">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-bold text-slate-700 mb-2">Payment Preference</label>
-                                <select id="uploadPreference" required class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:border-brand-600">
-                                    <option value="free">Free Contribution</option>
-                                    <option value="paid">Paid Contribution (Request Payment)</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div>
-                            <label class="block text-sm font-bold text-slate-700 mb-2">Select File or Video from Device Gallery</label>
-                            <input type="file" id="deviceFile" required class="w-full text-sm text-slate-500 file:mr-4 file:py-3 file:px-6 file:rounded-xl file:border-0 file:text-sm file:font-bold file:bg-brand-50 file:text-brand-700 hover:file:bg-brand-100 cursor-pointer">
-                            <p class="text-xs text-slate-400 mt-1">Select your PDF notes or pick video files straight from your phone or PC gallery.</p>
-                        </div>
-
-                        <button type="submit" class="w-full py-4 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-xl shadow-lg shadow-brand-600/30 transition">
-                            <i class="fa-solid fa-cloud-arrow-up mr-2"></i> Submit & Upload to Website
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </section>
-
-        <!-- Ask Doubts Section (Clean & Empty) -->
-        <section id="doubts" class="py-16 bg-slate-50 border-t border-slate-200">
-            <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-10">
-                    <span class="text-brand-600 font-bold text-sm uppercase tracking-wider bg-brand-100 px-3 py-1 rounded-full">Interactive Support</span>
-                    <h2 class="text-3xl font-black text-slate-900 mt-4">Ask Doubts Section</h2>
-                    <p class="text-slate-600 mt-2">Have a question regarding any subject or experiment? Post your doubt here!</p>
-                </div>
-
-                <div class="bg-white rounded-3xl shadow-sm border border-slate-200 p-6 sm:p-8">
-                    <form id="doubtForm" class="space-y-4">
-                        <div>
-                            <label class="block text-sm font-bold text-slate-700 mb-1">Your Name & Class</label>
-                            <input type="text" id="doubtUser" required placeholder="e.g., Rohit, Class 10" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:border-brand-600">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-bold text-slate-700 mb-1">Your Question / Doubt</label>
-                            <textarea id="doubtText" required rows="3" placeholder="Type your doubt here..." class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:border-brand-600"></textarea>
-                        </div>
-                        <button type="submit" class="w-full py-3 bg-slate-900 hover:bg-slate-800 text-white font-bold rounded-xl transition">
-                            <i class="fa-solid fa-paper-plane mr-2"></i> Post Doubt
-                        </button>
-                    </form>
-
-                    <div id="doubtsList" class="mt-8 space-y-4 border-t border-slate-100 pt-6">
-                        <p class="text-center text-slate-400 text-sm italic">No doubts posted yet. Be the first to ask!</p>
+                <div>
+                    <label class="block text-xs font-bold text-gray-600 dark:text-gray-300 uppercase mb-2">5. Search Chapter</label>
+                    <div class="relative">
+                        <input type="text" id="searchInput" oninput="filterContent()" placeholder="e.g. Chapter 1..." class="w-full bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl pl-10 pr-4 py-3 text-sm font-medium text-gray-800 dark:text-gray-200">
+                        <i class="fa-solid fa-search absolute left-3.5 top-3.5 text-gray-400"></i>
                     </div>
                 </div>
             </div>
-        </section>
-    </main>
+        </div>
+
+        <!-- Content Grid Display -->
+        <div id="contentGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+    </section>
+        <!-- AI Doubt Solver (AI Tutor) -->
+    <section id="aiChatSection" class="py-20 bg-gradient-to-r from-violet-900 to-indigo-900 text-white px-4">
+        <div class="max-w-4xl mx-auto space-y-8">
+            <div class="text-center space-y-3">
+                <span class="px-3 py-1 rounded-full bg-amber-400 text-gray-900 text-xs font-bold uppercase tracking-wider">AI Powered Assistant</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold">Ask AI Study Tutor</h2>
+                <p class="text-indigo-200 text-sm">Have a question in Science, Math, or Commerce? Type it here and get instant answers!</p>
+            </div>
+            <div class="bg-white/10 backdrop-blur-md rounded-3xl p-6 sm:p-8 border border-white/20 shadow-2xl space-y-6">
+                <div id="aiChatBox" class="bg-black/30 rounded-2xl p-4 h-64 overflow-y-auto space-y-3 text-sm">
+                    <div class="p-3 rounded-2xl bg-indigo-600/60 text-white max-w-md">
+                        <p class="font-bold text-xs text-amber-300 mb-1">AI Tutor</p>
+                        Hello student! Ask me anything about Physics, Chemistry, Math, Accounts or any school subject.
+                    </div>
+                </div>
+                <form onsubmit="handleAiQuery(event)" class="flex gap-3">
+                    <input type="text" id="aiQueryInput" placeholder="e.g. What is Ohm's Law? or Explain Photosynthesis..." class="flex-1 bg-white/20 border border-white/30 rounded-xl px-4 py-3 text-sm text-white placeholder-indigo-200 focus:outline-none focus:ring-2 focus:ring-amber-400" required>
+                    <button type="submit" class="px-6 py-3 bg-amber-400 hover:bg-amber-500 text-gray-900 font-bold text-sm rounded-xl transition-all shadow-md flex items-center gap-2">
+                        <span>Ask AI</span> <i class="fa-solid fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chapter MCQ Quiz & Leaderboard -->
+    <section id="quizSection" class="py-20 px-4 max-w-5xl mx-auto w-full">
+        <div class="text-center max-w-2xl mx-auto mb-12 space-y-3">
+            <span class="px-3 py-1 rounded-full bg-emerald-100 text-emerald-700 dark:bg-emerald-900 dark:text-emerald-200 text-xs font-bold uppercase tracking-wider">Self Assessment</span>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 dark:text-white">Chapter MCQ Practice & Leaderboard</h2>
+            <p class="text-gray-600 dark:text-gray-300 text-sm">Test your knowledge, find out where you made mistakes, and check top rankers!</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div class="lg:col-span-2 bg-white dark:bg-gray-800 rounded-3xl p-6 sm:p-8 shadow-xl border border-gray-100 dark:border-gray-700 space-y-6">
+                <div id="quizCardContent">
+                    <h3 id="quizQuestionTitle" class="text-lg font-bold text-gray-900 dark:text-white mb-4">Q1. What is the SI unit of Electric Charge?</h3>
+                    <div id="quizOptionsContainer" class="space-y-3">
+                        <label class="block p-4 rounded-2xl bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 cursor-pointer text-sm font-medium">
+                            <input type="radio" name="quizOpt" value="A" class="mr-3"> A) Volt
+                        </label>
+                        <label class="block p-4 rounded-2xl bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 cursor-pointer text-sm font-medium">
+                            <input type="radio" name="quizOpt" value="B" class="mr-3"> B) Coulomb
+                        </label>
+                        <label class="block p-4 rounded-2xl bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 cursor-pointer text-sm font-medium">
+                            <input type="radio" name="quizOpt" value="C" class="mr-3"> C) Ampere
+                        </label>
+                        <label class="block p-4 rounded-2xl bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 cursor-pointer text-sm font-medium">
+                            <input type="radio" name="quizOpt" value="D" class="mr-3"> D) Joule
+                        </label>
+                    </div>
+                    <button onclick="submitQuizAnswer()" class="mt-6 w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl shadow transition-all">Submit Answer & Check Performance</button>
+                </div>
+                <div id="quizResultBox" class="hidden space-y-4 pt-4 border-t dark:border-gray-700">
+                    <div id="quizFeedbackTitle" class="font-bold text-lg"></div>
+                    <p id="quizFeedbackExplanation" class="text-xs text-gray-600 dark:text-gray-300"></p>
+                    <button onclick="resetQuiz()" class="px-6 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white font-semibold rounded-xl text-xs">Try Another Question</button>
+                </div>
+            </div>
+
+            <!-- Leaderboard & Mistakes Analysis -->
+            <div class="bg-white dark:bg-gray-800 rounded-3xl p-6 shadow-xl border border-gray-100 dark:border-gray-700 space-y-6">
+                <div>
+                    <h3 class="font-bold text-gray-900 dark:text-white text-base mb-3 flex items-center gap-2">
+                        <i class="fa-solid fa-trophy text-amber-500"></i> Top Performers Leaderboard
+                    </h3>
+                    <div class="space-y-2 text-xs">
+                        <div class="flex items-center justify-between p-3 rounded-xl bg-amber-50 dark:bg-amber-900/30 border border-amber-200">
+                            <span class="font-bold">1. Anjali Sharma</span>
+                            <span class="font-extrabold text-amber-600">98% (1st)</span>
+                        </div>
+                        <div class="flex items-center justify-between p-3 rounded-xl bg-gray-50 dark:bg-gray-900 border">
+                            <span class="font-bold">2. Rohan Verma</span>
+                            <span class="font-extrabold text-gray-600">95% (2nd)</span>
+                        </div>
+                        <div class="flex items-center justify-between p-3 rounded-xl bg-gray-50 dark:bg-gray-900 border">
+                            <span class="font-bold">3. Priya Singh</span>
+                            <span class="font-extrabold text-amber-700">92% (3rd)</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="pt-4 border-t dark:border-gray-700 space-y-2">
+                    <h4 class="font-bold text-xs uppercase tracking-wider text-indigo-600">Mistake & Improvement Tracker</h4>
+                    <p id="studentMistakeTip" class="text-xs text-gray-500 dark:text-gray-400">Attempt quizzes to identify weak chapters and get customized revision tips!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Smart Study Timer -->
+    <section id="timerSection" class="py-20 bg-indigo-50 dark:bg-gray-800/50 px-4 border-y border-gray-200 dark:border-gray-700">
+        <div class="max-w-xl mx-auto bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-xl border text-center space-y-6">
+            <div class="w-16 h-16 bg-indigo-100 text-indigo-600 rounded-2xl flex items-center justify-center mx-auto text-2xl">
+                <i class="fa-solid fa-stopwatch"></i>
+            </div>
+            <div>
+                <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Smart Study Session Timer</h3>
+                <p class="text-xs text-gray-500 mt-1">Track your study hours and stay focused!</p>
+            </div>
+            <div id="timerDisplay" class="text-5xl font-black text-indigo-600 dark:text-indigo-400 tracking-wider">25:00</div>
+            <div class="flex justify-center gap-4">
+                <button onclick="startStudyTimer()" class="px-6 py-3 bg-emerald-600 text-white font-bold rounded-xl text-sm shadow">Start Timer</button>
+                <button onclick="pauseStudyTimer()" class="px-6 py-3 bg-amber-500 text-white font-bold rounded-xl text-sm shadow">Pause</button>
+                <button onclick="resetStudyTimer()" class="px-6 py-3 bg-gray-200 dark:bg-gray-700 text-white font-bold rounded-xl text-sm shadow">Reset</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Student Feedback & Reviews Section -->
+    <section id="feedbackSection" class="py-20 px-4 max-w-4xl mx-auto w-full">
+        <div class="bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-xl border border-gray-100 dark:border-gray-700 space-y-6">
+            <div class="text-center space-y-2">
+                <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Student Feedback & Reviews</h3>
+                <p class="text-xs text-gray-500">Share your experience or rating about our notes and experiments!</p>
+            </div>
+            <form onsubmit="submitFeedback(event)" class="space-y-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <input type="text" id="fbName" placeholder="Your Name & Class" class="w-full bg-gray-50 dark:bg-gray-900 border rounded-xl px-4 py-3 text-sm" required>
+                    <select id="fbRating" class="w-full bg-gray-50 dark:bg-gray-900 border rounded-xl px-4 py-3 text-sm">
+                        <option value="⭐⭐⭐⭐⭐">5 Stars - Excellent!</option>
+                        <option value="⭐⭐⭐⭐">4 Stars - Very Good</option>
+                        <option value="⭐⭐⭐">3 Stars - Good</option>
+                    </select>
+                </div>
+                <textarea id="fbComment" rows="3" placeholder="Write your review here..." class="w-full bg-gray-50 dark:bg-gray-900 border rounded-xl px-4 py-3 text-sm" required></textarea>
+                <button type="submit" class="w-full py-3 bg-indigo-600 text-white font-bold rounded-xl shadow">Submit Review</button>
+            </form>
+            <div id="feedbackList" class="space-y-3 pt-4 border-t dark:border-gray-700"></div>
+        </div>
+    </section>
+        <!-- CBSE Updates Section -->
+    <section id="cbse" class="py-20 bg-indigo-900 text-white px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+                <div>
+                    <span class="px-3 py-1 rounded-full bg-white/10 text-indigo-200 text-xs font-bold uppercase tracking-wider border border-white/20">Official Circulars</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold mt-3">Latest CBSE Updates & Date Sheets</h2>
+                    <p class="text-indigo-200 text-sm sm:text-base mt-2">Stay ahead with real-time syllabus changes, exam dates, and official notices.</p>
+                </div>
+            </div>
+            <div id="cbseGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+        </div>
+    </section>
+
+    <!-- Science Lab & Experiments Section -->
+    <section id="experiments" class="py-20 px-4 max-w-7xl mx-auto w-full">
+        <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+            <span class="px-3 py-1 rounded-full bg-emerald-100 text-emerald-700 dark:bg-emerald-900 dark:text-emerald-200 text-xs font-bold uppercase tracking-wider">Safe Home Science</span>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 dark:text-white">Science Experiments You Can Do At Home</h2>
+            <p class="text-gray-600 dark:text-gray-300 text-sm sm:text-base">Step-by-step safe science demonstrations curated specially for students from class 6th to 12th.</p>
+        </div>
+        <div id="experimentsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+    </section>
+
+    <!-- About Us & Team Section -->
+    <section id="about" class="py-20 bg-gradient-to-b from-gray-100 to-indigo-50 dark:from-gray-800 dark:to-gray-900 px-4 border-t border-gray-200 dark:border-gray-800">
+        <div class="max-w-7xl mx-auto text-center space-y-12">
+            <div class="max-w-3xl mx-auto space-y-4">
+                <span class="px-3 py-1 rounded-full bg-indigo-200 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-200 text-xs font-bold uppercase tracking-wider">Our Visionaries</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 dark:text-white">Meet The Team Behind Scan to Study</h2>
+                <p class="text-gray-600 dark:text-gray-300 text-base">Created with passion by Class 12th Commerce students to revolutionize learning through geometry box QR codes!</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md border dark:border-gray-700 text-center space-y-3">
+                    <div class="w-16 h-16 mx-auto rounded-full bg-gradient-to-tr from-indigo-600 to-violet-500 text-white font-bold text-xl flex items-center justify-center shadow-md">L</div>
+                    <h3 class="font-bold text-lg">Lakshmi</h3>
+                    <p class="text-xs text-indigo-600 font-semibold uppercase">Founder & Lead Admin</p>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md border dark:border-gray-700 text-center space-y-3">
+                    <div class="w-16 h-16 mx-auto rounded-full bg-gradient-to-tr from-purple-600 to-pink-500 text-white font-bold text-xl flex items-center justify-center shadow-md">A</div>
+                    <h3 class="font-bold text-lg">Afiya</h3>
+                    <p class="text-xs text-purple-600 font-semibold uppercase">Co-Founder & Editor</p>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md border dark:border-gray-700 text-center space-y-3">
+                    <div class="w-16 h-16 mx-auto rounded-full bg-gradient-to-tr from-blue-600 to-indigo-500 text-white font-bold text-xl flex items-center justify-center shadow-md">S</div>
+                    <h3 class="font-bold text-lg">Shreya</h3>
+                    <p class="text-xs text-blue-600 font-semibold uppercase">Co-Founder & Content</p>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md border dark:border-gray-700 text-center space-y-3">
+                    <div class="w-16 h-16 mx-auto rounded-full bg-gradient-to-tr from-amber-500 to-orange-500 text-white font-bold text-xl flex items-center justify-center shadow-md">S</div>
+                    <h3 class="font-bold text-lg">Simran</h3>
+                    <p class="text-xs text-amber-600 font-semibold uppercase">Co-Founder & Manager</p>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md border dark:border-gray-700 text-center space-y-3">
+                    <div class="w-16 h-16 mx-auto rounded-full bg-gradient-to-tr from-emerald-600 to-teal-500 text-white font-bold text-xl flex items-center justify-center shadow-md">E</div>
+                    <h3 class="font-bold text-lg">Ekta</h3>
+                    <p class="text-xs text-emerald-600 font-semibold uppercase">Co-Founder & Support</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Footer -->
-    <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
-            <div>
-                <h3 class="text-white text-lg font-black">Scan to Study</h3>
-                <p class="text-xs text-slate-500 mt-1">CM Shri School Amalwas Jwalapuri &bull; Developed by Lakshmi, Aafia, Simran, Ekta & Shreya</p>
+    <footer class="bg-gray-900 text-white py-12 px-4 mt-auto">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+            <div class="space-y-3">
+                <div class="flex items-center gap-2">
+                    <div class="w-10 h-10 rounded-lg bg-indigo-600 flex items-center justify-center text-white font-bold"><i class="fa-solid fa-qrcode"></i></div>
+                    <span class="font-bold text-lg">Scan to Study</span>
+                </div>
+                <p class="text-xs text-gray-400">Scan QR from Geometry Box or visit online for Class 6th to 12th Notes, Science Labs, and CBSE updates.</p>
             </div>
-            <p class="text-xs text-slate-500">&copy; 2026 Scan to Study. All rights reserved. (Future Plan: ₹99/Year)</p>
+            <div>
+                <h4 class="font-bold text-sm mb-3 uppercase tracking-wider text-indigo-400">Quick Links</h4>
+                <ul class="space-y-2 text-xs text-gray-300">
+                    <li><a href="#home" class="hover:text-white">Home</a></li>
+                    <li><a href="#explore" class="hover:text-white">Study Portal</a></li>
+                    <li><a href="#cbse" class="hover:text-white">CBSE Updates</a></li>
+                    <li><a href="#experiments" class="hover:text-white">Science Labs</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-sm mb-3 uppercase tracking-wider text-indigo-400">Streams Supported</h4>
+                <ul class="space-y-2 text-xs text-gray-300">
+                    <li>Science (Physics, Chem, Bio, Math)</li>
+                    <li>Commerce (Accounts, BST, Eco)</li>
+                    <li>Arts & Humanities</li>
+                    <li>Middle School (6-10)</li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-sm mb-3 uppercase tracking-wider text-indigo-400">Owner Team</h4>
+                <p class="text-xs text-gray-300 leading-relaxed">Lakshmi, Afiya, Shreya, Simran & Ekta.<br>© 2026 Scan to Study.</p>
+            </div>
         </div>
     </footer>
 
-    <!-- Interactive JavaScript -->
-    <script>
-        const menuBtn = document.getElementById('mobileMenuBtn');
-        const mobileMenu = document.getElementById('mobileMenu');
-        menuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
+    <!-- Public Upload Modal (No Password Required) -->
+    <div id="uploadModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-white dark:bg-gray-800 rounded-3xl max-w-3xl w-full p-6 sm:p-8 shadow-2xl relative my-8 space-y-6">
+            <div class="flex items-center justify-between border-b dark:border-gray-700 pb-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-indigo-600 text-white rounded-xl flex items-center justify-center"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white">Public Upload Dashboard</h3>
+                        <p class="text-xs text-gray-500">Anyone can upload notes or videos publicly!</p>
+                    </div>
+                </div>
+                <button onclick="closeUploadModal()" class="text-gray-400 hover:text-gray-600 text-xl"><i class="fa-solid fa-xmark"></i></button>
+            </div>
 
-        document.getElementById('uploadForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const name = document.getElementById('uploaderName').value;
-            const type = document.getElementById('uploadType').value;
-            const title = document.getElementById('uploadTitle').value;
-            const fileInput = document.getElementById('deviceFile');
-            const fileName = fileInput.files[0] ? fileInput.files[0].name : 'Uploaded File';
+            <!-- Tabs -->
+            <div class="flex border-b dark:border-gray-700 gap-4">
+                <button onclick="switchUploadTab('notes')" id="tabBtnNotes" class="pb-3 font-bold text-sm border-b-2 border-indigo-600 text-indigo-600">Upload PDF Notes</button>
+                <button onclick="switchUploadTab('video')" id="tabBtnVideo" class="pb-3 font-bold text-sm border-b-2 border-transparent text-gray-500">Upload Video/Photo</button>
+                <button onclick="switchUploadTab('cbse')" id="tabBtnCbse" class="pb-3 font-bold text-sm border-b-2 border-transparent text-gray-500">Upload CBSE Notice</button>
+            </div>
 
-            if(type === 'notes') {
-                const vaultContainer = document.getElementById('pdfVaultContainer');
-                if(vaultContainer.querySelector('h3')) {
-                    vaultContainer.innerHTML = '<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-left" id="vaultGrid"></div>';
-                }
-                document.getElementById('vaultGrid').innerHTML += `
-                    <div class="bg-slate-50 border border-slate-200 p-5 rounded-2xl shadow-sm">
-                        <span class="text-xs font-bold text-brand-600 uppercase">PDF Notes</span>
-                        <h4 class="font-bold text-slate-900 mt-1">${title}</h4>
-                        <p class="text-xs text-slate-500 mt-1">Uploaded by: ${name}</p>
-                        <a href="#" class="inline-block mt-4 text-sm font-bold text-brand-600 hover:underline"><i class="fa-solid fa-download mr-1"></i> Download PDF (${fileName})</a>
-                    </div>`;
-            } else if(type === 'video') {
-                const labContainer = document.getElementById('scienceLabContainer');
-                if(labContainer.querySelector('h3')) {
-                    labContainer.innerHTML = '<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 text-left" id="labGrid"></div>';
-                }
-                document.getElementById('labGrid').innerHTML += `
-                    <div class="bg-white border border-slate-200 p-5 rounded-2xl shadow-sm">
-                        <div class="bg-slate-900 text-white rounded-xl h-40 flex items-center justify-center mb-4 relative overflow-hidden">
-                            <i class="fa-solid fa-play-circle text-4xl text-brand-500"></i>
-                            <span class="absolute bottom-2 left-2 text-xs bg-black/60 px-2 py-1 rounded">Gallery Video: ${fileName}</span>
-                        </div>
-                        <h4 class="font-bold text-slate-900">${title}</h4>
-                        <p class="text-xs text-slate-500 mt-1">Uploaded by: ${name}</p>
-                    </div>`;
-            } else if(type === 'cbse') {
-                const cbseContainer = document.getElementById('cbseContainer');
-                if(cbseContainer.querySelector('h3')) {
-                    cbseContainer.innerHTML = '<div class="space-y-4 text-left" id="cbseList"></div>';
-                }
-                document.getElementById('cbseList').innerHTML += `
-                    <div class="bg-slate-50 border border-slate-200 p-5 rounded-2xl flex items-center justify-between">
+            <!-- Notes Form -->
+            <div id="uploadTabNotes" class="space-y-4">
+                <form onsubmit="uploadNotes(event)" class="space-y-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
-                            <span class="text-xs font-bold text-brand-600 uppercase">CBSE Update</span>
-                            <h4 class="font-bold text-slate-900 mt-0.5">${title}</h4>
-                            <p class="text-xs text-slate-500">Posted by: ${name}</p>
+                            <label class="block text-xs font-bold uppercase mb-1">Class</label>
+                            <select id="upClass" class="w-full bg-gray-50 dark:bg-gray-900 border rounded-xl px-4 py-2.5 text-sm">
+                                <option value="6">Class 6th</option><option value="7">Class 7th</option><option value="8">Class 8th</option><option value="9">Class 9th</option><option value="10">Class 10th</option><option value="11">Class 11th</option><option value="12" selected>Class 12th</option>
+                            </select>
                         </div>
-                        <a href="#" class="px-4 py-2 bg-brand-600 text-white text-xs font-bold rounded-xl hover:bg-brand-700">View PDF</a>
-                    </div>`;
-            }
+                        <div>
+                            <label class="block text-xs font-bold uppercase mb-1">Subject</label>
+                            <select id="upSubject" class="w-full bg-gray-50 dark:bg-gray-900 border rounded-xl px-4 py-2.5 text-sm">
+                                <option value="Physics">Physics</option><option value="Chemistry">Chemistry</option><option value="Biology">Biology</option><option value="Mathematics">Mathematics</option><option value="Accountancy">Accountancy</option><option value="Business Studies">Business Studies</option><option value="Economics">Economics</option><option value="History">History</option><option value="Political Science">Political Science</option><option value="English">English</option><option value="Hindi">Hindi</option><option value="Science">Science (6-10)</option><option value="Social Science">Social Science (6-10)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold uppercase mb-1">Medium</label>
+                            <select id="upMedium" class="w-full bg-gray-50 dark:bg-gray-900 border rounded-xl px-4 py-2.5 text-sm">
+                                <option value="English">English Medium</option><option value="Hindi">Hindi Medium</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase mb-1">Chapter Name & Formulas Included</label>
+                            <input type="text" id="upChapter" placeholder="e.g. Chapter 1 (Includes Formula Sheet)" class="w-full bg-gray-50 dark:bg-gray-900 border rounded-xl px-4 py-2.5 text-sm" required>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase mb-1">Select PDF File</label>
+                        <input type="file" id="upPdfFile" accept=".pdf" class="w-full bg-gray-50 dark:bg-gray-900 border rounded-xl px-4 py-2 text-sm" required>
+                    </div>
+                    <button type="submit" class="w-full py-3 bg-indigo-600 text-white font-bold rounded-xl shadow">Publish PDF Notes Publicly</button>
+                </form>
+            </div>
 
-            alert('File/Video successfully picked from device gallery and uploaded to website!');
-            this.reset();
+            <!-- Video Form -->
+            <div id="uploadTabVideo" class="space-y-4 hidden">
+                <form onsubmit="uploadVideo(event)" class="space-y-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold uppercase mb-1">Class</label>
+                            <select id="upVClass" class="w-full bg-gray-50 dark:bg-gray-900 border rounded-xl px-4 py-2.5 text-sm">
+                                <option value="6">Class 6th</option><option value="7">Class 7th</option><option value="8">Class 8th</option><option value="9">Class 9th</option><option value="10">Class 10th</option><option value="11">Class 11th</option><option value="12" selected>Class 12th</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase mb-1">Subject</label>
+                            <select id="upVSubject" class="w-full bg-gray-50 dark:bg-gray-900 border rounded-xl px-4 py-2.5 text-sm">
+                                <option value="Physics">Physics</option><option value="Chemistry">Chemistry</option><option value="Biology">Biology</option><option value="Science">Science (Experiments)</option><option value="Mathematics">Mathematics</option><option value="English">English</option><option value="Hindi">Hindi</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold uppercase mb-1">Medium</label>
+                            <select id="upVMedium" class="w-full bg-gray-50 dark:bg-gray-900 border rounded-xl px-4 py-2.5 text-sm">
+                                <option value="English">English Medium</option><option value="Hindi">Hindi Medium</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase mb-1">Title / Chapter</label>
+                            <input type="text" id="upVTitle" placeholder="e.g. Safe Home Experiment" class="w-full bg-gray-50 dark:bg-gray-900 border rounded-xl px-4 py-2.5 text-sm" required>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold uppercase mb-1">Upload from Gallery / Device</label>
+                            <input type="file" id="upVideoFile" accept="video/*,image/*" class="w-full bg-gray-50 dark:bg-gray-900 border rounded-xl px-4 py-2 text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase mb-1">OR YouTube Video Link</label>
+                            <input type="text" id="upYoutubeLink" placeholder="https://www.youtube.com/watch?v=..." class="w-full bg-gray-50 dark:bg-gray-900 border rounded-xl px-4 py-2.5 text-sm">
+                        </div>
+                    </div>
+                    <button type="submit" class="w-full py-3 bg-purple-600 text-white font-bold rounded-xl shadow">Publish Video/Photo Publicly</button>
+                </form>
+            </div>
+
+            <!-- CBSE Form -->
+            <div id="uploadTabCbse" class="space-y-4 hidden">
+                <form onsubmit="uploadCbse(event)" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-bold uppercase mb-1">Notice Title</label>
+                        <input type="text" id="upCbseTitle" placeholder="e.g. CBSE Date Sheet Released" class="w-full bg-gray-50 dark:bg-gray-900 border rounded-xl px-4 py-2.5 text-sm" required>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold uppercase mb-1">Category</label>
+                            <select id="upCbseCategory" class="w-full bg-gray-50 dark:bg-gray-900 border rounded-xl px-4 py-2.5 text-sm">
+                                <option value="Date Sheet">Date Sheet</option><option value="Syllabus">Syllabus</option><option value="Circular">Official Circular</option><option value="Exam Notice">Exam Notice</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase mb-1">Date</label>
+                            <input type="text" id="upCbseDate" placeholder="e.g. October 24, 2026" class="w-full bg-gray-50 dark:bg-gray-900 border rounded-xl px-4 py-2.5 text-sm" required>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase mb-1">Description</label>
+                        <textarea id="upCbseDesc" rows="3" placeholder="Enter details..." class="w-full bg-gray-50 dark:bg-gray-900 border rounded-xl px-4 py-2.5 text-sm" required></textarea>
+                    </div>
+                    <button type="submit" class="w-full py-3 bg-indigo-600 text-white font-bold rounded-xl shadow">Publish CBSE Notice Publicly</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notifications Modal -->
+    <div id="notifModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white dark:bg-gray-800 rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative space-y-6">
+            <button onclick="closeNotifications()" class="absolute top-6 right-6 text-gray-400 hover:text-gray-600"><i class="fa-solid fa-xmark text-xl"></i></button>
+            <div class="flex items-center gap-3 border-b dark:border-gray-700 pb-4">
+                <div class="w-10 h-10 bg-indigo-100 text-indigo-600 rounded-xl flex items-center justify-center"><i class="fa-solid fa-bell"></i></div>
+                <div>
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white">Student Notifications</h3>
+                    <p class="text-xs text-gray-500">Instant updates for new uploads</p>
+                </div>
+            </div>
+            <div id="notifList" class="space-y-3 max-h-96 overflow-y-auto pr-2"></div>
+        </div>
+    </div>
+        <!-- JavaScript Application Logic -->
+    <script>
+        if (!localStorage.getItem('sts_notes')) localStorage.setItem('sts_notes', JSON.stringify([]));
+        if (!localStorage.getItem('sts_videos')) localStorage.setItem('sts_videos', JSON.stringify([]));
+        if (!localStorage.getItem('sts_cbse')) localStorage.setItem('sts_cbse', JSON.stringify([]));
+        if (!localStorage.getItem('sts_notifs')) localStorage.setItem('sts_notifs', JSON.stringify([]));
+        if (!localStorage.getItem('sts_feedbacks')) localStorage.setItem('sts_feedbacks', JSON.stringify([]));
+
+        window.addEventListener('DOMContentLoaded', () => {
+            filterContent();
+            renderCbse();
+            renderExperiments();
+            renderNotifications();
+            renderFeedbacks();
         });
 
-        document.getElementById('doubtForm').addEventListener('submit', function(e) {
+        function toggleDarkMode() { document.documentElement.classList.toggle('dark'); }
+
+        function filterContent() {
+            const fClass = document.getElementById('filterClass').value;
+            const fSubject = document.getElementById('filterSubject').value;
+            const fMedium = document.getElementById('filterMedium').value;
+            const fType = document.getElementById('filterType').value;
+            const query = document.getElementById('searchInput').value.toLowerCase();
+
+            const notes = JSON.parse(localStorage.getItem('sts_notes')) || [];
+            const videos = JSON.parse(localStorage.getItem('sts_videos')) || [];
+            const allItems = [...notes, ...videos];
+
+            const filtered = allItems.filter(item => {
+                if (fClass !== 'all' && item.class !== fClass) return false;
+                if (fSubject !== 'all' && item.subject !== fSubject) return false;
+                if (fMedium !== 'all' && item.medium !== fMedium) return false;
+                if (fType !== 'all' && item.type !== fType) return false;
+                if (query && !item.chapter.toLowerCase().includes(query)) return false;
+                return true;
+            });
+
+            const grid = document.getElementById('contentGrid');
+            if (filtered.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full py-16 text-center space-y-3 bg-white dark:bg-gray-800 rounded-3xl shadow-sm border border-gray-100 dark:border-gray-700">
+                        <div class="w-16 h-16 bg-indigo-50 text-indigo-500 rounded-2xl flex items-center justify-center mx-auto text-2xl"><i class="fa-solid fa-folder-open"></i></div>
+                        <h3 class="text-lg font-bold text-gray-800 dark:text-gray-200">No Study Materials Found</h3>
+                        <p class="text-xs text-gray-500">Click 'Upload Content' to add notes or videos publicly!</p>
+                    </div>
+                `;
+                return;
+            }
+
+            grid.innerHTML = filtered.map(item => {
+                if (item.type === 'notes') {
+                    return `
+                        <div class="bg-white dark:bg-gray-800 rounded-3xl p-6 shadow-xl border border-gray-100 dark:border-gray-700 flex flex-col justify-between space-y-4">
+                            <div>
+                                <div class="flex items-center justify-between mb-3">
+                                    <span class="px-3 py-1 bg-indigo-50 text-indigo-600 rounded-xl text-xs font-bold uppercase">Class ${item.class} • ${item.subject}</span>
+                                    <span class="text-xs font-semibold px-2.5 py-1 bg-gray-100 dark:bg-gray-700 rounded-lg">${item.medium}</span>
+                                </div>
+                                <h3 class="text-lg font-bold text-gray-900 dark:text-white leading-snug">${item.chapter}</h3>
+                                <p class="text-xs text-indigo-500 mt-1 font-semibold"><i class="fa-solid fa-file-pdf mr-1"></i> Includes Formula Sheet & Quick Notes</p>
+                                <p class="text-xs text-gray-400 mt-1"><i class="fa-solid fa-calendar-days mr-1"></i> ${item.date}</p>
+                            </div>
+                            <div class="pt-4 border-t dark:border-gray-700 flex items-center gap-3">
+                                <a href="${item.url || '#'}" download class="flex-1 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs rounded-xl shadow text-center flex items-center justify-center gap-2">
+                                    <i class="fa-solid fa-download"></i> Download PDF Notes
+                                </a>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    let mediaHtml = item.isEmbed ? `<iframe src="${item.url}" class="w-full h-48 rounded-2xl" allowfullscreen></iframe>` : `<video src="${item.url}" controls class="w-full h-48 rounded-2xl object-cover bg-black"></video>`;
+                    return `
+                        <div class="bg-white dark:bg-gray-800 rounded-3xl p-6 shadow-xl border border-gray-100 dark:border-gray-700 flex flex-col justify-between space-y-4">
+                            <div>
+                                <div class="flex items-center justify-between mb-3">
+                                    <span class="px-3 py-1 bg-purple-50 text-purple-600 rounded-xl text-xs font-bold uppercase">Class ${item.class} • ${item.subject}</span>
+                                    <span class="text-xs font-semibold px-2.5 py-1 bg-gray-100 dark:bg-gray-700 rounded-lg">${item.medium}</span>
+                                </div>
+                                ${mediaHtml}
+                                <h3 class="text-lg font-bold text-gray-900 dark:text-white mt-3 leading-snug">${item.chapter}</h3>
+                                <p class="text-xs text-gray-400 mt-1"><i class="fa-solid fa-calendar-days mr-1"></i> ${item.date}</p>
+                            </div>
+                        </div>
+                    `;
+                }
+            }).join('');
+        }
+
+        function renderCbse() {
+            const cbseList = JSON.parse(localStorage.getItem('sts_cbse')) || [];
+            const grid = document.getElementById('cbseGrid');
+            if (cbseList.length === 0) {
+                grid.innerHTML = `<div class="col-span-full text-center py-6 text-indigo-200 text-sm">No CBSE updates posted yet.</div>`;
+                return;
+            }
+            grid.innerHTML = cbseList.map(item => `
+                <div class="bg-white/15 backdrop-blur-md rounded-3xl p-6 border border-white/20 space-y-3">
+                    <div class="flex items-center justify-between">
+                        <span class="px-3 py-1 rounded-full bg-amber-400 text-gray-900 text-xs font-bold">${item.category}</span>
+                        <span class="text-xs text-indigo-200">${item.date}</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-white">${item.title}</h3>
+                    <p class="text-xs text-indigo-100 leading-relaxed">${item.desc}</p>
+                </div>
+            `).join('');
+        }
+
+        function renderExperiments() {
+            const videos = JSON.parse(localStorage.getItem('sts_videos')) || [];
+            const grid = document.getElementById('experimentsGrid');
+            if (videos.length === 0) {
+                grid.innerHTML = `<div class="col-span-full text-center py-10 text-gray-500">No home experiments uploaded yet.</div>`;
+                return;
+            }
+            grid.innerHTML = videos.map(item => `
+                <div class="bg-white dark:bg-gray-800 rounded-3xl p-6 shadow-xl border dark:border-gray-700 space-y-3">
+                    <span class="px-3 py-1 bg-emerald-50 text-emerald-700 text-xs font-bold uppercase rounded-xl">Class ${item.class} Science Lab</span>
+                    <h3 class="font-bold text-lg">${item.chapter}</h3>
+                    <p class="text-xs text-gray-500">Safe home experiment tutorial.</p>
+                </div>
+            `).join('');
+        }
+
+        function renderNotifications() {
+            const notifs = JSON.parse(localStorage.getItem('sts_notifs')) || [];
+            document.getElementById('notifBadge').innerText = notifs.length;
+            const list = document.getElementById('notifList');
+            if (notifs.length === 0) {
+                list.innerHTML = `<div class="text-center py-6 text-gray-400 text-sm">No new notifications.</div>`;
+                return;
+            }
+            list.innerHTML = notifs.map(n => `
+                <div class="p-4 bg-gray-50 dark:bg-gray-900 rounded-2xl border space-y-1">
+                    <div class="flex items-center justify-between">
+                        <h4 class="font-bold text-sm">${n.title}</h4>
+                        <span class="text-[10px] text-gray-400">${n.time}</span>
+                    </div>
+                    <p class="text-xs text-gray-600 dark:text-gray-300">${n.desc}</p>
+                </div>
+            `).join('');
+        }
+
+        function handleAiQuery(e) {
             e.preventDefault();
-            const user = document.getElementById('doubtUser').value;
-            const text = document.getElementById('doubtText').value;
-            const list = document.getElementById('doubtsList');
+            const input = document.getElementById('aiQueryInput');
+            const q = input.value;
+            const chatBox = document.getElementById('aiChatBox');
+            chatBox.innerHTML += `<div class="p-3 rounded-2xl bg-white/20 text-white max-w-md ml-auto text-right"><p class="font-bold text-xs text-amber-300 mb-1">You</p>${q}</div>`;
+            input.value = '';
+            setTimeout(() => {
+                let ans = "That's a great question! Check your chapter notes for detailed derivations.";
+                if (q.toLowerCase().includes('ohm')) ans = "Ohm's Law states $V = IR$.";
+                chatBox.innerHTML += `<div class="p-3 rounded-2xl bg-indigo-600/60 text-white max-w-md"><p class="font-bold text-xs text-amber-300 mb-1">AI Tutor</p>${ans}</div>`;
+                chatBox.scrollTop = chatBox.scrollHeight;
+            }, 600);
+        }
 
-            if(list.querySelector('.italic')) {
-                list.innerHTML = '';
+        function submitQuizAnswer() {
+            const selected = document.querySelector('input[name="quizOpt"]:checked');
+            if (!selected) { alert('Please select an option first!'); return; }
+            const val = selected.value;
+            document.getElementById('quizCardContent').classList.add('hidden');
+            const resBox = document.getElementById('quizResultBox');
+            resBox.classList.remove('hidden');
+            const title = document.getElementById('quizFeedbackTitle');
+            const exp = document.getElementById('quizFeedbackExplanation');
+            const mistakeTip = document.getElementById('studentMistakeTip');
+
+            if (val === 'B') {
+                title.innerHTML = `<span class="text-emerald-600">Correct! Score: 100% (1st Rank Range)</span>`;
+                exp.innerText = "Explanation: The SI unit of electric charge is Coulomb (C).";
+                mistakeTip.innerText = "Great accuracy! Maintain your streak.";
+            } else {
+                title.innerHTML = `<span class="text-red-500">Incorrect! (Your choice was ${val})</span>`;
+                exp.innerText = "Correct Answer is B) Coulomb. Volt is potential difference unit.";
+                mistakeTip.innerText = "Improvement Tip: Revise Chapter 1 electrostatics formulas.";
             }
+        }
+        function resetQuiz() {
+            document.getElementById('quizResultBox').classList.add('hidden');
+            document.getElementById('quizCardContent').classList.remove('hidden');
+            document.querySelectorAll('input[name="quizOpt"]').forEach(i => i.checked = false);
+        }
 
-            list.innerHTML += `
-                <div class="bg-slate-50 border border-slate-200 p-4 rounded-2xl text-left">
-                    <strong class="text-slate-900 text-sm">${user}</strong>
-                    <p class="text-slate-600 text-sm mt-1">${text}</p>
-                </div>`;
+        let timerInterval;
+        let totalSeconds = 25 * 60;
+        function startStudyTimer() {
+            clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+                if (totalSeconds > 0) {
+                    totalSeconds--;
+                    let m = Math.floor(totalSeconds / 60);
+                    let s = totalSeconds % 60;
+                    document.getElementById('timerDisplay').innerText = `${m < 10 ? '0' : ''}${m}:${s < 10 ? '0' : ''}${s}`;
+                } else { clearInterval(timerInterval); alert('Session complete!'); }
+            }, 1000);
+        }
+        function pauseStudyTimer() { clearInterval(timerInterval); }
+        function resetStudyTimer() { clearInterval(timerInterval); totalSeconds = 25*60; document.getElementById('timerDisplay').innerText = "25:00"; }
 
-            this.reset();
-        });
+        function submitFeedback(e) {
+            e.preventDefault();
+            const list = JSON.parse(localStorage.getItem('sts_feedbacks')) || [];
+            list.unshift({ name: document.getElementById('fbName').value, rating: document.getElementById('fbRating').value, comment: document.getElementById('fbComment').value });
+            localStorage.setItem('sts_feedbacks', JSON.stringify(list));
+            alert('Review submitted successfully!');
+            document.getElementById('fbName').value = ''; document.getElementById('fbComment').value = '';
+            renderFeedbacks();
+        }
+        function renderFeedbacks() {
+            const list = JSON.parse(localStorage.getItem('sts_feedbacks')) || [];
+            document.getElementById('feedbackList').innerHTML = list.map(f => `<div class="p-3 bg-gray-50 dark:bg-gray-900 rounded-xl border text-xs space-y-1"><div class="flex justify-between font-bold"><span>${f.name}</span><span>${f.rating}</span></div><p class="text-gray-600 dark:text-gray-300">${f.comment}</p></div>`).join('');
+        }
+
+        function openUploadModal() { document.getElementById('uploadModal').classList.replace('hidden', 'flex'); }
+        function closeUploadModal() { document.getElementById('uploadModal').classList.replace('flex', 'hidden'); }
+        function switchUploadTab(tab) {
+            ['Notes', 'Video', 'Cbse'].forEach(t => {
+                document.getElementById('uploadTab' + t).classList.add('hidden');
+                document.getElementById('tabBtn' + t).className = "pb-3 font-bold text-sm border-b-2 border-transparent text-gray-500";
+            });
+            document.getElementById('uploadTab' + tab.charAt(0).toUpperCase() + tab.slice(1)).classList.remove('hidden');
+            document.getElementById('tabBtn' + tab.charAt(0).toUpperCase() + tab.slice(1)).className = "pb-3 font-bold text-sm border-b-2 border-indigo-600 text-indigo-600";
+        }
+
+        function uploadNotes(e) {
+            e.preventDefault();
+            const notes = JSON.parse(localStorage.getItem('sts_notes')) || [];
+            const newNote = { id: Date.now(), class: document.getElementById('upClass').value, subject: document.getElementById('upSubject').value, medium: document.getElementById('upMedium').value, chapter: document.getElementById('upChapter').value, type: 'notes', url: '#', date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) };
+            notes.unshift(newNote);
+            localStorage.setItem('sts_notes', JSON.stringify(notes));
+            addNotif("New Notes & Formula Sheet Added!", `${newNote.chapter} for Class ${newNote.class} is now live.`);
+            alert('PDF Notes uploaded successfully!');
+            closeUploadModal(); filterContent();
+        }
+
+        function uploadVideo(e) {
+            e.preventDefault();
+            const ytLink = document.getElementById('upYoutubeLink').value;
+            let videoUrl = "https://www.w3schools.com/html/mov_bbb.mp4"; let isEmbed = false;
+            if (ytLink) { isEmbed = true; videoUrl = ytLink.includes('watch?v=') ? ytLink.replace('watch?v=', 'embed/') : ytLink; }
+            const videos = JSON.parse(localStorage.getItem('sts_videos')) || [];
+            const newVideo = { id: Date.now(), class: document.getElementById('upVClass').value, subject: document.getElementById('upVSubject').value, medium: document.getElementById('upVMedium').value, chapter: document.getElementById('upVTitle').value, type: 'video', url: videoUrl, isEmbed: isEmbed, date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) };
+            videos.unshift(newVideo);
+            localStorage.setItem('sts_videos', JSON.stringify(videos));
+            addNotif("New Video Uploaded!", `${newVideo.chapter} is now available.`);
+            alert('Video uploaded successfully!');
+            closeUploadModal(); filterContent(); renderExperiments();
+        }
+
+        function uploadCbse(e) {
+            e.preventDefault();
+            const cbseList = JSON.parse(localStorage.getItem('sts_cbse')) || [];
+            const newCbse = { id: Date.now(), title: document.getElementById('upCbseTitle').value, category: document.getElementById('upCbseCategory').value, date: document.getElementById('upCbseDate').value, desc: document.getElementById('upCbseDesc').value };
+            cbseList.unshift(newCbse);
+            localStorage.setItem('sts_cbse', JSON.stringify(cbseList));
+            addNotif("CBSE Update Released!", newCbse.title);
+            alert('CBSE Notice uploaded successfully!');
+            closeUploadModal(); renderCbse();
+        }
+
+        function addNotif(title, desc) {
+            const notifs = JSON.parse(localStorage.getItem('sts_notifs')) || [];
+            notifs.unshift({ title, desc, time: 'Just now' });
+            localStorage.setItem('sts_notifs', JSON.stringify(notifs));
+            renderNotifications();
+        }
+
+        function openNotifications() { document.getElementById('notifModal').classList.replace('hidden', 'flex'); }
+        function closeNotifications() { document.getElementById('notifModal').classList.replace('flex', 'hidden'); }
+        function quickSearch(e) {
+            e.preventDefault();
+            document.getElementById('filterClass').value = document.getElementById('quickClass').value;
+            document.getElementById('filterSubject').value = document.getElementById('quickSubject').value;
+            document.getElementById('explore').scrollIntoView({ behavior: 'smooth' });
+            filterContent();
+        }
     </script>
 </body>
-    </html>
-    
+</html>
