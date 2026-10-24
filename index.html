@@ -989,15 +989,45 @@
             renderFormulas();
         }
 //function render formula 
-        function renderFormulas() {
-            let sel = document.getElementById('formulaClassFilter');
-            let container = document.getElementById('formulaContainer');
-            if(!sel || !container) return;
-            let f = sel.value;
-            let list = f === 'all' ? formulasList : formulasList.filter(x => x.cls === f);
-            container.innerHTML = list.map(x => `<div class="bg-white dark:bg-slate-950 p-5 rounded-2xl border"><span class="text-xs text-indigo-600 font-bold">${x.sub}</span><h4 class="font-bold">${x.title}</h4><p class="text-xs text-slate-500">${x.desc}</p></div>`).join('');
-        }
+        <script>
+    function renderPdfVault() {
+        let pdfContainer = document.getElementById('pdfContainer');
+        if(!pdfContainer) return;
 
+        let fClass = document.getElementById('filterClass').value;
+        let fSub = document.getElementById('filterSubject').value.toLowerCase();
+        let fChap = document.getElementById('filterChapter').value.toLowerCase();
+        let fMed = document.getElementById('filterMedium').value.toLowerCase();
+
+        let pdfs = resources.filter(r => r.type === 'pdf');
+
+        let filtered = pdfs.filter(p => {
+            let matchClass = (fClass === 'all' || p.cls === fClass);
+            let matchSub = (fSub === 'all' || (p.subject && p.subject.toLowerCase().includes(fSub)));
+            let matchChap = (fChap === 'all' || (p.title && p.title.toLowerCase().includes(fChap)));
+            let matchMed = (fMed === 'all' || p.medium === fMed);
+            return matchClass && matchSub && matchChap && matchMed;
+        });
+
+        if(filtered.length > 0) {
+            pdfContainer.innerHTML = filtered.map(p => `
+                <div class="p-4 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-sm space-y-2">
+                    <div class="flex justify-between items-center">
+                        <span class="text-xs font-bold text-teal-600 bg-teal-50 dark:bg-teal-950/50 px-2.5 py-1 rounded-full">Class ${p.cls} • ${p.medium}</span>
+                        <span class="text-xs text-slate-400 font-medium">${p.subject}</span>
+                    </div>
+                    <h4 class="font-bold text-base text-slate-800 dark:text-slate-100">${p.title}</h4>
+                    <a href="${p.link}" target="_blank" class="inline-block text-xs bg-teal-600 hover:bg-teal-700 text-white px-3.5 py-1.5 rounded-lg font-medium shadow transition">
+                        <i class="fa-solid fa-file-arrow-down mr-1"></i> View / Download PDF
+                    </a>
+                </div>
+            `).join('');
+        } else {
+            pdfContainer.innerHTML = `<p class="text-slate-400 text-center col-span-full py-8">No matching PDF notes found for selected filters.</p>`;
+        }
+    }
+</script>
+    
         // Separate Upload Handler
         function handleSeparateUpload(e, defaultType) {
             e.preventDefault();
