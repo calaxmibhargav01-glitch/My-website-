@@ -34,7 +34,7 @@
     </div>
 
     <!-- Header & Navigation -->
-       <header class="sticky top-0 z-40 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md shadow-sm border-b border-slate-200 dark:border-slate-800">
+    <header class="sticky top-0 z-40 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md shadow-sm border-b border-slate-200 dark:border-slate-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <!-- Logo -->
@@ -50,13 +50,12 @@
 
                 <!-- Desktop Nav Links -->
                 <nav class="hidden lg:flex items-center space-x-3 text-sm font-medium">
-                    <a href="#homework-solver" class="hover:text-blue-600 transition">AI Doubt Solver</a>
+                    <a href="#homework-solver" class="hover:text-blue-600 transition">Homework</a>
                     <a href="#lab-videos" class="hover:text-blue-600 transition">Science Lab</a>
-                    <a href="#timers-calculators" class="hover:text-blue-600 transition">Timer & Calc</a>
+                    <a href="#timers-calculators" class="hover:text-blue-600 transition">Tools</a>
                     <a href="#planner" class="hover:text-blue-600 transition">Planner</a>
                     <a href="#formulas" class="hover:text-blue-600 transition">Formulas</a>
-                    <a href="#quiz" class="hover:text-blue-600 transition font-semibold text-teal-600">Quiz Hub</a>
-                    <a href="#cbse-guidelines" class="hover:text-blue-600 transition font-semibold text-amber-600">Sample Papers</a>
+                    <a href="#quiz" class="hover:text-blue-600 transition">Quiz</a>
                     <a href="#separate-uploads" class="hover:text-blue-600 transition text-blue-600 font-semibold"><i class="fa-solid fa-cloud-arrow-up"></i> Uploads</a>
                     <a href="#doubts-section" class="hover:text-blue-600 transition">Doubts</a>
                 </nav>
@@ -83,18 +82,17 @@
         </div>
         <!-- Mobile Dropdown Menu -->
         <div id="mobileMenu" class="hidden lg:hidden bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 px-4 py-3 space-y-2 text-sm font-medium">
-            <a href="#homework-solver" onclick="toggleMobileMenu()" class="block py-1 hover:text-blue-600">🤖 AI Doubt Solver</a>
-            <a href="#lab-videos" onclick="toggleMobileMenu()" class="block py-1 hover:text-blue-600">🎬 Science Lab Videos</a>
-            <a href="#timers-calculators" onclick="toggleMobileMenu()" class="block py-1 hover:text-blue-600">⏱️ Timer & Calculator</a>
-            <a href="#planner" onclick="toggleMobileMenu()" class="block py-1 hover:text-blue-600">📋 Study Planner</a>
-            <a href="#formulas" onclick="toggleMobileMenu()" class="block py-1 hover:text-blue-600">📐 Formula Deck</a>
-            <a href="#quiz" onclick="toggleMobileMenu()" class="block py-1 text-teal-600 font-semibold">❓ Quiz Hub</a>
-            <a href="#cbse-guidelines" onclick="toggleMobileMenu()" class="block py-1 text-amber-600 font-semibold">📜 CBSE Sample Papers</a>
-            <a href="#separate-uploads" onclick="toggleMobileMenu()" class="block py-1 text-blue-600 font-semibold">📤 Upload Hubs</a>
-            <a href="#doubts-section" onclick="toggleMobileMenu()" class="block py-1 hover:text-blue-600">💬 Community Doubts</a>
+            <a href="#homework-solver" onclick="toggleMobileMenu()" class="block py-1 hover:text-blue-600">Homework Solver</a>
+            <a href="#lab-videos" onclick="toggleMobileMenu()" class="block py-1 hover:text-blue-600">Science Lab Videos</a>
+            <a href="#timers-calculators" onclick="toggleMobileMenu()" class="block py-1 hover:text-blue-600">Tools & Attendance</a>
+            <a href="#planner" onclick="toggleMobileMenu()" class="block py-1 hover:text-blue-600">Study Planner</a>
+            <a href="#formulas" onclick="toggleMobileMenu()" class="block py-1 hover:text-blue-600">Formula Deck</a>
+            <a href="#quiz" onclick="toggleMobileMenu()" class="block py-1 hover:text-blue-600">Quiz Hub</a>
+            <a href="#separate-uploads" onclick="toggleMobileMenu()" class="block py-1 text-blue-600 font-semibold">Upload Hubs (3 Boxes)</a>
+            <a href="#doubts-section" onclick="toggleMobileMenu()" class="block py-1 hover:text-blue-600">Doubts Hub</a>
         </div>
     </header>
-          <!-- Hero Section -->
+        <!-- Hero Section -->
     <section class="relative py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-center overflow-hidden">
         <div class="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-100/60 via-transparent to-transparent dark:from-blue-950/40"></div>
         
@@ -421,16 +419,16 @@
                     </div>
                 </form>
             </section>
-                                    <!-- Upload Box 2: PDF Notes (Updated with Class, Subject, Chapter & Medium Options) -->
+                        <!-- Upload Box 2: PDF Notes with Chapter & Class Selection -->
             <section class="bg-gradient-to-br from-teal-900 to-emerald-900 text-white rounded-3xl p-6 sm:p-10 shadow-xl border border-teal-700">
                 <span class="bg-white/20 text-teal-200 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">Upload Section 2</span>
                 <h3 class="text-2xl sm:text-3xl font-bold mt-3 mb-2">📚 Upload Bilingual PDF Notes</h3>
-                <p class="text-teal-200 text-sm mb-6">Upload PDF chapter notes, select class, subject, medium and chapter directly from your gallery.</p>
+                <p class="text-teal-200 text-sm mb-6">Upload PDF chapter notes with class, subject, chapter (1-10) and medium selection.</p>
 
-                <form onsubmit="handleSeparateUpload(event, 'pdf')" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20">
+                <form onsubmit="handleSeparateUpload(event, 'pdf')" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20">
                     <input type="hidden" id="upType_pdf" value="pdf">
                     <div>
-                        <label class="block text-xs font-medium mb-1">Select Class</label>
+                        <label class="block text-xs font-medium mb-1">Class</label>
                         <select id="upClass_pdf" class="w-full bg-white/20 border border-white/30 rounded-xl px-3 py-2 text-sm text-white focus:outline-none">
                             <option value="12" class="text-slate-900">Class 12</option>
                             <option value="11" class="text-slate-900">Class 11</option>
@@ -442,87 +440,63 @@
                         </select>
                     </div>
                     <div>
-                        <label class="block text-xs font-medium mb-1">Select Subject</label>
-                        <input type="text" id="upSubject_pdf" placeholder="e.g., Physics / Accountancy" class="w-full bg-white/20 border border-white/30 rounded-xl px-3 py-2 text-sm placeholder-teal-300 text-white focus:outline-none" required>
+                        <label class="block text-xs font-medium mb-1">Subject</label>
+                        <select id="upSubject_pdf" class="w-full bg-white/20 border border-white/30 rounded-xl px-3 py-2 text-sm text-white focus:outline-none">
+                            <option value="Business Studies" class="text-slate-900">Business Studies</option>
+                            <option value="Accountancy" class="text-slate-900">Accountancy</option>
+                            <option value="Economics" class="text-slate-900">Economics</option>
+                            <option value="Physics" class="text-slate-900">Physics</option>
+                            <option value="Chemistry" class="text-slate-900">Chemistry</option>
+                            <option value="Biology" class="text-slate-900">Biology</option>
+                            <option value="Mathematics" class="text-slate-900">Mathematics</option>
+                            <option value="History" class="text-slate-900">History</option>
+                            <option value="Political Science" class="text-slate-900">Political Science</option>
+                        </select>
                     </div>
                     <div>
-                        <label class="block text-xs font-medium mb-1">Chapter Name / Title</label>
-                        <input type="text" id="upTitle_pdf" placeholder="e.g., Chapter 1: Partnership" class="w-full bg-white/20 border border-white/30 rounded-xl px-3 py-2 text-sm placeholder-teal-300 text-white focus:outline-none" required>
+                        <label class="block text-xs font-medium mb-1">Chapter (1-10)</label>
+                        <select id="upChapter_pdf" class="w-full bg-white/20 border border-white/30 rounded-xl px-3 py-2 text-sm text-white focus:outline-none">
+                            <option value="Ch 1" class="text-slate-900">Chapter 1</option>
+                            <option value="Ch 2" class="text-slate-900">Chapter 2</option>
+                            <option value="Ch 3" class="text-slate-900">Chapter 3</option>
+                            <option value="Ch 4" class="text-slate-900">Chapter 4</option>
+                            <option value="Ch 5" class="text-slate-900">Chapter 5</option>
+                            <option value="Ch 6" class="text-slate-900">Chapter 6</option>
+                            <option value="Ch 7" class="text-slate-900">Chapter 7</option>
+                            <option value="Ch 8" class="text-slate-900">Chapter 8</option>
+                            <option value="Ch 9" class="text-slate-900">Chapter 9</option>
+                            <option value="Ch 10" class="text-slate-900">Chapter 10</option>
+                        </select>
                     </div>
                     <div>
-                        <label class="block text-xs font-medium mb-1">Select Medium</label>
+                        <label class="block text-xs font-medium mb-1">Medium</label>
                         <select id="upMedium_pdf" class="w-full bg-white/20 border border-white/30 rounded-xl px-3 py-2 text-sm text-white focus:outline-none">
                             <option value="hindi" class="text-slate-900">Hindi Medium</option>
                             <option value="english" class="text-slate-900">English Medium</option>
                             <option value="both" class="text-slate-900">Both (हिंदी & English)</option>
                         </select>
                     </div>
-                    <div class="sm:col-span-4">
+                    <div>
+                        <label class="block text-xs font-medium mb-1">Notes Title</label>
+                        <input type="text" id="upTitle_pdf" placeholder="e.g. Nature of Management" class="w-full bg-white/20 border border-white/30 rounded-xl px-3 py-2 text-sm placeholder-teal-300 text-white focus:outline-none" required>
+                    </div>
+                    <div class="sm:col-span-5">
                         <label class="block text-xs font-medium mb-1">Choose PDF / Photo File from Device Gallery OR Paste URL</label>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                             <input type="file" id="upFile_pdf" accept="application/pdf,image/*" class="w-full bg-white/20 border border-white/30 rounded-xl px-3 py-1.5 text-xs text-white file:mr-4 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-white file:text-teal-900">
                             <input type="url" id="upLink_pdf" placeholder="https://... or sample.pdf" class="w-full bg-white/20 border border-white/30 rounded-xl px-3 py-2 text-sm placeholder-teal-300 text-white focus:outline-none">
                         </div>
                     </div>
-                    <div class="sm:col-span-4 text-right">
+                    <div class="sm:col-span-5 text-right">
                         <button type="submit" class="bg-white text-teal-900 font-bold px-8 py-2.5 rounded-xl hover:bg-teal-50 transition shadow-lg text-sm">
                             <i class="fa-solid fa-cloud-arrow-up mr-2"></i> Upload PDF Notes
                         </button>
                     </div>
                 </form>
             </section>
-            
-         <!-- Upload Box 3: CBSE Circulars & Sample Papers -->
-            <section class="bg-gradient-to-br from-amber-900 to-orange-900 text-white rounded-3xl p-6 sm:p-10 shadow-xl border border-amber-700">
-                <span class="bg-white/20 text-amber-200 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">Upload Section 3</span>
-                <h3 class="text-2xl sm:text-3xl font-bold mt-3 mb-2">📜 Upload CBSE Circulars & Sample Papers</h3>
-                <p class="text-amber-200 text-sm mb-6">Upload official curriculum updates, guidelines, and practice sample papers.</p>
-
-                <form onsubmit="handleSeparateUpload(event, 'cbse')" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20">
-                    <input type="hidden" id="upType_cbse" value="cbse">
-                    <div>
-                        <label class="block text-xs font-medium mb-1">Class</label>
-                        <select id="upClass_cbse" class="w-full bg-white/20 border border-white/30 rounded-xl px-3 py-2 text-sm text-white focus:outline-none">
-                            <option value="12" class="text-slate-900">Class 12</option>
-                            <option value="11" class="text-slate-900">Class 11</option>
-                            <option value="10" class="text-slate-900">Class 10</option>
-                            <option value="all" class="text-slate-900">All Classes (6-12)</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-xs font-medium mb-1">Subject / Category</label>
-                        <input type="text" id="upSubject_cbse" placeholder="e.g., Board Exam / Sample Paper" class="w-full bg-white/20 border border-white/30 rounded-xl px-3 py-2 text-sm placeholder-amber-300 text-white focus:outline-none" required>
-                    </div>
-                    <div>
-                        <label class="block text-xs font-medium mb-1">Medium</label>
-                        <select id="upMedium_cbse" class="w-full bg-white/20 border border-white/30 rounded-xl px-3 py-2 text-sm text-white focus:outline-none">
-                            <option value="hindi" class="text-slate-900">Hindi</option>
-                            <option value="english" class="text-slate-900">English</option>
-                            <option value="both" class="text-slate-900">Both</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-xs font-medium mb-1">Circular / Paper Title</label>
-                        <input type="text" id="upTitle_cbse" placeholder="Sample Paper 2027" class="w-full bg-white/20 border border-white/30 rounded-xl px-3 py-2 text-sm placeholder-amber-300 text-white focus:outline-none" required>
-                    </div>
-                    <div class="sm:col-span-4">
-                        <label class="block text-xs font-medium mb-1">Choose Circular File from Device Gallery OR Paste URL</label>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                            <input type="file" id="upFile_cbse" accept="application/pdf,image/*" class="w-full bg-white/20 border border-white/30 rounded-xl px-3 py-1.5 text-xs text-white file:mr-4 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-white file:text-amber-900">
-                            <input type="url" id="upLink_cbse" placeholder="https://... or sample_paper.pdf" class="w-full bg-white/20 border border-white/30 rounded-xl px-3 py-2 text-sm placeholder-amber-300 text-white focus:outline-none">
-                        </div>
-                    </div>
-                    <div class="sm:col-span-4 text-right">
-                        <button type="submit" class="bg-white text-amber-900 font-bold px-8 py-2.5 rounded-xl hover:bg-amber-50 transition shadow-lg text-sm">
-                            <i class="fa-solid fa-cloud-arrow-up mr-2"></i> Upload CBSE Circular / Sample Paper
-                        </button>
-                    </div>
-                </form>
-            </section>
         </div>
 
-        <!-- Render Containers for Displaying Uploaded Resources -->
-                        <!-- Render Containers for Displaying Uploaded Resources with Filters -->
+        <!-- Render Containers for Displaying Uploaded Resources with Filters -->
         <section id="vault" class="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 shadow-lg border border-slate-200 dark:border-slate-800 space-y-6">
             <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
                 <h3 class="text-2xl font-bold">📂 Bilingual PDF Vault & Circulars Feed</h3>
@@ -542,29 +516,29 @@
 
                     <select id="filterSubject" onchange="renderPdfVault()" class="bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2 text-xs font-medium">
                         <option value="all">All Subjects</option>
-                        <option value="business studies">Business Studies</option>
-                        <option value="accountancy">Accountancy</option>
-                        <option value="economics">Economics</option>
-                        <option value="physics">Physics</option>
-                        <option value="chemistry">Chemistry</option>
-                        <option value="biology">Biology</option>
-                        <option value="mathematics">Mathematics</option>
-                        <option value="history">History</option>
-                        <option value="political science">Political Science</option>
+                        <option value="Business Studies">Business Studies</option>
+                        <option value="Accountancy">Accountancy</option>
+                        <option value="Economics">Economics</option>
+                        <option value="Physics">Physics</option>
+                        <option value="Chemistry">Chemistry</option>
+                        <option value="Biology">Biology</option>
+                        <option value="Mathematics">Mathematics</option>
+                        <option value="History">History</option>
+                        <option value="Political Science">Political Science</option>
                     </select>
 
                     <select id="filterChapter" onchange="renderPdfVault()" class="bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2 text-xs font-medium">
                         <option value="all">All Chapters (1-10)</option>
-                        <option value="ch 1">Chapter 1</option>
-                        <option value="ch 2">Chapter 2</option>
-                        <option value="ch 3">Chapter 3</option>
-                        <option value="ch 4">Chapter 4</option>
-                        <option value="ch 5">Chapter 5</option>
-                        <option value="ch 6">Chapter 6</option>
-                        <option value="ch 7">Chapter 7</option>
-                        <option value="ch 8">Chapter 8</option>
-                        <option value="ch 9">Chapter 9</option>
-                        <option value="ch 10">Chapter 10</option>
+                        <option value="Ch 1">Chapter 1</option>
+                        <option value="Ch 2">Chapter 2</option>
+                        <option value="Ch 3">Chapter 3</option>
+                        <option value="Ch 4">Chapter 4</option>
+                        <option value="Ch 5">Chapter 5</option>
+                        <option value="Ch 6">Chapter 6</option>
+                        <option value="Ch 7">Chapter 7</option>
+                        <option value="Ch 8">Chapter 8</option>
+                        <option value="Ch 9">Chapter 9</option>
+                        <option value="Ch 10">Chapter 10</option>
                     </select>
 
                     <select id="filterMedium" onchange="renderPdfVault()" class="bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2 text-xs font-medium">
@@ -577,30 +551,7 @@
             </div>
 
             <div id="pdfContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-left">
-                <p class="text-slate-400 text-center col-span-full py-8">No PDF notes uploaded yet.</p>
-            </div>
-        </section>
-        
-                    <div class="p-4 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-sm space-y-2">
-                        <div class="flex justify-between items-center">
-                            <span class="text-xs font-bold text-teal-600 bg-teal-50 dark:bg-teal-950/50 px-2.5 py-1 rounded-full">Class ${p.cls} • ${p.medium}</span>
-                            <span class="text-xs text-slate-400 font-medium">${p.subject}</span>
-                        </div>
-                        <h4 class="font-bold text-base text-slate-800 dark:text-slate-100">${p.title}</h4>
-                        <a href="${p.link}" target="_blank" class="inline-block text-xs bg-teal-600 hover:bg-teal-700 text-white px-3.5 py-1.5 rounded-lg font-medium shadow transition">
-                            <i class="fa-solid fa-file-arrow-down mr-1"></i> View / Download PDF
-                        </a>
-                    </div>
-                `).join('');
-            } else {
-                pdfContainer.innerHTML = `<p class="text-slate-400 text-center col-span-full py-8">No matching PDF notes found for selected filters.</p>`;
-            }
-        }
-        
-        <section id="cbse-guidelines" class="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 shadow-lg border border-slate-200 dark:border-slate-800">
-            <h3 class="text-2xl font-bold mb-6">📜 CBSE Guidelines & Sample Papers Feed</h3>
-            <div id="cbseContainer" class="text-center py-8 text-slate-400 border border-dashed border-slate-300 dark:border-slate-800 rounded-2xl">
-                <p>No CBSE circulars uploaded yet. Use Upload Section 3 above!</p>
+                <p class="text-slate-400 text-center col-span-full py-8">No PDF notes uploaded yet. Use Upload Section 2 above!</p>
             </div>
         </section>
                 <!-- 9. Ask Doubts Section -->
@@ -988,44 +939,16 @@
             closeModal('formulaModal');
             renderFormulas();
         }
-//function render formula 
-        function renderPdfVault() {
-        let pdfContainer = document.getElementById('pdfContainer');
-        if(!pdfContainer) return;
 
-        let fClass = document.getElementById('filterClass').value;
-        let fSub = document.getElementById('filterSubject').value.toLowerCase();
-        let fChap = document.getElementById('filterChapter').value.toLowerCase();
-        let fMed = document.getElementById('filterMedium').value.toLowerCase();
-
-        let pdfs = resources.filter(r => r.type === 'pdf');
-
-        let filtered = pdfs.filter(p => {
-            let matchClass = (fClass === 'all' || p.cls === fClass);
-            let matchSub = (fSub === 'all' || (p.subject && p.subject.toLowerCase().includes(fSub)));
-            let matchChap = (fChap === 'all' || (p.title && p.title.toLowerCase().includes(fChap)));
-            let matchMed = (fMed === 'all' || p.medium === fMed);
-            return matchClass && matchSub && matchChap && matchMed;
-        });
-
-        if(filtered.length > 0) {
-            pdfContainer.innerHTML = filtered.map(p => `
-                <div class="p-4 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-sm space-y-2">
-                    <div class="flex justify-between items-center">
-                        <span class="text-xs font-bold text-teal-600 bg-teal-50 dark:bg-teal-950/50 px-2.5 py-1 rounded-full">Class ${p.cls} • ${p.medium}</span>
-                        <span class="text-xs text-slate-400 font-medium">${p.subject}</span>
-                    </div>
-                    <h4 class="font-bold text-base text-slate-800 dark:text-slate-100">${p.title}</h4>
-                    <a href="${p.link}" target="_blank" class="inline-block text-xs bg-teal-600 hover:bg-teal-700 text-white px-3.5 py-1.5 rounded-lg font-medium shadow transition">
-                        <i class="fa-solid fa-file-arrow-down mr-1"></i> View / Download PDF
-                    </a>
-                </div>
-            `).join('');
-        } else {
-            pdfContainer.innerHTML = `<p class="text-slate-400 text-center col-span-full py-8">No matching PDF notes found for selected filters.</p>`;
+        function renderFormulas() {
+            let sel = document.getElementById('formulaClassFilter');
+            let container = document.getElementById('formulaContainer');
+            if(!sel || !container) return;
+            let f = sel.value;
+            let list = f === 'all' ? formulasList : formulasList.filter(x => x.cls === f);
+            container.innerHTML = list.map(x => `<div class="bg-white dark:bg-slate-950 p-5 rounded-2xl border"><span class="text-xs text-indigo-600 font-bold">${x.sub}</span><h4 class="font-bold">${x.title}</h4><p class="text-xs text-slate-500">${x.desc}</p></div>`).join('');
         }
-    }
-    
+
         // Separate Upload Handler
         function handleSeparateUpload(e, defaultType) {
             e.preventDefault();
@@ -1046,71 +969,34 @@
 
             resources.push({ type: defaultType, cls, subject, medium, title, link });
             localStorage.setItem('scanToStudy_resources', JSON.stringify(resources));
-            renderPdfVault();
+            renderResources();
             alert(`✅ ${defaultType.toUpperCase()} published successfully from device gallery/link and saved permanently!`);
             e.target.reset();
             updateDashboardUI();
         }
 
-                <!-- Render Containers for Displaying Uploaded Resources with Filters -->
-        <section id="vault" class="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 shadow-lg border border-slate-200 dark:border-slate-800 space-y-6">
-            <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
-                <h3 class="text-2xl font-bold">📂 Bilingual PDF Vault & Circulars Feed</h3>
-                
-                <!-- Student Filter Selectors -->
-                <div class="flex flex-wrap gap-2 items-center">
-                    <select id="filterClass" onchange="renderPdfVault()" class="bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2 text-xs font-medium">
-                        <option value="all">All Classes</option>
-                        <option value="12">Class 12</option>
-                        <option value="11">Class 11</option>
-                        <option value="10">Class 10</option>
-                        <option value="9">Class 9</option>
-                        <option value="8">Class 8</option>
-                        <option value="7">Class 7</option>
-                        <option value="6">Class 6</option>
-                    </select>
+        function renderResources() {
+            // Render Videos
+            let vidContainer = document.getElementById('vidContainer');
+            let vids = resources.filter(r => r.type === 'video');
+            if(vidContainer && vids.length > 0) {
+                vidContainer.innerHTML = vids.map(v => `<div class="p-4 bg-white dark:bg-slate-950 border rounded-2xl text-left shadow-sm inline-block w-full sm:w-[48%] lg:w-[30%] m-2"><span class="text-xs font-bold text-blue-600">Class ${v.cls} • ${v.medium}</span><h4 class="font-bold">${v.title}</h4><p class="text-xs text-slate-500">Subject: ${v.subject}</p><a href="${v.link}" target="_blank" class="mt-2 inline-block text-xs bg-blue-600 text-white px-3 py-1 rounded">Watch Video</a></div>`).join('');
+            }
 
-                    <select id="filterSubject" onchange="renderPdfVault()" class="bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2 text-xs font-medium">
-                        <option value="all">All Subjects</option>
-                        <option value="business studies">Business Studies</option>
-                        <option value="accountancy">Accountancy</option>
-                        <option value="economics">Economics</option>
-                        <option value="physics">Physics</option>
-                        <option value="chemistry">Chemistry</option>
-                        <option value="biology">Biology</option>
-                        <option value="mathematics">Mathematics</option>
-                        <option value="history">History</option>
-                        <option value="political science">Political Science</option>
-                    </select>
+            // Render PDFs
+            let pdfContainer = document.getElementById('pdfContainer');
+            let pdfs = resources.filter(r => r.type === 'pdf');
+            if(pdfContainer && pdfs.length > 0) {
+                pdfContainer.innerHTML = pdfs.map(p => `<div class="p-4 bg-white dark:bg-slate-950 border rounded-2xl text-left shadow-sm inline-block w-full sm:w-[48%] lg:w-[30%] m-2"><span class="text-xs font-bold text-teal-600">Class ${p.cls} • ${p.medium}</span><h4 class="font-bold">${p.title}</h4><p class="text-xs text-slate-500">Subject: ${p.subject}</p><a href="${p.link}" target="_blank" class="mt-2 inline-block text-xs bg-teal-600 text-white px-3 py-1 rounded">View/Download PDF</a></div>`).join('');
+            }
 
-                    <select id="filterChapter" onchange="renderPdfVault()" class="bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2 text-xs font-medium">
-                        <option value="all">All Chapters (1-10)</option>
-                        <option value="ch 1">Chapter 1</option>
-                        <option value="ch 2">Chapter 2</option>
-                        <option value="ch 3">Chapter 3</option>
-                        <option value="ch 4">Chapter 4</option>
-                        <option value="ch 5">Chapter 5</option>
-                        <option value="ch 6">Chapter 6</option>
-                        <option value="ch 7">Chapter 7</option>
-                        <option value="ch 8">Chapter 8</option>
-                        <option value="ch 9">Chapter 9</option>
-                        <option value="ch 10">Chapter 10</option>
-                    </select>
-
-                    <select id="filterMedium" onchange="renderPdfVault()" class="bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2 text-xs font-medium">
-                        <option value="all">All Mediums</option>
-                        <option value="hindi">Hindi</option>
-                        <option value="english">English</option>
-                        <option value="both">Both</option>
-                    </select>
-                </div>
-            </div>
-
-            <div id="pdfContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-left">
-                <p class="text-slate-400 text-center col-span-full py-8">No PDF notes uploaded yet.</p>
-            </div>
-        </section>
-         }
+            // Render CBSE Circulars
+            let cbseContainer = document.getElementById('cbseContainer');
+            let cbses = resources.filter(r => r.type === 'cbse');
+            if(cbseContainer && cbses.length > 0) {
+                cbseContainer.innerHTML = cbses.map(c => `<div class="p-4 bg-white dark:bg-slate-950 border rounded-2xl text-left shadow-sm inline-block w-full sm:w-[48%] lg:w-[30%] m-2"><span class="text-xs font-bold text-amber-600">Class ${c.cls} • ${c.medium}</span><h4 class="font-bold">${c.title}</h4><a href="${c.link}" target="_blank" class="mt-2 inline-block text-xs bg-amber-600 text-white px-3 py-1 rounded">View Circular/Sample Paper</a></div>`).join('');
+            }
+        }
 
         // Instant Auto-Search
         function performGlobalSearch(query) {
