@@ -495,7 +495,54 @@
                 </form>
             </section>
         </div>
+            <!-- Upload Box 3: CBSE Circulars & Sample Papers -->
+            <section class="bg-gradient-to-br from-amber-900 to-orange-900 text-white rounded-3xl p-6 sm:p-10 shadow-xl border border-amber-700">
+                <span class="bg-white/20 text-amber-200 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">Upload Section 3</span>
+                <h3 class="text-2xl sm:text-3xl font-bold mt-3 mb-2">📜 Upload CBSE Circulars & Sample Papers</h3>
+                <p class="text-amber-200 text-sm mb-6">Upload official curriculum updates, guidelines, notice, date sheets and practice sample papers.</p>
 
+                <form onsubmit="handleSeparateUpload(event, 'cbse')" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20">
+                    <input type="hidden" id="upType_cbse" value="cbse">
+                    <div>
+                        <label class="block text-xs font-medium mb-1">Class</label>
+                        <select id="upClass_cbse" class="w-full bg-white/20 border border-white/30 rounded-xl px-3 py-2 text-sm text-white focus:outline-none">
+                            <option value="12" class="text-slate-900">Class 12</option>
+                            <option value="11" class="text-slate-900">Class 11</option>
+                            <option value="10" class="text-slate-900">Class 10</option>
+                            <option value="all" class="text-slate-900">All Classes (6-12)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium mb-1">Subject / Category</label>
+                        <input type="text" id="upSubject_cbse" placeholder="e.g., Board Exam / Notice" class="w-full bg-white/20 border border-white/30 rounded-xl px-3 py-2 text-sm placeholder-amber-300 text-white focus:outline-none" required>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium mb-1">Medium</label>
+                        <select id="upMedium_cbse" class="w-full bg-white/20 border border-white/30 rounded-xl px-3 py-2 text-sm text-white focus:outline-none">
+                            <option value="hindi" class="text-slate-900">Hindi</option>
+                            <option value="english" class="text-slate-900">English</option>
+                            <option value="both" class="text-slate-900">Both</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium mb-1">Circular / Date Sheet Title</label>
+                        <input type="text" id="upTitle_cbse" placeholder="Sample Paper / Notice 2027" class="w-full bg-white/20 border border-white/30 rounded-xl px-3 py-2 text-sm placeholder-amber-300 text-white focus:outline-none" required>
+                    </div>
+                    <div class="sm:col-span-4">
+                        <label class="block text-xs font-medium mb-1">Choose Circular File or Paste URL</label>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <input type="file" id="upFile_cbse" accept="application/pdf,image/*" class="w-full bg-white/20 border border-white/30 rounded-xl px-3 py-1.5 text-xs text-white">
+                            <input type="url" id="upLink_cbse" placeholder="https://... or sample_paper.pdf" class="w-full bg-white/20 border border-white/30 rounded-xl px-3 py-2 text-sm placeholder-amber-300 text-white focus:outline-none">
+                        </div>
+                    </div>
+                    <div class="sm:col-span-4 text-right">
+                        <button type="submit" class="bg-white text-amber-900 font-bold px-8 py-2.5 rounded-xl hover:bg-amber-50 transition shadow-lg text-sm">
+                            <i class="fa-solid fa-cloud-arrow-up mr-2"></i> Upload CBSE Circular / Notice
+                        </button>
+                    </div>
+                </form>
+            </section>
+        
         <!-- Render Containers for Displaying Uploaded Resources with Filters -->
         <section id="vault" class="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 shadow-lg border border-slate-200 dark:border-slate-800 space-y-6">
             <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
@@ -975,29 +1022,86 @@
             updateDashboardUI();
         }
 
-        function renderResources() {
-            // Render Videos
+                function renderResources() {
+            // Render Videos with Delete & Edit
             let vidContainer = document.getElementById('vidContainer');
             let vids = resources.filter(r => r.type === 'video');
-            if(vidContainer && vids.length > 0) {
-                vidContainer.innerHTML = vids.map(v => `<div class="p-4 bg-white dark:bg-slate-950 border rounded-2xl text-left shadow-sm inline-block w-full sm:w-[48%] lg:w-[30%] m-2"><span class="text-xs font-bold text-blue-600">Class ${v.cls} • ${v.medium}</span><h4 class="font-bold">${v.title}</h4><p class="text-xs text-slate-500">Subject: ${v.subject}</p><a href="${v.link}" target="_blank" class="mt-2 inline-block text-xs bg-blue-600 text-white px-3 py-1 rounded">Watch Video</a></div>`).join('');
+            if(vidContainer) {
+                if(vids.length > 0) {
+                    vidContainer.innerHTML = vids.map(v => {
+                        let realIdx = resources.findIndex(r => r === v);
+                        return `
+                            <div class="p-4 bg-white dark:bg-slate-950 border rounded-2xl text-left shadow-sm inline-block w-full sm:w-[48%] lg:w-[30%] m-2 relative">
+                                <span class="text-xs font-bold text-blue-600">Class ${v.cls} • ${v.medium}</span>
+                                <h4 class="font-bold">${v.title}</h4>
+                                <p class="text-xs text-slate-500">Subject: ${v.subject}</p>
+                                <div class="flex justify-between items-center mt-3 pt-2 border-t border-slate-100 dark:border-slate-800">
+                                    <a href="${v.link}" target="_blank" class="text-xs bg-blue-600 text-white px-3 py-1 rounded">Watch Video</a>
+                                    <div class="flex gap-2">
+                                        <button onclick="editResource(${realIdx})" class="text-blue-500 hover:text-blue-700 p-1.5 rounded-lg bg-blue-50 dark:bg-slate-900" title="Edit"><i class="fa-solid fa-pencil text-xs"></i></button>
+                                        <button onclick="deleteResource(${realIdx})" class="text-red-500 hover:text-red-700 p-1.5 rounded-lg bg-red-50 dark:bg-slate-900" title="Delete"><i class="fa-solid fa-trash text-xs"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    }).join('');
+                } else {
+                    vidContainer.innerHTML = `<i class="fa-solid fa-video-slash text-4xl mb-3"></i><p>No videos uploaded yet. Use the Upload Hub below to add video resources!</p>`;
+                }
             }
 
-            // Render PDFs
-            let pdfContainer = document.getElementById('pdfContainer');
-            let pdfs = resources.filter(r => r.type === 'pdf');
-            if(pdfContainer && pdfs.length > 0) {
-                pdfContainer.innerHTML = pdfs.map(p => `<div class="p-4 bg-white dark:bg-slate-950 border rounded-2xl text-left shadow-sm inline-block w-full sm:w-[48%] lg:w-[30%] m-2"><span class="text-xs font-bold text-teal-600">Class ${p.cls} • ${p.medium}</span><h4 class="font-bold">${p.title}</h4><p class="text-xs text-slate-500">Subject: ${p.subject}</p><a href="${p.link}" target="_blank" class="mt-2 inline-block text-xs bg-teal-600 text-white px-3 py-1 rounded">View/Download PDF</a></div>`).join('');
+            // Render PDFs (फिल्टर वाले Vault के लिए)
+            if(typeof renderPdfVault === 'function') {
+                renderPdfVault();
             }
 
-            // Render CBSE Circulars
+            // Render CBSE Circulars with Delete & Edit
             let cbseContainer = document.getElementById('cbseContainer');
             let cbses = resources.filter(r => r.type === 'cbse');
-            if(cbseContainer && cbses.length > 0) {
-                cbseContainer.innerHTML = cbses.map(c => `<div class="p-4 bg-white dark:bg-slate-950 border rounded-2xl text-left shadow-sm inline-block w-full sm:w-[48%] lg:w-[30%] m-2"><span class="text-xs font-bold text-amber-600">Class ${c.cls} • ${c.medium}</span><h4 class="font-bold">${c.title}</h4><a href="${c.link}" target="_blank" class="mt-2 inline-block text-xs bg-amber-600 text-white px-3 py-1 rounded">View Circular/Sample Paper</a></div>`).join('');
+            if(cbseContainer) {
+                if(cbses.length > 0) {
+                    cbseContainer.innerHTML = cbses.map(c => {
+                        let realIdx = resources.findIndex(r => r === c);
+                        return `
+                            <div class="p-4 bg-white dark:bg-slate-950 border rounded-2xl text-left shadow-sm inline-block w-full sm:w-[48%] lg:w-[30%] m-2 relative">
+                                <span class="text-xs font-bold text-amber-600">Class ${c.cls} • ${c.medium}</span>
+                                <h4 class="font-bold">${c.title}</h4>
+                                <p class="text-xs text-slate-500">Category: ${c.subject}</p>
+                                <div class="flex justify-between items-center mt-3 pt-2 border-t border-slate-100 dark:border-slate-800">
+                                    <a href="${c.link}" target="_blank" class="text-xs bg-amber-600 text-white px-3 py-1 rounded">View Circular</a>
+                                    <div class="flex gap-2">
+                                        <button onclick="editResource(${realIdx})" class="text-blue-500 hover:text-blue-700 p-1.5 rounded-lg bg-blue-50 dark:bg-slate-900" title="Edit"><i class="fa-solid fa-pencil text-xs"></i></button>
+                                        <button onclick="deleteResource(${realIdx})" class="text-red-500 hover:text-red-700 p-1.5 rounded-lg bg-red-50 dark:bg-slate-900" title="Delete"><i class="fa-solid fa-trash text-xs"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    }).join('');
+                } else {
+                    cbseContainer.innerHTML = `<p>No CBSE circulars uploaded yet. Use Upload Section 3 above!</p>`;
+                }
+            }
+                }
+                function deleteResource(index) {
+            if(confirm('क्या आप वाकई इसे हटाना (Delete) चाहते हैं?')) {
+                resources.splice(index, 1);
+                localStorage.setItem('scanToStudy_resources', JSON.stringify(resources));
+                renderResources();
+                alert('🗑️ सफलताપूर्वक हटा दिया गया है।');
             }
         }
 
+        function editResource(index) {
+            let item = resources[index];
+            let newTitle = prompt('नया शीर्षक (Title) दर्ज करें:', item.title);
+            if(newTitle !== null && newTitle.trim() !== '') {
+                resources[index].title = newTitle.trim();
+                localStorage.setItem('scanToStudy_resources', JSON.stringify(resources));
+                renderResources();
+                alert('✏️ सफलताપूर्वक अपडेट कर दिया गया है!');
+            }
+        }
+        
         // Instant Auto-Search
         function performGlobalSearch(query) {
             let res = document.getElementById('searchResults');
